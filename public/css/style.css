@@ -1,0 +1,59 @@
+html, body {
+  height: 100%;
+}
+body {
+  padding-top: 72px;
+}
+/*Wrap to push down footer*/
+#wrap {
+  height: auto;
+  min-height: 100%;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+.header h3 {
+  padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+.footer {
+  height: 60px;
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+.navbar .container-fluid {
+  max-width: 930px;
+}
+.navbar-img {
+  float: left;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+.landing {
+  width: 650px;
+  height: 300px;
+  margin: auto;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  text-align: center;
+}
+.landing h1 {
+  font-size: 46px;
+}
+.landing h2 {
+  font-size: 39px;
+}
