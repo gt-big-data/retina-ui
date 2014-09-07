@@ -96,4 +96,7 @@ body {
   .landing-form-object {
     text-align: center;
   }
+  .about-panel .panel-heading {
+    text-align: center;
+  }
 }
