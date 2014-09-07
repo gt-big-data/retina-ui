@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RETINA - Please Wait</title>
+
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+
+    <div ng-include="'/headerStyle.html'"></div>
+
+  </head>
+
+  <body>
+   <div id="wrap">
+   <div ng-include="'../navbarNoAuth.html'"></div>
+   <div class="container">
+     <div class="landing">
+       <h1>Just a sec... <small>We're finding stuff you'll like</small></h1>
+       <i class="fa fa-cog fa-spin fa-5x"></i>
+     </div>
+   </div>
+ </div><!--Wrap-->
+ <div ng-include="'/footer.html'"></div>
+ </body>
+ </html>
