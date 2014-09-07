@@ -4,53 +4,51 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>RETINA - About</title>
-
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
 
     <script type="text/javascript" src="/js/angular.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
 
+    <div ng-include="'/headerStyle.html'"></div>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
+
   <body>
+   <div id="wrap">
    <div ng-include="'../navbar.html'"></div>
    <div class="container">
-   <div class="page-header">
-  		<h1>About</h1>
-	</div>
-	<div class = "container">
-    	<div class = "row">
-    		<div class = "col-md-8">
-    			<div class = "list-group" style= "margin-left: 50%">
-    				<a href="#" class = "list-group-item">
-    					<h3 class = "list-group-item-heading text-center">What is this?</h3>
-    					<p class = "list-group-item-text"><h4 class = "text-center">RETINA</h4><h5 class = "text-center">  Real-Time Intelligent News App</h5></p>
-    				</a>
-    				<a href="#" class = "list-group-item">
-    					<h3 class = "list-group-item-heading text-center">Project</h3>
-    					<p class = "list-group-item-text"><h5>Similar to Google News, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</h5></p>
-    				</a>
-    				<a href="#" class = "list-group-item">
-    					<h3 class = "list-group-item-heading text-center">Main Components of the Project</h3>
-    					<p class = "list-group-item-text"> <h5><b>Crawling</b> - <h6 class = "text-align-left">Integrating all sources to links in HTML. </h6> <b>Clustering</b> - <h6 class = "text-align-left"> Organizes data based on titles and keywords. </h6><b>API</b>- <h6 class = "text-align-left"> Returns news results based on recommendations</h6><b>UI</b> - <h6 class = "text-align-left">Responsible for the web/mobile app and account creation/registration.</h6></h5></p>
-    				</a>
-    			</div>
-    		</div>
-    	</div>
+      <div class="header">
+    	   <h1>About</h1>
+	    </div>
+    	<div class = "container">
+        	<div class = "row">
+        		<div class = "col-md-8">
+        			<div class = "list-group" style= "margin-left: 50%">
+        				<a href="#" class = "list-group-item">
+        					<h3 class = "list-group-item-heading text-center">What is this?</h3>
+        					<p class = "list-group-item-text"><h4 class = "text-center">RETINA</h4><h5 class = "text-center">  Real-Time Intelligent News App</h5></p>
+        				</a>
+        				<a href="#" class = "list-group-item">
+        					<h3 class = "list-group-item-heading text-center">Project</h3>
+        					<p class = "list-group-item-text"><h5>Similar to Google News, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</h5></p>
+        				</a>
+        				<a href="#" class = "list-group-item">
+        					<h3 class = "list-group-item-heading text-center">Main Components of the Project</h3>
+        					<p class = "list-group-item-text"> <h5><b>Crawling</b> - <h6 class = "text-align-left">Integrating all sources to links in HTML. </h6> <b>Clustering</b> - <h6 class = "text-align-left"> Organizes data based on titles and keywords. </h6><b>API</b>- <h6 class = "text-align-left"> Returns news results based on recommendations</h6><b>UI</b> - <h6 class = "text-align-left">Responsible for the web/mobile app and account creation/registration.</h6></h5></p>
+        				</a>
+        			</div>
+        		</div>
+        	</div>
+        </div>
     </div>
     </div>
+    <div ng-include="'/footer.html'"></div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
