@@ -8,24 +8,16 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
+                  <img class="navbar-img" src="/images/big_data.jpg" width="40" height="40">
                   <a class="navbar-brand" href="/">RETINA News</a>
               </div>
 
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navbarActive">
-                  <ul class="nav navbar-nav">
-                      <li ng-class="{ active: isActive('/public/feed') }"><a href="/feed">My Feed</a></li>
-                      <li ng-class="{ active: isActive('/about') }"><a href="/about">About</a></li>
-                      <li ng-class="{ active: isActive(/contacts') }"><a href="#">Contacts</a></li>
-                  </ul>
-                  <form class="navbar-form navbar-right" role="search">
-                      <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Search">
-                      </div>
-                      <button type="submit" class="btn btn-default">Submit</button>
-                  </form>
                   <ul class="nav navbar-nav navbar-right">
-                      <li><a href="#">Settings</a></li>
+                      <li><a href="/about">About</a></li>
+                      <li><a href="/contact">Contact</a></li>
+                      <li><a href="/login">Sign In</a></li>
                   </ul>
               </div><!-- /.navbar-collapse -->
               <div ng-view></div>
