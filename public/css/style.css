@@ -44,7 +44,7 @@ body {
   margin-right: 5px;
 }
 .landing {
-  width: 650px;
+  max-width: 768px;
   height: 300px;
   margin: auto;
   position: absolute;
@@ -56,4 +56,44 @@ body {
 }
 .landing h2 {
   font-size: 39px;
+}
+.landing-form-object {
+  margin-bottom: 10px;
+}
+/* Media Settings */
+/* Wide desktops */
+@media (max-width: 1200px) {
+
+}
+/* Laptops, desktops */
+@media (max-width: 992px) {
+
+}
+/* Tablets */
+@media (max-width: 768px) {
+  .landing {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .landing h1 {
+    font-size: 35px;
+  }
+  .landing h2 {
+    font-size: 30px;
+  }
+/* Tiny Screens */
+@media (max-width: 480px) {
+  .landing {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .landing h1 {
+    font-size: 30px;
+  }
+  .landing h2 {
+    font-size: 25px;
+  }
+  .landing-form-object {
+    text-align: center;
+  }
 }
