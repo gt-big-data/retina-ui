@@ -60,6 +60,12 @@ body {
 .landing-form-object {
   margin-bottom: 10px;
 }
+.login-pane {
+  max-width: 250px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 5px 5px 5px #CCC;
+}
 /* Media Settings */
 /* Wide desktops */
 @media (max-width: 1200px) {
