@@ -66,6 +66,12 @@ body {
   text-align: center;
   box-shadow: 5px 5px 5px #CCC;
 }
+.alert {
+  text-align: center;
+}
+.alert h4 {
+  margin-bottom: 0px;
+}
 /* Media Settings */
 /* Wide desktops */
 @media (max-width: 1200px) {
