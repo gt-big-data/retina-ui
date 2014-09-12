@@ -1,5 +1,43 @@
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/Ubuntu/Ubuntu-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/fonts/Ubuntu/Ubuntu-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/Ubuntu/Ubuntu-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/fonts/Ubuntu/Ubuntu-BoldItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/fonts/Open_Sans/OpenSans-Italic.ttf) format('truetype');
+}
+
 html, body {
   height: 100%;
+  font-family: 'Ubuntu', sans-serif;
 }
 body {
   padding-top: 72px;
@@ -35,6 +73,9 @@ body {
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+.navbar {
+  font-family: 'Open Sans';
+}
 .navbar .container-fluid {
   max-width: 930px;
 }
@@ -59,6 +100,18 @@ body {
 }
 .landing-form-object {
   margin-bottom: 10px;
+}
+.login-pane {
+  max-width: 250px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 5px 5px 5px #CCC;
+}
+.alert {
+  text-align: center;
+}
+.alert h4 {
+  margin-bottom: 0px;
 }
 /* Media Settings */
 /* Wide desktops */
