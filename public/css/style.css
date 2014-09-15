@@ -40,7 +40,8 @@ html, body {
   font-family: 'Ubuntu', sans-serif;
 }
 body {
-  padding-top: 72px;
+  padding: 0px;
+  margin: 0px;
 }
 /*Wrap to push down footer*/
 #wrap {
@@ -60,6 +61,7 @@ body {
 
 .header {
   border-bottom: 1px solid #e5e5e5;
+  margin:72px 0px 0px 0px;
 }
 .header h3 {
   padding-bottom: 19px;
@@ -83,6 +85,15 @@ body {
   float: left;
   margin-top: 5px;
   margin-right: 5px;
+}
+.jumbotron {
+  background: url(../images/landing.jpg);
+  background-repeat: no-repeat;
+  color: white;
+  height: 500px;
+}
+.jumbotron h1 {
+  margin: 100px 0px 0px 0px;
 }
 .landing {
   max-width: 768px;

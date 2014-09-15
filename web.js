@@ -2,7 +2,6 @@ var express = require("express");
 var logfmt = require("logfmt");
 var request = require("request");
 var app = express();
-
 app.use(logfmt.requestLogger());
 
 app.use(express.static(__dirname + '/public'));
