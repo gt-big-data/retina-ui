@@ -67,13 +67,16 @@ body {
 
 .header {
   border-bottom: 1px solid #e5e5e5;
-  margin:72px 0px 0px 0px;
+  margin:10px 0px 0px 0px;
 }
 .header h3 {
   padding-bottom: 19px;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
+}
+.container {
+  margin-top: 60px;
 }
 .footer {
   height: 60px;
@@ -133,32 +136,24 @@ body {
   margin-bottom: 0px;
 }
 .alert-transparent.alert-warning {
-  position: relative;
-  z-index: 1;
 	background-color: rgba(252,248,227,0.7);
 	background-image: linear-gradient(to bottom,rgba(252,248,227,0.7) 0%,rgba(248,239,192,0.7) 100%);
 	border-color: rgba(245,231,158,0.7);
 	color: rgba(138,109,59,0.7);
 }
 .alert-transparent.alert-danger {
-  position: relative;
-  z-index: 1;
 	background-color: rgba(242,222,222,0.7);
 	background-image: linear-gradient(to bottom,rgba(242,222,222,0.7) 0%,rgba(231,195,195,0.7) 100%);
 	border-color: rgba(220,167,167,0.7);
 	color: rgba(169,68,66,0.7);
 }
 .alert-transparent.alert-success {
-  position: relative;
-  z-index: 1;
 	background-color: rgba(223,240,216,0.7);
 	background-image: linear-gradient(to bottom,rgba(223,240,216,0.7) 0%,rgba(200,229,188,0.7) 100%);
 	border-color: rgba(178,219,161,0.7);
 	color: rgba(60,118,61,0.7);
 }
 .alert-transparent.alert-info {
-  position: relative;
-  z-index: 1;
 	background-color: rgba(217,237,247,0.7);
 	background-image: linear-gradient(to bottom,rgba(217,237,247,0.7) 0%,rgba(185,222,240,0.7) 100%);
 	border-color: rgba(188,232,241,0.7);
