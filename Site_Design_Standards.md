@@ -37,3 +37,22 @@ Please feel free to update this if you change how styling works across the site
         <script src="js/ie10-viewport-bug-workaround.js"></script>
       </body>
     </html>
+
+##Updating the navbar to include a link to your page
+###Should the page only available to logged in users?
+* If so, edit public/navbar.html
+* If not, edit public/navbarNoAuth.html
+
+###Editing navbar
+####1. Go to the part of the file that looks like:
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navbarActive">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Sign In</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+
+####2. Each line `<li><a href="/about">About</a></li>` is a link on the menu.
+####3. Decide where in the menu your page should be, and add a similar line with the correct link and title
