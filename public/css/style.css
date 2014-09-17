@@ -200,8 +200,4 @@ body {
   }
 }
 @media (max-height: 320px) {
-  #wrap {
-    margin: 0 auto 0;
-    padding: 0 0 0;
-  }
 }
