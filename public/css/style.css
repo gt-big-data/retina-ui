@@ -41,22 +41,14 @@
   src: url(/fonts/Orbitron/Orbitron-Bold.ttf) format('truetype');
 }
 
-html, body {
-  height: 100%;
-  font-family: 'Ubuntu', sans-serif;
+html {
+  position: relative;
+  min-height: 100%;
 }
 body {
-  padding: 0px;
-  margin: 0px;
+  margin-bottom: 60px;
+  font-family: 'Ubuntu', sans-serif;
 }
-/*Wrap to push down footer*/
-#wrap {
-  height: auto;
-  min-height: 100%;
-  margin: 0 auto -60px;
-  padding: 0 0 60px;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -67,7 +59,7 @@ body {
 
 .header {
   border-bottom: 1px solid #e5e5e5;
-  margin:10px 0px 0px 0px;
+  margin:10px 0px 15px 0px;
 }
 .header h3 {
   padding-bottom: 19px;
@@ -75,14 +67,19 @@ body {
   margin-bottom: 0;
   line-height: 40px;
 }
-.container {
+.container-main {
   margin-top: 60px;
 }
 .footer {
+  position: absolute;
+  bottom: 0;
   height: 60px;
-  padding-top: 19px;
+  width: 100%;
   color: #777;
   border-top: 1px solid #e5e5e5;
+}
+.footer .container {
+  margin-top: 18px;
 }
 .navbar {
   font-family: 'Open Sans';

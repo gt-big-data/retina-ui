@@ -21,13 +21,11 @@
   </head>
 
   <body>
-   <div id="wrap">
    <div ng-include="'/navbar.html'"></div>
-   <div class="container">
+   <div class="container container-main">
       <div class="header">
          <h1>My Feed</h1>
       </div>
-
       <div class="row marketing" ng-controller="hn">
          <div class="list-group" ng-repeat="item in news.items">
             <a href="{{item.url}}" class="list-group-item">
@@ -39,11 +37,7 @@
          </div>
       </div>
     </div> <!-- /container -->
-    </div>
     <div ng-include="'/footer.html'"></div>
-
-
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
   </body>
