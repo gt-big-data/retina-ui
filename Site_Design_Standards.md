@@ -39,9 +39,9 @@ Please feel free to update this if you change how styling works across the site
     </html>
 
 ##Updating the navbar to include a link to your page
-###Should the page only available to logged in users?
-* If so, edit public/navbar.html
-* If not, edit public/navbarNoAuth.html
+###Should the page only be available to logged in users?
+* ####If so, edit public/navbar.html
+* ####If not, edit public/navbarNoAuth.html
 
 ###Editing navbar
 ####1. Go to the part of the file that looks like:
