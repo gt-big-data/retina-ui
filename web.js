@@ -1,8 +1,9 @@
 var express = require("express");
 var logfmt = require("logfmt");
 var request = require("request");
+var stub = require('./stub.json');
+var filterArticles = require('./filter')
 var app = express();
-var stub = require(__dirname + '/stub.json');
 app.use(logfmt.requestLogger());
 
 app.use(express.static(__dirname + '/public'));
@@ -14,7 +15,7 @@ app.get('/api',function(req,res){
 });
 
 app.get('/stub/:size',function(req, res){
-  var articles = require('./filter.js')(stub, req.params.size);
+  var articles = filterArticles(stub, +req.params.size);
   res.json(articles);
 })
 

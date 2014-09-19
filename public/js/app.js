@@ -1,7 +1,7 @@
 var app = angular.module("myapp",[]);
 
 app.controller("stub",["$scope","$http",function($scope,$http){
-	$http.get('/stub/15').success(function(data){
+	$http.get('/stub/6').success(function(data){
 		$scope.news = data;
 	});
 }]);

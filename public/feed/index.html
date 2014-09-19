@@ -27,21 +27,21 @@
          <h1>My Feed</h1>
       </div>
       <div class="row marketing" ng-controller="stub">
-        <div class="thumbnail" ng-repeat="item in news">
-      <img src="{{item.img}}" alt="...">
+        <div class="thumbnail" ng-repeat="article in news">
+      <img src="{{article.img}}" alt="{{article.title}}">
       <div class="caption">
-        <h2>{{item.title}}</h2>
-        <h4>{{item.description}}</h4>
-        <h5>{{item.source}}</h5>
-        <p ng-show="item.show == true">{{item.text}}</p>
-        <p><a href="#" class="btn btn-default" role="button" ng-click="item.show = !item.show">show {{item.show == false? 'more':'less'}}</a></p>
+        <h2>{{article.title}}</h2>
+        <h4>{{article.description}}</h4>
+        <h5>{{article.source}}</h5>
+        <p ng-show="article.show">{{article.text}}</p>
+        <p><a href="#" class="btn btn-default" role="button" ng-click="article.show = !article.show">show {{ !article.show ? 'more' : 'less'}}</a></p>
       </div>
     </div>
-        <!--  <div class="list-group" ng-repeat="item in news.items">
-            <a href="{{item.url}}" class="list-group-item">
-                <h4 class="list-group-item-heading">{{item.title}}</h4>
-                <p class="list-group-item-text">Posted By: {{item.postedBy}} {{item.postedAgo}}</p>
-                <p class="list-group-item-text"> {{item.points}} points
+        <!--  <div class="list-group" ng-repeat="article in news.articles">
+            <a href="{{article.url}}" class="list-group-article">
+                <h4 class="list-group-article-heading">{{article.title}}</h4>
+                <p class="list-group-article-text">Posted By: {{article.postedBy}} {{article.postedAgo}}</p>
+                <p class="list-group-article-text"> {{article.points}} points
                 </p>
             </a>
          </div> -->
