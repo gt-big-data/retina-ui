@@ -7,8 +7,8 @@ This is the front end component of Retina. Lovingly built with Bootstrap and Ang
 
 Dependencies
 ------------
-*[Python 2.7](https://www.python.org/download/releases/2.7/).
-*[Google App Engine Python SDK](https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python)
+[Python 2.7](https://www.python.org/download/releases/2.7/).
+[Google App Engine Python SDK](https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python)
 
 Tools
 -----

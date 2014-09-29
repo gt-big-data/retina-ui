@@ -9,6 +9,8 @@ handlers:
   script: app.application
 - url: /*
   static_dir: public
+- url: /feed/*
+  static_dir: public/feed
 
 libraries:
 - name: webapp2
