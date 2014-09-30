@@ -5,12 +5,14 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /api/*
-  script: app.application
-- url: /*
+- url: /
+  static_files: public/index.html
+  upload: public/index.html
+- url: /([\w/]+)/?
+  static_files: public/\1/index.html
+  upload: public/\1/index.html
+- url: /
   static_dir: public
-- url: /feed/*
-  static_dir: public/feed
 
 libraries:
 - name: webapp2
