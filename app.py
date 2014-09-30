@@ -1,4 +1,5 @@
 import webapp2
+import logging
 
 class MainPage(webapp2.RequestHandler):
     
@@ -7,5 +8,5 @@ class MainPage(webapp2.RequestHandler):
         self.response.write('Hello, World!')
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/api/hello', MainPage),
 ], debug=True)
