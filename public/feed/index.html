@@ -27,20 +27,8 @@
          <h1>My Feed</h1>
       </div>
       <div class="row marketing" ng-controller="stub">
-<<<<<<< HEAD
-        <div class="thumbnail" ng-repeat="article in news">
-      <img src="{{article.meta_img}}" alt="{{article.title}}">
-      <div class="caption">
-        <h2>{{article.title}}</h2>
-        <h4>{{article.description}}</h4>
-        <h5>{{article.source}}</h5>
-        <p ng-show="article.show">{{article.text}}</p>
-        <p><a href="#" class="btn btn-default" role="button" ng-click="article.show = !article.show">show {{ !article.show ? 'more' : 'less'}}</a></p>
-      </div>
-    </div>
-=======
         <div class="stub-article" ng-repeat="article in news">
-          <div class="stub-photo" style="background-image: url('{{article.img}}')"></div>
+          <div class="stub-photo" style="background-image: url('{{article.meta_img}}')"></div>
           <div class="stub-caption">
             <h2>{{article.title}}</h2>
             <h4>{{article.description}}</h4>
@@ -49,7 +37,6 @@
             <p class="stub-show-btn"><a href="#" class="btn btn-default" role="button" ng-click="article.show = !article.show">show {{ !article.show ? 'more' : 'less'}}</a></p>
           </div>
         </div>
->>>>>>> master
         <!--  <div class="list-group" ng-repeat="article in news.articles">
             <a href="{{article.url}}" class="list-group-article">
                 <h4 class="list-group-article-heading">{{article.title}}</h4>
