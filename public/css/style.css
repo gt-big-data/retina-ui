@@ -159,6 +159,29 @@ body {
 .retina-brand {
   font-family: 'Orbitron';
 }
+.stub-article {
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #FFF;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all .2s ease-in-out;
+}
+.stub-photo {
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 300px;
+}
+.stub-caption {
+}
+.stub-show-btn {
+  margin-bottom: 0px;
+}
+
 /* Media Settings */
 /* Wide desktops */
 @media (max-width: 1200px) {
@@ -197,6 +220,9 @@ body {
   }
   .about-panel .panel-heading {
     text-align: center;
+  }
+  .stub-photo {
+    min-height: 130px;
   }
 }
 @media (max-height: 320px) {
