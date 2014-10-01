@@ -4,8 +4,6 @@ import logging
 with open("stub.json","r") as f:
     stub = f.read()
     
-    
-
 class MainPage(webapp2.RequestHandler):
     
     def get(self):
