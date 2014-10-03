@@ -1,5 +1,31 @@
     <div class="jumbotron">
-      <h1>Retina News</h1>
-      <p>The news...for you, by you.</p>
-      <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed">Explore</a></p>
+          <h1>Retina News</h1>
+          <p>The news...for you, by you.</p>
+          <p><a class="btn btn-primary btn-lg" role="button" href="/feed">Explore</a>
+             <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#myModal
+             ">Sign In</a>
+          </p>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel"><font color="black">Sign In</font></h4>
+          </div>
+
+          <div class="modal-body">
+
+              <input type="text" class="form-control input-lg" placeholder="Username">
+              <p></p>
+              <input type="password" class="form-control input-lg" placeholder="password">
+              <p></p>
+              <a class="btn btn-primary btn-lg" role="button" href="#">Sign In</a>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
