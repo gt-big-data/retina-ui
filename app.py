@@ -15,7 +15,7 @@ class Stub(webapp2.RequestHandler):
 
     def get(self):
         self.response.headers['Content-Type'] = 'text/javascript'
-        self.response.write(json.dumps(stub[:5))
+        self.response.write(json.dumps(stub[:5]))
 
 application = webapp2.WSGIApplication([
     ('/api/hello', MainPage),
