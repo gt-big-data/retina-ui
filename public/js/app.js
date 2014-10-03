@@ -19,6 +19,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: 'partials/login.html'
 		})
+		.state('start', {
+			url: '/start',
+			templateUrl: 'partials/start.html'
+		})
+		.state('query', {
+			url: '/query',
+			templateUrl: 'partials/query.html'
+		})
 });
 
 app.controller("stub",["$scope","$http",function($scope,$http){
