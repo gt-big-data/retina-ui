@@ -168,6 +168,11 @@ body {
   border-radius: 4px;
   transition: all .2s ease-in-out;
 }
+
+.stub-article:hover {
+  background-color: #E0DEDE;
+}
+
 .stub-photo {
   display: block;
   position: relative;
