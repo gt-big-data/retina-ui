@@ -7,27 +7,46 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/js/ie-emulation-modes-warning.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/big_data.png" type="image/x-icon" />
+
     <title>Retina News</title>
 
-    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <!-- <script type="text/javascript" src="/js/angular.min.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
     <script type="text/javascript" src="/js/app.js"></script>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
 
-    <div ng-include="'/headerStyle.html'"></div>
-
   </head>
 
-  <body>
-  	<div ng-include="'navbarNoAuth.html'"></div>
-    <div class="jumbotron">
-      <h1>Retina News</h1>
-      <p>The news...for you, by you.</p>
-      <p><a class="btn btn-primary btn-lg" role="button" href="/feed">Explore</a></p>
-    </div>
-    <div ng-include="'/footer.html'"></div>
+  <body ng-app="myapp">
+  	<div ng-include="'partials/navbarNoAuth.html'"></div>
+    <div ui-view></div>
+    <div ng-include="'partials/footer.html'"></div>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
