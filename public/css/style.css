@@ -68,6 +68,7 @@ body {
   line-height: 40px;
 }
 .container-main {
+  width: 100%;
   margin-top: 60px;
 }
 .footer {
@@ -185,6 +186,36 @@ body {
 }
 .stub-show-btn {
   margin-bottom: 0px;
+}
+.alt-stub-article {
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #FFF;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all .2s ease-in-out;
+}
+.alt-stub-article:hover {
+  background-color: #E0DEDE;
+}
+.alt-stub-photo {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 80px;
+  min-width: 80px;
+
+}
+.alt-stub-caption {
+  display: inline-block;
+
+  margin-left: 10px;
+}
+.header-modify {
+  width: 195px;/*todo This is not properly centered*/
+  margin: 0 auto;
 }
 
 /* Media Settings */

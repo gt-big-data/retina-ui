@@ -11,6 +11,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/feed',
 			templateUrl: 'partials/feed.html'
 		})
+		.state('feed.list', {
+			url: '/list',
+			templateUrl: 'partials/feed-part-default.html'
+		})
+		.state('feed.list2', {
+			url: '/list2',
+			templateUrl: 'partials/feed-part-alt.html'
+		})
 		.state('about', {
 			url: '/about',
 			templateUrl: 'partials/about.html'
