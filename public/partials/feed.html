@@ -10,7 +10,7 @@
             <h4>{{article.description}}</h4>
             <h5>{{article.source}}</h5>
             <p ng-show="article.show">{{article.text}}</p>
-            <p class="stub-show-btn"><a href="#" class="btn btn-default" role="button" ng-click="article.show = !article.show">show {{ !article.show ? 'more' : 'less'}}</a></p>
+            <p class="stub-show-btn"><a class="btn btn-default" role="button" ng-click="article.show = !article.show">show {{ !article.show ? 'more' : 'less'}}</a></p>
           </div>
         </div>
         <!--  <div class="list-group" ng-repeat="article in news.articles">

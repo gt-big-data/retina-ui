@@ -11,6 +11,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/feed',
 			templateUrl: 'partials/feed.html'
 		})
+		.state('about', {
+			url: '/about',
+			templateUrl: 'partials/about.html'
+		})
+		.state('login', {
+			url: '/login',
+			templateUrl: 'partials/login.html'
+		})
 });
 
 app.controller("stub",["$scope","$http",function($scope,$http){
