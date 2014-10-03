@@ -1,8 +1,9 @@
 import webapp2
 import logging
+import json
 
 with open("stub.json","r") as f:
-    stub = f.read()
+    stub = json.load(f)
     
 class MainPage(webapp2.RequestHandler):
     
@@ -14,7 +15,7 @@ class Stub(webapp2.RequestHandler):
 
     def get(self):
         self.response.headers['Content-Type'] = 'text/javascript'
-        self.response.write(str(stub))
+        self.response.write(json.dumps(stub[:5))
 
 application = webapp2.WSGIApplication([
     ('/api/hello', MainPage),
