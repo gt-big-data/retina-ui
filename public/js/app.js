@@ -42,7 +42,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/query',
 			templateUrl: 'partials/query.html'
 		})
+		.state('settings', {
+			url: '/settings',
+			templateUrl: 'partials/settings.html'
+		})
+}).run(function($rootScope, $state) {
+	$rootScope.$state = $state;
 });
+
+app.controller("activeCtrl", function($scope, $location) {
+	$scope.isActive = function(route) {
+		return route === $location.path();
+	}
+})
 
 app.controller("stub",["$scope","$http",function($scope,$http){
 	$http.get('/api/stub').success(function(data){

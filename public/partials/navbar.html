@@ -14,9 +14,9 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navbarActive">
                   <ul class="nav navbar-nav">
-                      <li ng-class="{ active: isActive('/public/feed') }"><a ui-sref="feed">My Feed</a></li>
-                      <li ng-class="{ active: isActive('/about') }"><a ui-sref="about">About</a></li>
-                      <li ng-class="{ active: isActive(/contacts') }"><a ui-sref="home">Contacts</a></li>
+                      <li ng-class="{active:$state.includes('feed')}"><a ui-sref="feed">My Feed</a></li>
+                      <li ng-class="{active:$state.includes('about')}"><a ui-sref="about">About</a></li>
+                      <li ng-class="{active:$state.includes('home')}"><a ui-sref="home">Contacts</a></li>
                   </ul>
                   <form class="navbar-form navbar-right" role="search" action="/query" method="get"><!--todo change this method to post-->
                       <div class="form-group">

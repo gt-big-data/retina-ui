@@ -4,8 +4,8 @@
       </div>
       <div class="header-modify">
         <div class="btn-group btn-group-lg">
-          <button type="button" class="btn btn-default" ui-sref="feed.default">Default</button>
-          <button type="button" class="btn btn-default" ui-sref="feed.mini">Minified</button>
+          <button type="button" class="btn btn-default" ng-class="{active:$state.includes('feed.default')}" ui-sref="feed.default">Default</button>
+          <button type="button" class="btn btn-default" ng-class="{active:$state.includes('feed.mini')}" ui-sref="feed.mini">Minified</button>
         </div>
       </div>
       <div ui-view></div>
