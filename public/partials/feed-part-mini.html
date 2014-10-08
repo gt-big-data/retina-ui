@@ -1,7 +1,7 @@
       <div class="row marketing" ng-controller="stub">
         <div class="alt-stub-article" ng-repeat="article in news" ng-click="article.show = !article.show">
           <div class="alt-stub-header-container">
-            <div class="alt-stub-photo" style="background-image: url('/images/news-icons/icon_huffingtonpost.png')"></div>
+            <div class="alt-stub-photo" style="background-image: url('/images/news-icons/icon_cnn.png')"></div>
             <div class="alt-stub-caption">
               <h2>{{article.title}}</h2>
               <h4>{{article.description}}</h4>
@@ -11,3 +11,9 @@
           <p ng-show="article.show">{{article.text}}</p>
         </div>
       </div>
+      <script type="text/javascript">
+        var sph = $('.alt-stub-photo').width();
+        $('.alt-stub-photo').css({
+          'height': sph + 'px'
+        });
+      </script>

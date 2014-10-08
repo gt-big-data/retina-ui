@@ -200,7 +200,7 @@ body {
   background-color: #E0DEDE;
 }
 .alt-stub-header-container {
-  display: table
+  display: table;
   width: 100%;
 }
 .alt-stub-photo {
@@ -208,7 +208,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  width: 64px;
+  width: 10%;
 }
 .alt-stub-caption {
   display: table-cell;
@@ -262,6 +262,9 @@ body {
   }
   .stub-photo {
     min-height: 130px;
+  }
+  .alt-stub-caption h2 {
+     font-size: 20px;
   }
 }
 @media (max-height: 320px) {

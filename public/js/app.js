@@ -20,7 +20,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('feed.mini', {
 			parent: 'feed',
 			url: '/mini',
-			templateUrl: 'partials/feed-part-mini.html'
+			templateUrl: 'partials/feed-part-mini.html',
+			controller: function($scope) {
+				var sph = $('.alt-stub-photo').width();
+				$('.alt-stub-photo').css({'height': sph + 'px'});
+			}
 		})
 		.state('about', {
 			url: '/about',
