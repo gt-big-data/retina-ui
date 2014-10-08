@@ -9,15 +9,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('feed', {
 			url: '/feed',
+			abstract: true,
 			templateUrl: 'partials/feed.html'
 		})
-		.state('feed.list', {
-			url: '/list',
+		.state('feed.default', {
+			parent: 'feed',
+			url: '',
 			templateUrl: 'partials/feed-part-default.html'
 		})
-		.state('feed.list2', {
-			url: '/list2',
-			templateUrl: 'partials/feed-part-alt.html'
+		.state('feed.mini', {
+			parent: 'feed',
+			url: '/mini',
+			templateUrl: 'partials/feed-part-mini.html'
 		})
 		.state('about', {
 			url: '/about',
