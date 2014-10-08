@@ -46,7 +46,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/settings',
 			templateUrl: 'partials/settings.html'
 		})
-}).run(function($rootScope, $state) {
+}).run(function($rootScope, $state) {//Used to set navbar buttons as "active" depending on current scope
 	$rootScope.$state = $state;
 });
 
