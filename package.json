@@ -12,6 +12,11 @@
   },
   "author": "GT BigData Club",
   "license": "BSD-2-Clause",
+  "dependencies": {
+    "logfmt": "~1.1.2",
+    "express": "~4.6.1",
+    "request": "~2.44.0"
+  },
   "bugs": {
     "url": "https://github.com/gt-big-data/retina-ui/issues"
   }
