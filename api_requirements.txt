@@ -1,0 +1,15 @@
+Ideally each article response should contain the following meta data:
+	-title
+	-description
+	-img url
+	-text
+	-url
+	-source
+	-categories/keywords
+	-date
+
+
+API Endpoints
+	- Given a list of categories return a json response containing the most recent articles that are in the the requested categories
+	
+	- Given a source return the most recent articles from that source
