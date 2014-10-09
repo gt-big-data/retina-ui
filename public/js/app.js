@@ -57,17 +57,8 @@ app.controller("activeCtrl", function($scope, $location) {
 })
 
 app.controller("stub",["$scope","$http",function($scope,$http){
-	$http.get('/api/stub').success(function(data){
+	$http.get('/api/stub/').success(function(data){
 		$scope.news = data;
 	});
 }]);
 
-app.controller("hn",["$scope","$http",function($scope,$http){
-  $http.get('/api').success(function(data){
-    $scope.news = data;
-    $scope.show = function() {
-      scope.news.show = true;
-    }
-
-  });
-}]);
