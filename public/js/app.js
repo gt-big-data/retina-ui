@@ -22,8 +22,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/mini',
 			templateUrl: 'partials/feed-part-mini.html',
 			controller: function($scope) {
-				var sph = $('.alt-stub-photo').width();
-				$('.alt-stub-photo').css({'height': sph + 'px'});
+				setTimeout(function() {
+					var sph = $('.alt-stub-photo').width();
+					$('.alt-stub-photo').css({'height': sph + 'px'});
+				}, 0);
 			}
 		})
 		.state('about', {
