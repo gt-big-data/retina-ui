@@ -7,6 +7,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   stub = require('./stub.json'),
   filter = require('./filter'),
+  config = require('./config')('dev'),
   app = express();
 
 app.use(logfmt.requestLogger());
@@ -26,7 +27,7 @@ app.get('/api/stub/',function(req, res){
   res.json(articles);
 });
 
-require('./facebook')(app, mongoose);
+require('./facebook')(app, mongoose, config);
 require('./local')(app, mongoose);
 
 var port = Number(process.env.PORT || 5000);

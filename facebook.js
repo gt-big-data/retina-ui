@@ -1,17 +1,11 @@
 var passport = require('passport'),
-  config = require('./config'),
   FacebookStrategy = require('passport-facebook').Strategy;
+  schema =  require('./schema');
 
-module.exports = function(app, mongoose) {
+module.exports = function(app, mongoose, config) {
 
-  var FbUserSchema = mongoose.Schema({
-    fbId: String,
-    email: String,
-    name: String,
-  });
-
-  var FbUsers = mongoose.model('FbUsers', FbUserSchema);
-
+  var FbUsers = schema.FbUsers;
+  
   passport.use(new FacebookStrategy({
       clientID: config.facebook.clientID,
       clientSecret: config.facebook.clientSecret,
@@ -27,6 +21,7 @@ module.exports = function(app, mongoose) {
             fbId: profile.id,
             email: profile.emails[0].value,
             name: profile.displayName,
+            categories: [],
           }).save(function(err, newUser) {
             if (err) {
               throw err;
