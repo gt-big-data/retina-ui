@@ -38,6 +38,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/start',
 			templateUrl: 'partials/start.html'
 		})
+		.state('signUp', {
+			url: '/Sign Up',
+			templateUrl: 'partials/Sign Up.html'
+		})
 		.state('query', {
 			url: '/query',
 			templateUrl: 'partials/query.html'
