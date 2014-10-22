@@ -199,22 +199,28 @@ body {
 .alt-stub-article:hover {
   background-color: #E0DEDE;
 }
+.alt-stub-header-container {
+  display: table;
+  width: 100%;
+}
 .alt-stub-photo {
-  display: inline-block;
+  display: table-cell;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
-  min-height: 80px;
-  min-width: 80px;
-
+  background-size: contain;
+  width: 10%;
 }
 .alt-stub-caption {
-  display: inline-block;
-
-  margin-left: 10px;
+  display: table-cell;
+}
+.alt-stub-caption h2 {
+  margin: 10px;
+}
+.alt-stub-caption h4 {
+  margin: 10px;
 }
 .header-modify {
-  width: 195px;/*todo This is not properly centered*/
+  width: 200px;/*todo This is not properly centered*/
   margin: 0 auto;
 }
 
@@ -259,6 +265,9 @@ body {
   }
   .stub-photo {
     min-height: 130px;
+  }
+  .alt-stub-caption h2 {
+     font-size: 20px;
   }
 }
 @media (max-height: 320px) {

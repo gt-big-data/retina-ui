@@ -20,7 +20,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('feed.mini', {
 			parent: 'feed',
 			url: '/mini',
-			templateUrl: 'partials/feed-part-mini.html'
+			templateUrl: 'partials/feed-part-mini.html',
+			controller: function($scope) {
+				setTimeout(function() {
+					var sph = $('.alt-stub-photo').width();
+					$('.alt-stub-photo').css({'height': sph + 'px'});
+				}, 0);
+			}
 		})
 		.state('about', {
 			url: '/about',
@@ -50,7 +56,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/settings',
 			templateUrl: 'partials/settings.html'
 		})
-}).run(function($rootScope, $state) {
+}).run(function($rootScope, $state) {//Used to set navbar buttons as "active" depending on current scope
 	$rootScope.$state = $state;
 });
 
@@ -66,3 +72,12 @@ app.controller("stub",["$scope","$http",function($scope,$http){
 	});
 }]);
 
+app.controller("hn",["$scope","$http",function($scope,$http){
+	$http.get('/api').success(function(data){
+		$scope.news = data;
+		$scope.show = function() {
+			scope.news.show = true;
+		}
+
+	});
+}]);
