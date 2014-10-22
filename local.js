@@ -1,7 +1,7 @@
 var crypto = require('crypto'),
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy;
-  schema = require('./schema');
+  models = require('./models');
 
 var hash = function (data) {
   return crypto.createHash('md5').update(data).digest('hex');
@@ -9,7 +9,7 @@ var hash = function (data) {
 
 module.exports = function(app, mongoose) {
 
-  var LocalUser = schema.LocalUser;
+  var LocalUser = models.LocalUser;
 
   passport.use(new LocalStrategy(
   function(username, password, done) {

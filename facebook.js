@@ -1,10 +1,10 @@
 var passport = require('passport'),
   FacebookStrategy = require('passport-facebook').Strategy;
-  schema =  require('./schema');
+  models =  require('./models');
 
 module.exports = function(app, mongoose, config) {
 
-  var FbUsers = schema.FbUsers;
+  var FbUsers = models.FbUsers;
   
   passport.use(new FacebookStrategy({
       clientID: config.facebook.clientID,
