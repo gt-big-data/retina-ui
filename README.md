@@ -3,11 +3,12 @@ Retina UI
 
 About
 -----
-This is the front end component of Retina. Lovingly built with Bootstrap, AngularJS, and NodeJS. In order to run it locally you will need NodeJS installed.
+This is the front end component of Retina. Lovingly built with Bootstrap, AngularJS, NodeJS, and MongoDB. In order to run it locally you will need NodeJS and MongoDB installed.
 
 Dependencies
 ------------
-[NodeJS](http://nodejs.org/).
+[NodeJS](http://nodejs.org/)
+[MongoDB](http://www.mongodb.org/)
 
 Tools
 -----
@@ -20,3 +21,6 @@ AngularJS is a client side Javascript framework that makes developing dynamic we
 
 ###NodeJS
 Node.js® is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. You can find tutorials on [Lynda](http://www.lynda.com/JavaScript-tutorials/Nodejs-Essential-Training/141132-2.html).
+
+###MongoDB
+MongoDB (from "humongous") is an open-source document database, and the leading NoSQL database. The [documentation](http://docs.mongodb.org/manual/) is superb.

@@ -16,13 +16,13 @@
 
           <div class="row">
             <div class="col-md-6">
-              <input type="text" class="form-control input-lg" placeholder="Username">
+              <form name="user" method="post" action="/login">
+              <input type="text" class="form-control input-lg" name="username" placeholder="Username">
               <p></p>
-              <input type="password" class="form-control input-lg" placeholder="Password">
+              <input type="password" name="password" class="form-control input-lg" placeholder="Password">
               <p></p>
-              <a class="btn btn-primary btn-lg" role="button" href="#">Sign In</a>
-              <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#mySignUp">Sign Up</a>
             </div>
+            </form>
             <span id="signinButton">
               <span
                 class="g-signin"
