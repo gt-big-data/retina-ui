@@ -17,18 +17,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect('mongodb://localhost/users');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {});
+// mongoose.connect('mongodb://localhost/users');
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {});
 
-app.get('/api/stub/',function(req, res){
-  var articles = filter(stub, 10);
-  res.json(articles);
-});
 
-require('./facebook')(app, mongoose, config);
-require('./local')(app, mongoose);
+// require('./facebook')(app, mongoose, config);
+// require('./local')(app, mongoose);
+require('./api')(app);
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {

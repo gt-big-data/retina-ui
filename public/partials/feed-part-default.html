@@ -1,10 +1,11 @@
       <div class="row marketing" ng-controller="stub">
         <div class="stub-article" ng-repeat="article in news" ng-click="article.show = !article.show">
-          <div class="stub-photo" style="background-image: url('{{article.img}}')"></div>
+        <span ng-repeat="category in article.categories"class="label label-default">{{category}}</span>
+          <div class="stub-photo" style="background-image: url('{{article.img[0]}}')"></div>
           <div class="stub-caption">
             <h2>{{article.title}}</h2>
             <h4>{{article.description}}</h4>
-            <h5>{{article.source}}</h5>
+            <h5>{{article.source}} | {{article.date}}</h5>
             <p ng-show="article.show">{{article.text}}</p>
           </div>
         </div>

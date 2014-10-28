@@ -1,4 +1,4 @@
-var config = require('./config')('dev'),
+var config = require('./config')('prod'),
   db = require('monk')(config.db('big_data')),
   filter = require('./filter');
 
@@ -14,7 +14,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        res.send(docs);
+        res.send(filter(docs));
     });
   });
 
@@ -29,7 +29,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        res.send(docs);
+        res.send(filter(docs));
       })
   })
 
@@ -43,7 +43,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        res.send(docs);
+        res.send(filter(docs));
       })
   })
 }

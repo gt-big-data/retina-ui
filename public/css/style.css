@@ -170,6 +170,10 @@ body {
   transition: all .2s ease-in-out;
 }
 
+.stub-article span {
+  margin: 0px 5px 0px 0px;
+}
+
 .stub-article:hover {
   background-color: #E0DEDE;
 }
@@ -181,6 +185,7 @@ body {
   background-position: center center;
   background-size: cover;
   min-height: 300px;
+  margin: 5px 0px 0px 0px;
 }
 .stub-caption {
 }

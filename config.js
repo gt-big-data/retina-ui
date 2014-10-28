@@ -1,7 +1,7 @@
 module.exports = function(env) {
   this.dev = {
     db: function(name) {
-      return 'mongodb://146.148.59.202:27017/' + name;
+      return 'mongodb://localhost/' + name;
     },
     facebook: {
     clientID:566737753454309,
