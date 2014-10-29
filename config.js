@@ -1,6 +1,8 @@
 module.exports = function(env) {
   this.dev = {
-    db: "mongodb://localhost/users",
+    db: function(name) {
+      return 'mongodb://localhost/' + name;
+    },
     facebook: {
     clientID:566737753454309,
     clientSecret:"eba56ecd3a902b791cb8ba258f72a501",
@@ -8,7 +10,9 @@ module.exports = function(env) {
       },
   }
   this.prod = {
-    db:"",
+    db: function(name){
+      return 'mongodb://146.148.59.202:27017/' + name;
+    },
     facebook: {
       clientID:545078782286873,
       clientSecret:"c8a9f573cd188ef8f55842bcda995614",
