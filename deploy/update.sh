@@ -13,7 +13,7 @@ if [ "$stopBool" = "true" ]; then
   #stop the node server
   result=`ps -aux | grep node`
   echo "List of node processes"
-  echo $result
+  echo "$result"
   echo "Enter process ID to kill"
   read killID
   echo "You entered $killID"
@@ -26,4 +26,3 @@ echo "Restarting node server"
 nohup node web &
 wait ${!}
 echo "Done updating"
-echo ""
