@@ -1,6 +1,9 @@
 var config = require('./config')('prod'),
   db = require('monk')(config.db('big_data')),
-  filter = require('./filter');
+  filter = require('./filter'),
+  VERSION = "0.0.5",
+  ARTICLE_LIMIT = 10;
+
 
 module.exports = function(app) {
   
@@ -8,8 +11,8 @@ module.exports = function(app) {
   app.get('/latest', function(req, res) {
     articles.find(
       // return the 25 most recent articles
-      {"v": "0.0.1"}, 
-      {limit:25, sort:{'download_date':1}},
+      {"v": VERSION}, 
+      {limit:ARTICLE_LIMIT, sort:{'download_date':-1}},
       function (err, docs) {
         if (err) {
           throw err;
@@ -23,8 +26,8 @@ module.exports = function(app) {
     articles.find(
       // return the 25 most recent articles that are in the
       // requested category
-      {"v": "0.0.1", 'categories': categories },
-      {limit:25, sort:{'download_date':1}},
+      {"v": VERSION, 'categories': categories },
+      {limit:ARTICLE_LIMIT, sort:{'download_date':-1}},
       function(err, docs) {
         if (err) {
           throw err;
@@ -37,8 +40,8 @@ module.exports = function(app) {
     var source = req.param('query').toLowerCase();
     articles.find(
       // return the 25 most recent articles from the requested source
-      {"v": "0.0.1", 'source_domain': source },
-      {limit:25, sort:{'download_date':1}},
+      {"v": VERSION, 'source_domain': source },
+      {limit:ARTICLE_LIMIT, sort:{'download_date':-1}},
       function(err, docs) {
         if (err) {
           throw err;
