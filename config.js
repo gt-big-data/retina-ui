@@ -6,6 +6,11 @@ module.exports = function(env) {
     clientSecret:"eba56ecd3a902b791cb8ba258f72a501",
     callbackURL:"http://localhost:5000/auth/facebook/callback",
       },
+    /*google: {
+      clientID:
+      clientSecret:
+      callbackURL:"http://localhost:5000/auth/facebook/callback"
+    }*/
   }
   this.prod = {
     db:"",

@@ -28,6 +28,7 @@ app.get('/api/stub/',function(req, res){
 });
 
 require('./facebook')(app, mongoose, config);
+require('./google')(app, mongoose, config);
 require('./local')(app, mongoose);
 
 var port = Number(process.env.PORT || 5000);
