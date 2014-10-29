@@ -1,3 +1,4 @@
 node_modules
 *.pyc
 README.html
+nohup.out
