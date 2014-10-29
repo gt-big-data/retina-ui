@@ -1,13 +1,15 @@
-module.exports = function(feed, size) {
+module.exports = function(feed) {
   return feed.map(function(article) {
     return {
       title: article.title,
-      description: article.meta_description,
-      img: article.meta_img,
+      date: new Date(article.download_date).toDateString(),
+      description: article.summary,
+      img: article.images,
       text: article.text,
+      categories: article.categories,
       url: article.url,
-      source: article.meta_data.og.site_name,
+      source: article.source_domain,
       show:false,
     };
-  }).slice(0,size);
+  });
 }
