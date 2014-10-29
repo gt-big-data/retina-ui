@@ -2,7 +2,7 @@ module.exports = function(feed) {
   return feed.map(function(article) {
     return {
       title: article.title,
-      date: new Date(article.download_date * 1000).toDateString(),
+      date: new Date(article.download_date).toDateString(),
       description: article.summary,
       img: article.images,
       text: article.text,
