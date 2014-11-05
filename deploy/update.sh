@@ -23,7 +23,10 @@ if [ "$stopBool" = "true" ]; then
 fi
 echo "Pulling from Github"
 git pull
-echo "Restarting node server"
-nohup node web &
-sleep 1
+if [ "$stopBool" = "true" ]; then
+  #restart the node server
+  echo "Restarting node server"
+  nohup node web &
+  sleep 1
+fi
 echo "Done updating"
