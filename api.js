@@ -1,7 +1,7 @@
 var config = require('./config')('prod'),
   db = require('monk')(config.db('big_data')),
   filter = require('./filter'),
-  VERSION = "0.0.5",
+  VERSION = "0.0.6",
   ARTICLE_LIMIT = 10;
 
 
@@ -12,7 +12,7 @@ module.exports = function(app) {
     articles.find(
       // return the 25 most recent articles
       {"v": VERSION}, 
-      {limit:ARTICLE_LIMIT, sort:{'download_date':-1}},
+      {limit:ARTICLE_LIMIT, sort:{'recent_download_date':-1}},
       function (err, docs) {
         if (err) {
           throw err;
