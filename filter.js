@@ -3,7 +3,7 @@ module.exports = function(feed) {
     return {
       title: article.title,
       date: article.recent_pub_date.toDateString(),
-      description: article.summary,
+      description: article.summary.replace(/<(?:.|\n)*?>/gm, ''),
       img: article.images,
       text: article.text,
       categories: article.categories,
