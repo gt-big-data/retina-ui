@@ -54,50 +54,23 @@
     </div>
     </div>
 
-    <div class="container container-main">
-       <div class="col-md-6">
-         <div class="panel panel-default about-panel">
-         <a class="btn" type="button" href="#">
-           <div class="panel-heading"><h2>Business</h2></div>
-         </a>
-         </div>
-         <div class="panel panel-default about-panel">
-         <a class="btn" type="button" href="#">
-           <div class="panel-heading"><h2>Entertainment</h2></div>
-         </a>
-         </div>
-         <div class="panel panel-default about-panel">
-         <a class="btn" type="button" href="#">
-           <div class="panel-heading"><h2>Health</h2></div>
-         </a>
-         </div>
-         <div class ="panel panel-default about-panel">
-           <a class="btn" type="button" href="#">
-           <div class="panel-heading"><h2>Science</h2></div>
-           </a>
-         </div>
-       </div>
+    <div class="category-select">
+      <ul>
+        <li>Business</li><li>Entertainment</li><li>Health</li><li>Sports</li><li>Technology</li><li>U.S.</li><li>World</li>
+      </ul>
+    </div>
 
-       <div class="col-md-6">
-         <div class ="panel panel-default about-panel">
-         <a class="btn" type="button" href="#">
-             <div class="panel-heading"><h2>Sports</h2></div>
-         </a>
-         </div>
-         <div class ="panel panel-default about-panel">
-           <a class="btn" type="button" href="#">
-             <div class="panel-heading"><h2>Technology</h2></div>
-           </a>
-         </div>
-         <div class ="panel panel-default about-panel">
-           <a class="btn" type="button" href="#">
-             <div class="panel-heading"><h2>U.S</h2></div>
-           </a>
-         </div>
-         <div class ="panel panel-default about-panel">
-         <a class="btn" type="button" href="#">
-             <div class="panel-heading"><h2>World</h2></div>
-         </a>
-         </div>
-       </div>
-     </div>
+    <div class="category-show" ng-controller="stub">
+      <div class="col-md-4" ng-repeat="article in news" ng-click="article.show = !article.show">
+        <div class="multi-stub-article">
+          <span ng-repeat="category in article.categories"class="label label-default">{{category}}</span>
+          <div class="multi-stub-photo" style="background-image: url('{{article.img[0]}}')"></div>
+          <div class="multi-stub-caption">
+            <h2>{{article.title}}</h2>
+            <h4>{{article.description}}</h4>
+            <h5>{{article.source}} | {{article.date}}</h5>
+            <p ng-show="article.show">{{article.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>

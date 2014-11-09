@@ -114,6 +114,7 @@ body {
   background-size: cover;
   color: white;
   height: 500px;
+  margin-bottom: 0px;
 }
 .jumbotron h1 {
   margin: 100px 0px 0px 0px;
@@ -240,9 +241,61 @@ body {
 .alt-stub-caption h4 {
   margin: 10px;
 }
+.multi-stub-article {
+  display: inline-block;
+  padding: 10px;
+  margin: 0 6px 20px;
+  background-color: #FFF;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all .2s ease-in-out;
+}
+
+.multi-stub-article span {
+  margin: 0px 5px 0px 0px;
+}
+
+.multi-stub-article:hover {
+  background-color: #E0DEDE;
+}
+
+.multi-stub-photo {
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 300px;
+  margin: 5px 0px 0px 0px;
+}
+.multi-stub-caption {
+}
+.multi-stub-show-btn {
+  margin-bottom: 0px;
+}
 .header-modify {
   width: 200px;/*todo This is not properly centered*/
   margin: 0 auto;
+}
+.category-select {
+  padding: 22px 0 16px;
+  text-align: center;
+}
+.category-select li {
+  margin-right: 30px;
+  display: inline-block;
+  list-style-type: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+}
+.category-select li:hover {
+  color: #777;
+}
+.category-show {
+  padding: 20px;
+  background-color: #ddd;
+  height: 600px; /*Temporary fix*/
 }
 
 /* Media Settings */
@@ -265,6 +318,9 @@ body {
   }
   .landing h2 {
     font-size: 30px;
+  }
+  .category-select li {
+    font-size: 22px;
   }
 /* Tiny Screens */
 @media (max-width: 480px) {
@@ -289,6 +345,9 @@ body {
   }
   .alt-stub-caption h2 {
      font-size: 20px;
+  }
+  .category-select li {
+    font-size: 18px;
   }
 }
 @media (max-height: 320px) {
