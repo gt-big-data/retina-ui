@@ -93,9 +93,11 @@ body {
   margin-top: 5px;
   margin-right: 5px;
 }
-.jumbotron {
+.jumbotron { /*Only use Jumbotron for front page!*/
   background: url(../images/landing.jpg);
   background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   color: white;
   height: 500px;
 }
