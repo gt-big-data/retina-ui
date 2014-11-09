@@ -40,17 +40,25 @@
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
-    
+
 
   </head>
 
   <body ng-app="myapp">
+    <noscript>
+      <div class="noscript">
+        <h1 class="retina-brand">
+          RETINA NEWS
+        </h1>
+        <p style="color: FireBrick">Please enable Javascript to use this site</p>
+      </div>
+    </noscript>
   	<div ng-include="'partials/navbarNoAuth.html'"></div>
     <div ui-view></div>
     <div ng-include="'partials/footer.html'"></div>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-    
+
     <script type="text/javascript">
       (function() {
        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -58,7 +66,7 @@
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
      })();
     </script>
-    
+
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -76,6 +84,6 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-    
+
   </body>
 </html>
