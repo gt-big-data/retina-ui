@@ -140,12 +140,6 @@ body {
   padding-bottom: 70px;
   text-align: center;
 }
-.landing h1 {
-  font-size: 46px;
-}
-.landing h2 {
-  font-size: 39px;
-}
 .landing-form-object {
   margin-bottom: 10px;
 }
@@ -316,29 +310,93 @@ body {
 /* Media Settings */
 /* Wide desktops */
 @media (max-width: 1200px) {
-
+  h1 {
+    font-size: 
+  }
+  h2 {
+    font-size:
+  }
+  h3 {
+    font-size:
+  }
+  h4 {
+    font-size:
+  }
+  h5 {
+    font-size:
+  }
+  h6 {
+    font-size:
+  }
 }
 /* Laptops, desktops */
 @media (max-width: 992px) {
-
+  h1 {
+    font-size:
+  }
+  h2 {
+    font-size:
+  }
+  h3 {
+    font-size:
+  }
+  h4 {
+    font-size:
+  }
+  h5 {
+    font-size:
+  }
+  h6 {
+    font-size:
+  }
 }
 /* Tablets */
 @media (max-width: 768px) {
+  h1 {
+    font-size: 35px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size:
+  }
+  h4 {
+    font-size:
+  }
+  h5 {
+    font-size:
+  }
+  h6 {
+    font-size:
+  }
   .landing {
     padding-left: 30px;
     padding-right: 30px;
-  }
-  .landing h1 {
-    font-size: 35px;
-  }
-  .landing h2 {
-    font-size: 30px;
   }
   .category-select li {
     font-size: 22px;
   }
 /* Tiny Screens */
 @media (max-width: 480px) {
+  h1 {
+    font-size:
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size:
+  }
+  h4 {
+    font-size:
+  }
+  h5 {
+    font-size:
+  }
+  h6 {
+    font-size:
+  }
   .landing {
     padding-left: 20px;
     padding-right: 20px;
@@ -357,9 +415,6 @@ body {
   }
   .stub-photo {
     min-height: 130px;
-  }
-  .alt-stub-caption h2 {
-     font-size: 20px;
   }
   .category-select li {
     font-size: 18px;
