@@ -4,6 +4,31 @@
           <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed.default">Explore</a>
              <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#myModal">Sign In</a>
           </p>
+    </div>
+
+    <div class="category-select">
+      <ul>
+        <li>Business</li><li>Entertainment</li><li>Health</li><li>Sports</li><li>Technology</li><li>U.S.</li><li>World</li>
+      </ul>
+    </div>
+
+    <div class="category-show" ng-controller="stub">
+      <div masonry>
+        <div class="masonry-brick col-xl-3 col-md-4 col-sm-6 col-xs 12" ng-repeat="article in news" ng-click="article.show = !article.show">
+          <div class="multi-stub-article">
+            <span ng-repeat="category in article.categories"class="label label-default">{{category}}</span>
+            <div class="multi-stub-photo" style="background-image: url('{{article.img[0]}}')"></div>
+            <div class="multi-stub-caption">
+              <h2>{{article.title}}</h2>
+              <h4>{{article.description}}</h4>
+              <h5>{{article.source}} | {{article.date}}</h5>
+              <p ng-show="article.show">{{article.text}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -49,28 +74,6 @@
 
 
 
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="category-select">
-      <ul>
-        <li>Business</li><li>Entertainment</li><li>Health</li><li>Sports</li><li>Technology</li><li>U.S.</li><li>World</li>
-      </ul>
-    </div>
-
-    <div class="category-show" ng-controller="stub">
-      <div class="col-md-4" ng-repeat="article in news" ng-click="article.show = !article.show">
-        <div class="multi-stub-article">
-          <span ng-repeat="category in article.categories"class="label label-default">{{category}}</span>
-          <div class="multi-stub-photo" style="background-image: url('{{article.img[0]}}')"></div>
-          <div class="multi-stub-caption">
-            <h2>{{article.title}}</h2>
-            <h4>{{article.description}}</h4>
-            <h5>{{article.source}} | {{article.date}}</h5>
-            <p ng-show="article.show">{{article.text}}</p>
-          </div>
         </div>
       </div>
     </div>

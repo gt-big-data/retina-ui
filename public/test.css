@@ -1,0 +1,90 @@
+body {
+    margin: auto;
+    font-size: 100%;
+    line-height: 1.4em;
+    background: #fff;
+    color: #FFF;
+}
+h1{
+    color:#333;
+
+}
+p {
+    color:#222;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+.malaysia{
+    padding:20px 0;
+}
+.lead{
+    padding:10px 0 1px 0;
+}
+
+.footer {
+    font-size: 1em;
+    color: #FFF;
+    margin: 0.5em;
+}
+
+#timeline {
+    margin: 50px 0;
+}
+.post img {
+    width: 100%;
+}
+
+.post{
+  background: #ffffff;
+  margin: 10px 5px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+/*
+   Spezific styling for salvattore
+   Feel free to edit it as you like
+   More info at http://salvattore.com
+ */
+
+/* Salvattore Base Styles */
+.column {
+    float: left;
+}
+.size-1of4 {
+    width: 25%;
+}
+.size-1of3 {
+    width: 33.333%;
+}
+.size-1of2 {
+    width: 50%;
+}
+
+/* Configurate salvattore with media queries */
+@media screen and (max-width: 450px) {
+    #posts[data-columns]::before {
+        content: '2 .col-sm-6';
+    }
+    .post{
+    	padding: 15px;
+    }
+}
+
+@media screen and (min-width: 451px) and (max-width: 850px) {
+    #posts[data-columns]::before {
+        content: '3 .col-sm-4';
+    }
+    .post{
+    	padding: 9.9px;
+    }
+}
+
+@media screen and (min-width: 851px) {
+    #posts[data-columns]::before {
+        content: '4 .col-xs-3';
+    }
+    .post{
+    	padding: 7.5px;
+    }
+
+}

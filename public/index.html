@@ -38,6 +38,11 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+    <!--Masonry for cascading grid layout-->
+    <script src="/js/masonry.pkgd.js"></script>
+    <script src="/js/angular-masonry.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
 
@@ -54,7 +59,7 @@
       </div>
     </noscript>
   	<div ng-include="'partials/navbarNoAuth.html'"></div>
-    <div ui-view></div>
+    <div ui-view class="main"></div>
     <div ng-include="'partials/footer.html'"></div>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
