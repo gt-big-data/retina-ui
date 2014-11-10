@@ -1,8 +1,9 @@
 var passport = require('passport'),
+  config = require('./config')('dev')
   FacebookStrategy = require('passport-facebook').Strategy;
   models =  require('./models');
 
-module.exports = function(app, mongoose, config) {
+module.exports = function(app) {
 
   var FbUsers = models.FbUsers;
   
@@ -19,7 +20,7 @@ module.exports = function(app, mongoose, config) {
         else {
           var newUser = new FbUsers({
             fbId: profile.id,
-            email: profile.emails[0].value,
+            // email: profile.emails[0].value,
             name: profile.displayName,
             categories: [],
           }).save(function(err, newUser) {

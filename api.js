@@ -1,52 +1,88 @@
 var config = require('./config')('prod'),
-  db = require('monk')(config.db('big_data')),
-  filter = require('./filter'),
-  VERSION = "0.0.6",
-  ARTICLE_LIMIT = 10;
-
+    models = require('./models')
+    filter = require('./filter'),
+    VERSION = config.version,
+    ARTICLE_LIMIT = 10;
 
 module.exports = function(app) {
-  
-  var articles =  db.get('articles');
-  app.get('/latest', function(req, res) {
-    articles.find(
-      // return the 25 most recent articles
-      {"v": VERSION}, 
-      {limit:ARTICLE_LIMIT, sort:{'recent_download_date':-1}},
-      function (err, docs) {
-        if (err) {
-          throw err;
-        }
-        res.send(filter(docs));
+
+    var articles =  models.Articles;
+    app.get('/latest/:size?', function(req, res) {
+        var size = parseInt(req.params.size) || ARTICLE_LIMIT;
+        articles.find(
+            // returns the specified amount of most recent articles
+            {'v': VERSION},
+            null,
+            {
+                limit: size,
+                sort: {'recent_download_date': -1}
+            },
+            function(err, docs) {
+                if (err) {
+                    throw err;
+                }
+                res.send(docs);
+        });
     });
-  });
 
-  app.get('/categories', function(req, res) {
-    var categories = req.param('query').toLowerCase();
-    articles.find(
-      // return the 25 most recent articles that are in the
-      // requested category
-      {"v": VERSION, 'categories': categories },
-      {limit:ARTICLE_LIMIT, sort:{'download_date':-1}},
-      function(err, docs) {
-        if (err) {
-          throw err;
-        }
-        res.send(filter(docs));
-      })
-  })
+    app.get('/categories/:category/:size?', function(req, res) {
+    var categories = req.params.category.toLowerCase();
+        var size = parseInt(req.params.size) || ARTICLE_LIMIT;
+        articles.find(
+              //return the specified amount of the most 
+              //recent articles that are in the requested category
+              {"v": VERSION, 'categories': categories },
+              null, 
+              {
+                    limit: size, 
+                    sort: {'recent_download_date':-1}
+              },
+              function(err, docs) {
+                    if (err) {
+                      throw err;
+                    }
+                    res.send(docs);
+              });
+    });
 
-  app.get('/source', function(req, res) {
-    var source = req.param('query').toLowerCase();
-    articles.find(
-      // return the 25 most recent articles from the requested source
-      {"v": VERSION, 'source_domain': source },
-      {limit:ARTICLE_LIMIT, sort:{'download_date':-1}},
-      function(err, docs) {
-        if (err) {
-          throw err;
-        }
-        res.send(filter(docs));
-      })
-  })
+    app.get('/source/:source/:size?', function(req, res) {
+        var source = req.params.source.toLowerCase();
+        var size = parseInt(req.params.size) || ARTICLE_LIMIT;
+        articles.find(
+            // return the specified amount of the most 
+            //recent articles that from the specified source
+            {"v": VERSION, 'source_domain': source },
+            null, 
+            {
+                limit: size, 
+                sort: {'recent_download_date':-1}
+            },
+            function(err, docs) {
+                if (err) {
+                  throw err;
+                }
+                res.send(filter(docs));
+        });
+    });
+
+    app.get('/article/:id', function(req, res) {
+        var id = req.params.id;
+        articles.findOne(
+            // return a specific article
+            {'v': VERSION, '_id':id},
+            {},
+            function(err, doc) {
+                if (err) {
+                  throw err;
+                }
+                res.send(doc);
+          });
+    });
+
+    app.get('/keywords', function(req, res) {
+        articles.find(
+            {'v':VERSION}, null,{}, function(err, docs) {
+            res.send(docs);
+        });
+    });
 }
