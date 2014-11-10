@@ -44,15 +44,13 @@
 html {
   position: relative;
   min-height: 100%;
+  width: 100%;
 }
 body {
   height: 100%;
+  width: 100%;
   margin-bottom: 60px;
   font-family: 'Ubuntu', sans-serif;
-}
-.main {
-  height: 100%;
-  width: 100%;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -122,7 +120,7 @@ body {
   background-size: cover;
   color: white;
   height: 100vh;
-  margin-bottom: -82px;
+  margin-bottom: -60px;
 }
 .jumbotron h1 {
   margin: 100px 0px 0px 0px;
@@ -289,7 +287,7 @@ body {
   margin: 0 auto;
 }
 .category-select {
-  padding: 22px 0 16px;
+  padding: 14px 0 4px;
   text-align: center;
   background-color: #fff;
 }
@@ -367,4 +365,33 @@ body {
 
 }
 @media (max-height: 320px) {
+
+}
+/*These next 3 media queries are a fix for iOS viewport bug*/
+/**
+ * iPad with portrait orientation.
+ */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+  .jumbotron {
+    height: 1024px;
+  }
+}
+
+/**
+ * iPad with landscape orientation.
+ */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+  .jumbotron {
+    height: 768px;
+  }
+}
+
+/**
+ * iPhone 5
+ * You can also target devices with aspect ratio.
+ */
+@media screen and (device-aspect-ratio: 40/71) {
+  .jumbotron {
+    height: 500px;
+  }
 }
