@@ -6,6 +6,7 @@ var LocalUserSchema = new mongoose.Schema({
     email: String,
     categories: { type: Array, "default":[] },
 });
+
 var LocalUser = mongoose.model('LocalUser', LocalUserSchema);
 
 var FbUserSchema = mongoose.Schema({
@@ -17,5 +18,9 @@ var FbUserSchema = mongoose.Schema({
 });
 var FbUsers = mongoose.model('FbUsers', FbUserSchema);
 
+var ArticleSchema = new mongoose.Schema({});
+var Articles = mongoose.model('articles', ArticleSchema);
+
 exports.LocalUser = LocalUser;
 exports.FbUsers = FbUsers;
+exports.Articles = Articles;
