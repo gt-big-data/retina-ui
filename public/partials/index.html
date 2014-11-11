@@ -1,22 +1,24 @@
     <div class="jumbotron">
-      <div class="jumbotron-content">
+      <div class="vertical-center">
         <h1>Retina News</h1>
-        <p>The news...for you, by you.</p>
+        <h3>The news...for you, by you.</h3>
         <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed.default">Explore</a>
         <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#myModal">Sign In</a>
         </p>
       </div>
     </div>
-
-    <div class="category-select">
-      <ul>
-        <li>Business</li><li>Entertainment</li><li>Health</li><li>Sports</li><li>Technology</li><li>U.S.</li><li>World</li>
-      </ul>
+    <div id="category-select-anchor" class="category-select-anchor"></div>
+    <div class="category-select-wrapper">
+      <div class="category-select" ng-controller="sizeNewsNav">
+        <ul id="news-nav-items" class="vertical-center">
+          <li scroll-to-id scroll-to="#category-select-anchor">Business</li><li scroll-to-id scroll-to="#category-select-anchor">Entertainment</li><li scroll-to-id scroll-to="#category-select-anchor">Health</li><li scroll-to-id scroll-to="#category-select-anchor">Sports</li><li scroll-to-id scroll-to="#category-select-anchor">Technology</li><li scroll-to-id scroll-to="#category-select-anchor">U.S.</li><li scroll-to-id scroll-to="#category-select-anchor">World</li>
+        </ul>
+      </div>
     </div>
 
     <div class="category-show" ng-controller="stub">
       <div masonry>
-        <div class="masonry-brick col-xl-3 col-md-4 col-sm-6 col-xs 12" ng-repeat="article in news" ng-click="article.show = !article.show">
+        <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" ng-click="article.show = !article.show">
           <div class="multi-stub-article">
             <span ng-repeat="category in article.categories"class="label label-default">{{category}}</span>
             <div class="multi-stub-photo" style="background-image: url('{{article.img[0]}}')"></div>

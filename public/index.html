@@ -38,6 +38,18 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script>
+    var fontsLoaded = false;
+    WebFont.load({
+      custom: {
+        families: ['Ubuntu:n4,i4,n7,i7', 'Open Sans:n4,i4', 'Orbitron:n7'],
+        urls: ['/css/fonts.css']
+      },
+      active: function() {fontsLoaded = true}
+    });
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
     <!--Masonry for cascading grid layout-->
     <script src="/js/masonry.pkgd.js"></script>
@@ -88,6 +100,32 @@
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script>
+      //News navbar
+      function scrollFixedTop() {
+        var changeFixedTop = function() {
+          var fixedTopDiv = $(".category-select");
+          var scrollTop = $(window).scrollTop();
+          var offset = $(".category-select-anchor").offset().top - 54;
+          if(scrollTop > offset) {
+              fixedTopDiv.css({
+                  position: "fixed",
+                  top: "54px"
+              });
+          } else {
+            fixedTopDiv.css({
+              position: "relative",
+              top: ""
+            });
+          }
+        };
+        $(window).scroll(changeFixedTop);
+        changeFixedTop();
+      }
+
+    scrollFixedTop();
     </script>
 
   </body>

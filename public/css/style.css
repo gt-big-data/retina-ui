@@ -1,46 +1,3 @@
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/Ubuntu/Ubuntu-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: italic;
-  font-weight: 400;
-  src: url(/fonts/Ubuntu/Ubuntu-Italic.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 700;
-  src: url(/fonts/Ubuntu/Ubuntu-Bold.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: italic;
-  font-weight: 700;
-  src: url(/fonts/Ubuntu/Ubuntu-BoldItalic.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: url(/fonts/Open_Sans/OpenSans-Italic.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Orbitron';
-  font-style: normal;
-  font-weight: 700;
-  src: url(/fonts/Orbitron/Orbitron-Bold.ttf) format('truetype');
-}
-
 html {
   position: relative;
   min-height: 100%;
@@ -120,15 +77,21 @@ body {
   background-size: cover;
   color: white;
   height: 100vh;
-  margin-bottom: -60px;
+  margin-bottom: -54px;
+  padding-bottom: 0;
 }
-.jumbotron h1 {
-  margin: 0;
+.jumbotron h1,h3 {
+  margin-top: 0;
+  text-shadow: 1px 1px #999;
 }
-.jumbotron .jumbotron-content {
+.vertical-center {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+.horizontal-center {
+  left: 50%;
+  transform: translateX(-50%);
 }
 .landing {
   max-width: 768px;
@@ -181,6 +144,12 @@ body {
 }
 .retina-brand {
   font-family: 'Orbitron';
+}
+.feed-header {
+  height: 20px;
+}
+.feed-header .horizontal-center {
+  position: absolute;
 }
 .stub-article {
   display: block;
@@ -286,12 +255,18 @@ body {
   margin: 0 auto;
 }
 .category-select {
-  padding: 14px 0 4px;
+  position: relative;
+  height: 54px;
+  width: 100%;
   text-align: center;
   background-color: #fff;
+  z-index: 100;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 .category-select li {
-  margin-right: 30px;
+  margin: 0 30px 0 0;
   display: inline-block;
   list-style-type: none;
   font-size: 24px;
@@ -301,17 +276,34 @@ body {
 .category-select li:hover {
   color: #777;
 }
+#news-nav-items {
+  padding-left: 30px;
+  margin: 0 auto 0;
+  visibility: hidden;
+}
+.category-select-wrapper {
+  height: 54px;
+  width: 100%;
+}
 .category-show {
   padding: 20px;
   background-color: #ddd;
   height: 2000px; /*Temporary fix*/
 }
+#font-change-event {
+
+}
 
 /* Media Settings */
+@media (max-height: 400px) {
+  .jumbotron-scroll {
+    display: none;
+  }
+}
 /* Wide desktops */
 @media (max-width: 1200px) {
   h1 {
-    font-size: 
+    font-size:
   }
   h2 {
     font-size:
@@ -376,6 +368,9 @@ body {
   }
   .category-select li {
     font-size: 22px;
+  }
+  .jumbotron-scroll {
+    display: none;
   }
 /* Tiny Screens */
 @media (max-width: 480px) {
@@ -452,6 +447,6 @@ body {
  */
 @media screen and (device-aspect-ratio: 40/71) {
   .jumbotron {
-    height: 500px;
+    height: 470px;
   }
 }
