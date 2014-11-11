@@ -1,13 +1,10 @@
 var express = require('express'),
   logfmt = require('logfmt'),
-  request = require('request'),
   bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
   passport = require('passport'),
   mongoose = require('mongoose'),
-  stub = require('./stub.json'),
-  filter = require('./filter'),
-  config = require('./config')('dev'),
+  config = require('./config')('prod'),
   app = express();
 
 app.use(logfmt.requestLogger());
@@ -17,14 +14,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-// mongoose.connect('mongodb://localhost/users');
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {});
+mongoose.connect(config.db('big_data'));
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {});
 
 
-// require('./facebook')(app, mongoose, config);
-// require('./local')(app, mongoose);
+require('./facebook')(app);
+require('./local')(app);
 require('./api')(app);
 
 var port = Number(process.env.PORT || 5000);

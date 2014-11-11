@@ -1,5 +1,7 @@
 module.exports = function(env) {
+  this.version = "0.0.6";
   this.dev = {
+    version: this.version ,
     db: function(name) {
       return 'mongodb://localhost/' + name;
     },
@@ -15,6 +17,7 @@ module.exports = function(env) {
     }*/
   }
   this.prod = {
+    version: this.version,
     db: function(name){
       return 'mongodb://146.148.59.202:27017/' + name;
     },

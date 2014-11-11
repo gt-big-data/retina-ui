@@ -2,13 +2,14 @@ module.exports = function(feed) {
   return feed.map(function(article) {
     return {
       title: article.title,
-      date: new Date(article.download_date).toDateString(),
-      description: article.summary,
+      date: article.recent_pub_date.toDateString(),
+      description: article.summary.replace(/<(?:.|\n)*?>/gm, ''),
       img: article.images,
       text: article.text,
       categories: article.categories,
       url: article.url,
       source: article.source_domain,
+      favicon: article.meta_favicon,
       show:false,
     };
   });
