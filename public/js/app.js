@@ -1,4 +1,4 @@
-var app = angular.module("myapp",['ui.router']);
+var app = angular.module("myapp",['ui.router','wu.masonry']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
