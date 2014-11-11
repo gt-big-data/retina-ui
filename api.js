@@ -12,7 +12,7 @@ module.exports = function(app) {
         articles.find(
             // returns the specified amount of most recent articles
             {'v': VERSION},
-            null,
+            {},
             {
                 limit: size,
                 sort: {'recent_download_date': -1}
@@ -21,7 +21,7 @@ module.exports = function(app) {
                 if (err) {
                     throw err;
                 }
-                res.send(docs);
+                res.json(docs);
         });
     });
 
@@ -41,7 +41,7 @@ module.exports = function(app) {
                     if (err) {
                       throw err;
                     }
-                    res.send(docs);
+                    res.json(docs);
               });
     });
 
@@ -52,7 +52,7 @@ module.exports = function(app) {
             // return the specified amount of the most 
             //recent articles that from the specified source
             {"v": VERSION, 'source_domain': source },
-            null, 
+            {}, 
             {
                 limit: size, 
                 sort: {'recent_download_date':-1}
@@ -61,7 +61,7 @@ module.exports = function(app) {
                 if (err) {
                   throw err;
                 }
-                res.send(filter(docs));
+                res.json(docs);
         });
     });
 
@@ -75,14 +75,21 @@ module.exports = function(app) {
                 if (err) {
                   throw err;
                 }
-                res.send(doc);
+                res.json(doc);
           });
     });
 
-    app.get('/keywords', function(req, res) {
+    app.get('/keywords/:size?', function(req, res) {
+        var size = parseInt(req.params.size) || ARTICLE_LIMIT
         articles.find(
-            {'v':VERSION}, null,{}, function(err, docs) {
-            res.send(docs);
+            {'v':VERSION}, 
+            null,
+            {
+                limit: size,
+                sort: {'recent_download_date':-1} 
+            },
+            function(err, docs) {
+            res.json(docs);
         });
     });
 }
