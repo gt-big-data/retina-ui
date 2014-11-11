@@ -250,10 +250,6 @@ body {
 .multi-stub-show-btn {
   margin-bottom: 0px;
 }
-.header-modify {
-  width: 200px;/*todo This is not properly centered*/
-  margin: 0 auto;
-}
 .category-select {
   position: relative;
   height: 54px;
@@ -288,7 +284,6 @@ body {
 .category-show {
   padding: 20px;
   background-color: #ddd;
-  height: 2000px; /*Temporary fix*/
 }
 #font-change-event {
 
