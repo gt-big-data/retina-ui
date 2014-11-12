@@ -20,13 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('feed.mini', {
 			parent: 'feed',
 			url: '/mini',
-			templateUrl: 'partials/feed-part-mini.html',
-			controller: function($scope) {
-				setTimeout(function() {
-					var sph = $('.alt-stub-photo').width();
-					$('.alt-stub-photo').css({'height': sph + 'px'});
-				}, 0);
-			}
+			templateUrl: 'partials/feed-part-mini.html'
 		})
 		.state('about', {
 			url: '/about',
@@ -80,6 +74,13 @@ app.controller("hn",["$scope","$http",function($scope,$http){
 		}
 	});
 }]);
+
+app.controller("resizeFeedMiniIcons",["$scope", function($scope){
+	setTimeout(function() {
+		var sph = $('.alt-stub-photo').width();
+		$('.alt-stub-photo').css({'height': sph + 'px'});
+	}, 0);
+}])
 
 app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {
 		if(fontsLoaded !== true) {//Wait till fonts are loaded
