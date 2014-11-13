@@ -8,7 +8,7 @@
       </div>
     </div>
     <div id="category-select-anchor" class="category-select-anchor"></div>
-    <div class="category-select-wrapper">
+    <div class="category-select-wrapper" ng-controller="catchNewsNav">
       <div class="category-select" ng-controller="sizeNewsNav">
         <ul id="news-nav-items" class="vertical-center">
           <li scroll-to-id scroll-to="#category-select-anchor">Latest</li><li scroll-to-id scroll-to="#category-select-anchor">Business</li><li scroll-to-id scroll-to="#category-select-anchor">Entertainment</li><li scroll-to-id scroll-to="#category-select-anchor">Health</li><li scroll-to-id scroll-to="#category-select-anchor">Sports</li><li scroll-to-id scroll-to="#category-select-anchor">Technology</li><li scroll-to-id scroll-to="#category-select-anchor">U.S.</li><li scroll-to-id scroll-to="#category-select-anchor">World</li>
@@ -18,17 +18,34 @@
 
     <div class="category-show" ng-controller="stub">
       <div masonry>
-        <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" ng-click="article.show = !article.show">
-          <div class="multi-stub-article">
+        <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" >
+          <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id);">
             <span ng-repeat="category in article.categories"class="label label-default">{{category}}</span>
             <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
             <div class="multi-stub-caption">
               <h2>{{article.title}}</h2>
               <h4>{{article.summary}}</h4>
               <h5>{{article.source_domain}} | {{article.recent_pub_date}}</h5>
-              <p ng-show="article.show">{{article.text}}</p>
             </div>
           </div>
+
+          <div class="modal fade" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content multi-stub-modal">
+                <div class="modal-header">
+                  <button type="button" class="close" ng-click="hideArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">{{article.title}}</h4>
+                </div>
+                <div class="modal-body multi-stub-modal-body">
+                  <p>{{article.text}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" ng-click="hideArticle(article._id)">Close</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
         </div>
       </div>
     </div>

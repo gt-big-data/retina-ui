@@ -1,19 +1,15 @@
-      <div class="row marketing" ng-controller="stub" ng-controller="resizeFeedMiniIcons">
-        <div class="alt-stub-article" ng-repeat="article in news" ng-click="article.show = !article.show">
-          <div class="alt-stub-header-container">
-            <div class="alt-stub-photo" style="background-image: url('/images/news-icons/icon_cnn.png')"></div>
-            <div class="alt-stub-caption">
-              <h2>{{article.title}}</h2>
-              <h4>{{article.summary}}</h4>
-              <h5>{{article.source_domain}} | {{article.recent_pub_date}}</h5>
+      <div ng-controller="resizeFeedMiniIcons">
+        <div class="row marketing" ng-controller="stub">
+          <div class="alt-stub-article" ng-repeat="article in news" ng-click="article.show = !article.show">
+            <div class="alt-stub-header-container">
+              <div class="alt-stub-photo" ng-style="{'background-image':'url(/images/news-icons/{{article.source_domain}}.png)'}"></div>
+              <div class="alt-stub-caption">
+                <h2>{{article.title}}</h2>
+                <h4>{{article.summary}}</h4>
+                <h5>{{article.source_domain}} | {{article.recent_pub_date}}</h5>
+              </div>
             </div>
+            <p ng-show="article.show">{{article.text}}</p>
           </div>
-          <p ng-show="article.show">{{article.text}}</p>
         </div>
       </div>
-      <script type="text/javascript">
-        var sph = $('.alt-stub-photo').width();
-        $('.alt-stub-photo').css({
-          'height': sph + 'px'
-        });
-      </script>

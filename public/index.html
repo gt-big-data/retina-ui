@@ -47,11 +47,14 @@
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
-    
+
     <!--Masonry for cascading grid layout-->
     <script src="/js/masonry.pkgd.min.js"></script>
     <script src="/js/imagesloaded.pkgd.min.js"></script>
     <script src="/js/angular-masonry.min.js"></script>
+
+    <!--UI Bootstrap angular directives-->
+    <script src="/js/ui-bootstrap-tpls-0.11.2.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
@@ -98,32 +101,6 @@
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <script>
-      //News navbar
-      function scrollFixedTop() {
-        var changeFixedTop = function() {
-          var fixedTopDiv = $(".category-select");
-          var scrollTop = $(window).scrollTop();
-          var offset = $(".category-select-anchor").offset().top - 54;
-          if(scrollTop > offset) {
-              fixedTopDiv.css({
-                  position: "fixed",
-                  top: "54px"
-              });
-          } else {
-            fixedTopDiv.css({
-              position: "relative",
-              top: ""
-            });
-          }
-        };
-        $(window).scroll(changeFixedTop);
-        changeFixedTop();
-      }
-
-    scrollFixedTop();
     </script>
 
   </body>

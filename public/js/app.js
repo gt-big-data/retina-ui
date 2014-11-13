@@ -1,4 +1,4 @@
-var app = angular.module("myapp",['ui.router','wu.masonry']);
+var app = angular.module("myapp",['ui.router','wu.masonry','ui.bootstrap']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
@@ -60,13 +60,13 @@ app.controller("activeCtrl", function($scope, $location) {
 	}
 })
 
-app.controller("stub",["$scope","$http",function($scope,$http){
+app.controller("stub",["$scope","$http","$modal",function($scope,$http){
 	$http.get('/latest').success(function(data){
 		$scope.news = data;
 	});
 }]);
 
-app.controller("hn",["$scope","$http",function($scope,$http){
+app.controller("hn",["$scope","$http","ui.bootstrap.modal",function($scope,$http){
 	$http.get('/api').success(function(data){
 		$scope.news = data;
 		$scope.show = function() {
@@ -75,14 +75,28 @@ app.controller("hn",["$scope","$http",function($scope,$http){
 	});
 }]);
 
-app.controller("resizeFeedMiniIcons",["$scope", function($scope){
-	setTimeout(function() {
-		var sph = $('.alt-stub-photo').width();
-		$('.alt-stub-photo').css({'height': sph + 'px'});
-	}, 0);
+app.controller("displayModal",["$scope",function($scope){
+	$scope.showArticle = function(articleId) {
+		console.log("Showing article "+articleId);
+		$('#'+articleId).modal('show');
+	};
+	$scope.hideArticle = function(articleId) {
+		console.log("Hiding article "+articleId);
+		$('#'+articleId).modal('hide');
+	};
 }])
 
-app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {
+app.controller("resizeFeedMiniIcons",["$scope", function($scope){
+	$(document).ready(function() {
+		$(".alt-stub-photo").each(function() {
+			console.log("I've been activated!");
+			var newHeight = $(this).width();
+			$(this).css({"height":newHeight});
+		})
+	});
+}]);
+
+app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {//This probably doesn't need to be as big
 		if(fontsLoaded !== true) {//Wait till fonts are loaded
 			console.log("Fonts aren't loaded yet")
 			setTimeout(sizeNewsNav, 50);//Recursion!
@@ -114,6 +128,26 @@ app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {
 				$("#news-nav-items").css("width",navWidth+30);//30 pixels for padding-left
 			})
 		}
+}]);
+
+app.controller("catchNewsNav",["$scope",function scrollFixedTop() {//Catches news navbar at top of screen (right under main navbar)
+	var changeFixedTop = function() {
+		var fixedTopDiv = $(".category-select");
+		var scrollTop = $(window).scrollTop();
+		var offset = $(".category-select-anchor").offset().top - 54;
+		if(scrollTop > offset) {
+				fixedTopDiv.css({
+						position: "fixed",
+						top: "54px"
+				});
+		} else {
+			fixedTopDiv.css({
+				position: "relative",
+				top: ""
+			});
+		}
+	};
+	$(window).scroll(changeFixedTop);
 }]);
 
 app.directive('scrollToId', function() {
