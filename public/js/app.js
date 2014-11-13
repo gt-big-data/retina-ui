@@ -10,22 +10,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('home', {
 			url: '/',
-			//abstract: true,
 			templateUrl: 'partials/index.html'
 		})
-		/*.state('home.default', {
-			parent: 'home',
-			url: '',
-			templateUrl: 'partials/home-part-categories.html'
-		})
-		.state('home.us', {
-			parent: 'home',
-			url: '/us',
-			templateUrl: 'partials/home-part-categories.html',
-			controller: function($scope){
-				$scope.category = 'us';
-			}
-		})*/
 		.state('feed', {
 			url: '/feed',
 			abstract: true,
@@ -92,23 +78,6 @@ app.controller("hn",["$scope","$http",function($scope,$http){
 			scope.news.show = true;
 		}
 	});
-}]);
-
-app.controller("categories",["$scope","$http",function($scope,$http){
-	$scope.init = function(categoryName){
-		if (categoryName && categoryName !== '') {
-			$http.get('/categories/'+categoryName).success(function(data){
-					$scope.news = data;
-					console.log("loaded category '"+categoryName+"'");
-			});
-		}
-		else {
-			$http.get('/latest').success(function(data){
-				$scope.news = data;
-				console.log("loaded category 'all'");
-			});
-		}
-	};
 }]);
 
 app.controller("displayModal",["$scope",function($scope){
