@@ -1,8 +1,7 @@
 var config = require('./config')('prod'),
     models = require('./models')
-    filter = require('./filter'),
     VERSION = config.version,
-    ARTICLE_LIMIT = 10;
+    ARTICLE_LIMIT = 20;
 
 module.exports = function(app) {
 
@@ -26,12 +25,12 @@ module.exports = function(app) {
     });
 
     app.get('/categories/:category/:size?', function(req, res) {
-    var categories = req.params.category.toLowerCase();
+    var category = req.params.category.toLowerCase();
         var size = parseInt(req.params.size) || ARTICLE_LIMIT;
         articles.find(
               //return the specified amount of the most 
               //recent articles that are in the requested category
-              {"v": VERSION, 'categories': categories },
+              {"v": VERSION, 'categories': category },
               null, 
               {
                     limit: size, 
@@ -66,6 +65,7 @@ module.exports = function(app) {
     });
 
     app.get('/article/:id', function(req, res) {
+        // Return data for a given id
         var id = req.params.id;
         articles.findOne(
             // return a specific article
@@ -79,13 +79,27 @@ module.exports = function(app) {
           });
     });
 
-    app.get('/keywords/:size?', function(req, res) {
-        var size = parseInt(req.params.size) || ARTICLE_LIMIT
+    app.get('/categories/', function(req, res) {
+        // Return the categories of the  most recent articles
         articles.find(
-            {'v':VERSION}, 
-            null,
+            {'v':VERSION, 'categories':{$ne: null}}, 
+            'categories',
             {
-                limit: size,
+                limit: ARTICLE_LIMIT,
+                sort: {'recent_download_date':-1} 
+            },
+            function(err, docs) {
+            res.json(docs);
+        });
+    });
+
+    app.get('/keywords/', function(req, res) {
+        // Return the keywords of the most recent articles
+        articles.find(
+            {'v':VERSION, 'keywords':{$ne: null}}, 
+            'keywords',
+            {
+                limit: ARTICLE_LIMIT,
                 sort: {'recent_download_date':-1} 
             },
             function(err, docs) {
