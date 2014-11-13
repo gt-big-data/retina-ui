@@ -1,12 +1,31 @@
 var app = angular.module("myapp",['ui.router','wu.masonry','ui.bootstrap']);
 
+app.run(["$rootScope","$state","$stateParams",function($rootScope,$state,$stateParams){
+	$rootScope.$state = $state;
+	$rootScope.$stateParams = $stateParams;
+}])
+
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('home', {
 			url: '/',
+			//abstract: true,
 			templateUrl: 'partials/index.html'
 		})
+		/*.state('home.default', {
+			parent: 'home',
+			url: '',
+			templateUrl: 'partials/home-part-categories.html'
+		})
+		.state('home.us', {
+			parent: 'home',
+			url: '/us',
+			templateUrl: 'partials/home-part-categories.html',
+			controller: function($scope){
+				$scope.category = 'us';
+			}
+		})*/
 		.state('feed', {
 			url: '/feed',
 			abstract: true,
@@ -60,19 +79,36 @@ app.controller("activeCtrl", function($scope, $location) {
 	}
 })
 
-app.controller("stub",["$scope","$http","$modal",function($scope,$http){
+app.controller("stub",["$scope","$http",function($scope,$http){
 	$http.get('/latest').success(function(data){
 		$scope.news = data;
 	});
 }]);
 
-app.controller("hn",["$scope","$http","ui.bootstrap.modal",function($scope,$http){
+app.controller("hn",["$scope","$http",function($scope,$http){
 	$http.get('/api').success(function(data){
 		$scope.news = data;
 		$scope.show = function() {
 			scope.news.show = true;
 		}
 	});
+}]);
+
+app.controller("categories",["$scope","$http",function($scope,$http){
+	$scope.init = function(categoryName){
+		if (categoryName && categoryName !== '') {
+			$http.get('/categories/'+categoryName).success(function(data){
+					$scope.news = data;
+					console.log("loaded category '"+categoryName+"'");
+			});
+		}
+		else {
+			$http.get('/latest').success(function(data){
+				$scope.news = data;
+				console.log("loaded category 'all'");
+			});
+		}
+	};
 }]);
 
 app.controller("displayModal",["$scope",function($scope){
@@ -162,3 +198,24 @@ app.directive('scrollToId', function() {
     }
   }
 })
+
+app.controller("viewCategory", ["$scope","$http",function($scope,$http){//Update the view with the category that was clicked on
+	$scope.news = $http.get('/latest').success(function(data){
+		$scope.news = data;
+		console.log("loaded category 'all'");
+	});
+	$scope.loadCategory = function(categoryName){
+		if (categoryName !== "all") {
+			$http.get('/categories/'+categoryName).success(function(data){
+					$scope.news = data;
+					console.log("loaded category '"+categoryName+"'");
+			});
+		}
+		else {
+			$http.get('/latest').success(function(data){
+				$scope.news = data;
+				console.log("loaded category 'all'");
+			});
+		}
+	};
+}])
