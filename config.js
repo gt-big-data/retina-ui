@@ -1,5 +1,5 @@
 module.exports = function(env) {
-  this.version = "0.0.6";
+  this.version = "0.0.7";
   this.dev = {
     version: this.version ,
     db: function(name) {

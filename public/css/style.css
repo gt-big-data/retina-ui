@@ -217,6 +217,9 @@ body {
 .alt-stub-caption h4 {
   margin: 10px;
 }
+.alt-stub-caption h5 {
+  margin: 10px;
+}
 .multi-stub-article {
   display: block;
   padding: 10px;
@@ -259,6 +262,7 @@ body {
   overflow-y: scroll;
 }
 .category-select {
+  display: table;/*Using this because it will work for any browser*/
   position: relative;
   height: 54px;
   width: 100%;
@@ -270,7 +274,7 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 .category-select li {
-  margin: 0 30px 0 0;
+  margin: 0 29px 0 0;/*29px instead of 30: Apparently Chrome doesn't always add up correctly so this keeps last element from getting pushed to new line*/
   padding: 0;
   border: 0;
   display: inline-block;
@@ -283,6 +287,8 @@ body {
   color: #777;
 }
 #news-nav-items {
+  display: table-cell;/*Using this because it will work for any browser*/
+  vertical-align: middle;
   padding: 0 0 0 30px;
   margin: 0 auto 0;
   border: 0;
@@ -293,8 +299,12 @@ body {
   width: 100%;
 }
 .category-show {
-  padding: 20px;
+  padding: 20px 30px;
   background-color: #ddd;
+}
+.masonry-brick {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Media Settings */
@@ -302,6 +312,30 @@ body {
   .jumbotron-scroll {
     display: none;
   }
+}
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 1s;
+     -moz-transition-duration: 1s;
+      -ms-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
 }
 /* Wide desktops */
 @media (max-width: 1200px) {
