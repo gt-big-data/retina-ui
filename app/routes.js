@@ -1,17 +1,17 @@
-var express = require('express'),
-    router = express.Router(),
-    mongoose = require('mongoose'),
-    config = require('../config/config')('prod');
-    db = mongoose.createConnection(config.db('big_data'));
-    articleSchema = require('./models/articles.js').articleSchema,
-    articles =  db.model('articles', articleSchema);
+var express = require('express');
+var router = express.Router();
+var mongoose = require('mongoose');
+var config = require('../config/config')('prod');
+var db = mongoose.createConnection(config.db('big_data'));
+var articleSchema = require('./models/articles.js').articleSchema;
+var articles =  db.model('articles', articleSchema);
 
 exports.getLatestArticles = function(req, res) {
     articles.find(
         {'v': config.version},
         {},
         {
-            limit: 20,
+            limit: 40,
             sort: {'recent_download_date': -1}
         },
         function(err, docs) {
@@ -97,7 +97,7 @@ exports.getCategoriesOfMostRecentArticles = function(req, res) {
             'recent_download_date': {$lt: new Date()},
          },
         function(err, docs) {
-            res.json(docs);
+            res.json(docs.slice(20));
     });
 }
 
@@ -110,7 +110,7 @@ exports.getKeywordsOfMostRecentArticles = function(req, res) {
             'recent_download_date': {$lt: new Date()},
         },
         function(err, docs) {
-            res.json(docs);
+            res.json(docs.slice(20));
     });
 }
 
@@ -122,3 +122,4 @@ exports.getSources = function(req, res) {
             res.json(docs);
     });
 }
+

@@ -3,7 +3,7 @@ var app = angular.module("myapp",['ui.router','wu.masonry','ui.bootstrap']);
 app.run(["$rootScope","$state","$stateParams",function($rootScope,$state,$stateParams){
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
-}])
+}]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
@@ -55,6 +55,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/settings',
 			templateUrl: 'partials/settings.html'
 		})
+		.state('preferences', {
+			url:'/preferences',
+			templateUrl: 'views/preferences.html'
+		});
 }).run(function($rootScope, $state) {//Used to set navbar buttons as "active" depending on current scope
 	$rootScope.$state = $state;
 });
@@ -63,7 +67,7 @@ app.controller("activeCtrl", function($scope, $location) {
 	$scope.isActive = function(route) {
 		return route === $location.path();
 	}
-})
+});
 
 app.controller("displayModal",["$scope",function($scope){
 	$scope.showArticle = function(articleId) {

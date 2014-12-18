@@ -16,14 +16,15 @@
     "logfmt": "~1.1.2",
     "express": "~4.6.1",
     "request": "~2.44.0",
-    "body-parser": "~1.6.1",
+    "body-parser": "~1.6.7",
     "mongoose": "~3.8.14",
     "cookie-parser": "~1.3.3",
     "passport": "~0.2.1",
     "passport-facebook": "~1.0.3",
     "passport-google": "~0.3.0",
     "passport-local": "~1.0.0",
-    "monk": "~0.9.0"
+    "monk": "~0.9.0",
+    "express-session": "~1.9.3"
   },
   "bugs": {
     "url": "https://github.com/gt-big-data/retina-ui/issues"

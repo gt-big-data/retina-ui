@@ -307,6 +307,11 @@ body {
   padding-right: 0;
 }
 
+.facebook-buttton {
+  background-color: #3a5795;
+  display: block;
+}
+
 /* Media Settings */
 @media (max-height: 400px) {
   .jumbotron-scroll {
