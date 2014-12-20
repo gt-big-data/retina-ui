@@ -342,6 +342,14 @@ body {
        -o-transition-property: left, right, top;
           transition-property: left, right, top;
 }
+
+.list-group-item .btn{
+  float: right;
+  padding: 0px 4px 0px 4px;
+  color: white;
+  background-color: #378bd4;
+}
+
 /* Wide desktops */
 @media (max-width: 1200px) {
   h1 {

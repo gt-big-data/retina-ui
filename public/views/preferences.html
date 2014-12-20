@@ -2,21 +2,25 @@
   <div class="header">
     <h1>Preferences <span class="retina-brand"></span></h1>
   </div>
-  <h3> Which of the following topics interest you? </h3>
-  <div ng-repeat="category in categories" class="col-md-6">
-    <div class="panel panel-default about-panel">
-      <a class="btn" type="button">
-        <div ng-click="addCategory(category)" class="panel-heading"><h2>{{category}}</h2></div>
-      </a>
-    </div>
+  <div>
+      <h3>Categories</h3>
+      <ul class="list-group">
+        <li ng-repeat="category in categories" class="list-group-item">
+        {{category}}<button type="button" class="btn btn-default" ng-click="addCategory(category)">Follow</button> 
+        </li>
+      </ul>
   </div>
-  <h3> Here are some trending news item, which ones interest you? </h3>
-  <div ng-repeat="keyword in keywords" class="col-md-6">
-    <div class="panel panel-default about-panel">
-      <a class="btn" type="button">
-        <div ng-click="addKeyword(keyword)" class="panel-heading"><h2>{{keyword}}</h2></div>
-      </a>
-    </div>
+  <div>
+      <h3>Keywords</h3>
+      <ul class="list-group">
+        <li ng-repeat="keyword in keywords" class="list-group-item">
+        {{keyword}}<button type="button" class="btn btn-default" ng-click="addKeyword(keyword)">Follow</button> 
+        </li>
+      </ul>
   </div>
-  <a class="btn" type="button" ng-click="submit()"> To the news!</a>
+  <a href="/#/feed">
+    <button href="/feed" class="btn btn-block">
+            <i></i> Done
+  </button>
+  </a>
 </div>

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var passport = require('./app/auth/auth');
 var routes = require('./app/routes');
 var profile = require('./app/profile');
+var middleware = require('./app/auth/middleware');
 var app = express();
 
 app.use(logfmt.requestLogger());

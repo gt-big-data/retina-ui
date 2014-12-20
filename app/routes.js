@@ -97,7 +97,7 @@ exports.getCategoriesOfMostRecentArticles = function(req, res) {
             'recent_download_date': {$lt: new Date()},
          },
         function(err, docs) {
-            res.json(docs.slice(20));
+            res.json(docs.slice(0,10));
     });
 }
 
@@ -110,7 +110,7 @@ exports.getKeywordsOfMostRecentArticles = function(req, res) {
             'recent_download_date': {$lt: new Date()},
         },
         function(err, docs) {
-            res.json(docs.slice(20));
+            res.json(docs.slice(0,10));
     });
 }
 
@@ -119,7 +119,7 @@ exports.getSources = function(req, res) {
         'source_domain',
         {'v': version, 'source_domain':{$ne: null}},
         function(err, docs) {
-            res.json(docs);
+            res.json(docs.slice(0,10));
     });
 }
 

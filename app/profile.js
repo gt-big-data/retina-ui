@@ -1,32 +1,36 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var config = require('../config/config')('prod');
+var config = require('../config/config')('dev');
 var db = mongoose.createConnection(config.db('big_data'));
 var userSchema = require('./models/users.js').userSchema;
 var users =  db.model('users', userSchema);
 
 exports.updatePreferences = function(req, res) {
-    var pref = req.param('preferences');
-    users.findOneAndUpdate(
-        {'uid': req.user},
+    var keywords = JSON.parse(req.param('keywords')); 
+    var categories = JSON.parse(req.param('categories'));
+    console.log(categories);
+    users.update(
+        {'uid': req.cookies.uid},
         {
-            $push: {'categories': pref.categories},
-            $push: {'keywords': pref.keywords},
+            $push: {'keywords': { $each: keywords},
+                    'categories': { $each: categories},
+                },
         },
-        {limit:20},
+        {},
         function(err, doc) {
+            console.log(doc);
             res.json(doc);
         }
     );
 }
 
 exports.saveArticle = function(req, res ) {
-    var pref = req.param('preferences');
+    var article = JSON.parse(req.param('article'));
     users.findOneAndUpdate(
         {'uid': pref.uid},
         {
-            $push: {'articles': pref.article},
+            $push: {'articles': article},
         },
         {},
         function(err, doc) {

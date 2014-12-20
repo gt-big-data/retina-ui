@@ -1,6 +1,6 @@
-exports.isLoggedIn = function(req, res, next) {
-    if (req.isAuthenticated()) {
+exports.loggedIn = function(req, res, next) {
+    if (req.uid) {
         return next();
     }
-    res.redirect('/');
+    res.redirect('/notloggedin');
 }

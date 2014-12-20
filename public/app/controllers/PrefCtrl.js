@@ -2,10 +2,8 @@ angular.module('myapp')
     .controller('PrefCtrl', ['$scope','$http', 'ArticleFactory', PrefCtrl]);
 
 function PrefCtrl($scope, $http, ArticleFactory) {
-    var date = {
-        categories: [],
-        keywords:[],
-    }
+   var categories = [];
+   var keywords = [];
 
     ArticleFactory.getSources().success(function(sources, status) {
         $scope.sources = sources;
@@ -22,28 +20,26 @@ function PrefCtrl($scope, $http, ArticleFactory) {
     });
 
     $scope.addCategory = function(category) {
-        if (date.categories.indexOf(category) < 0) {
-            console.log(category);
-            date.categories.push(category);
+        if (categories.indexOf(category) < 0) {
+            categories.push(category);
         }
     }
 
     $scope.addKeyword = function(keyword) {
-        if (date.keywords.indexOf(keyword) < 0) {
-            date.keywords.push(keyword);
+        if (keywords.indexOf(keyword) < 0) {
+            keywords.push(keyword);
         }
     }
 
     $scope.submit = function() {
-        console.log('clicked');
         return $http({
             url: 'users/preferences/update',
             method: 'POST',
             params: {
-                preferences: JSON.stringify(date),
+                categories: JSON.stringify(categories),
+                keywords: JSON.stringify(keywords),
             }
         }).success(function(data, status) {
-            console.log(data);
         });
     }
 }
