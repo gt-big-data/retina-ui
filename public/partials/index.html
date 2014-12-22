@@ -24,7 +24,7 @@
               <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
               <div class="multi-stub-caption">
                 <h2>{{article.title}}</h2>
-                <h4>{{article.summary}}</h4>
+                <h4>{{stripHTML(article.summary)}}</h4>
                 <h5>{{article.source_domain}} | {{article.recent_pub_date}}</h5>
               </div>
             </div>

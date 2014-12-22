@@ -20,7 +20,6 @@ function FeedCtrl($scope, $http, ArticleFactory) {
     $scope.hoursAgo = function(pubdate) {
         var now = new Date();
         var published = new Date(pubdate);
-        console.log(published);
         var elapsed = now .getHours() - published.getHours();
         return elapsed + 'h ago';
     }

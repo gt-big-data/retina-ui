@@ -263,6 +263,7 @@ body {
 .multi-stub-modal-body {
   height: 100%;
   overflow-y: scroll;
+  white-space: pre-wrap; 
 }
 .category-select {
   display: table;/*Using this because it will work for any browser*/

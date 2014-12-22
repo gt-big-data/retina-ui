@@ -19,4 +19,8 @@ function viewCategoryCtrl($scope, ArticleFactory) {
             })
         }
     }
+
+    $scope.stripHTML = function(articleSummary) {
+        return articleSummary.replace(/<(?:.|\n)*?>/gm, '');
+    }
 }
