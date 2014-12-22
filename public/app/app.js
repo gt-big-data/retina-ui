@@ -15,7 +15,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('feed', {
 			url: '/feed',
 			abstract: true,
-			templateUrl: 'partials/feed.html'
+			templateUrl: 'views/feed.html'
 		})
 		.state('feed.default', {
 			parent: 'feed',

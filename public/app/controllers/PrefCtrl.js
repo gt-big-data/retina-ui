@@ -4,6 +4,7 @@ angular.module('myapp')
 function PrefCtrl($scope, $http, ArticleFactory) {
    var categories = [];
    var keywords = [];
+   var sources = [];
 
     ArticleFactory.getSources().success(function(sources, status) {
         $scope.sources = sources;
@@ -28,6 +29,12 @@ function PrefCtrl($scope, $http, ArticleFactory) {
     $scope.addKeyword = function(keyword) {
         if (keywords.indexOf(keyword) < 0) {
             keywords.push(keyword);
+        }
+    }
+
+    $scope.addSource = function(source) {
+        if (sources.indexOf(keyword) < 0) {
+            sources.push(keyword);
         }
     }
 

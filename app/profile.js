@@ -9,7 +9,6 @@ var users =  db.model('users', userSchema);
 exports.updatePreferences = function(req, res) {
     var keywords = JSON.parse(req.param('keywords')); 
     var categories = JSON.parse(req.param('categories'));
-    console.log(categories);
     users.update(
         {'uid': req.cookies.uid},
         {
@@ -19,7 +18,6 @@ exports.updatePreferences = function(req, res) {
         },
         {},
         function(err, doc) {
-            console.log(doc);
             res.json(doc);
         }
     );

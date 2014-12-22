@@ -22,6 +22,7 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/public'));
 
 app.get('/api/articles/latest', routes.getLatestArticles);
+// app.get('/api/articles/query', routes.queryArticles);
 app.get('/api/articles/source/:source', routes.getArticlesBySource);
 app.get('/api/articles/category/:category', routes.getArticlesByCategory);
 app.get('/api/articles/keyword/:keyword', routes.getArticlesByKeyword);

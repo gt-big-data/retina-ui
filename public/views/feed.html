@@ -1,0 +1,24 @@
+<div ng-controller="FeedCtrl" class="container container-main">
+  <div class="header">
+    <h1>Latest</h1>
+  </div>
+  <div class="feed-header">
+    <div class="btn-group btn-group-lg horizontal-center">
+      <button type="button" class="btn btn-default" ng-class="{active:$state.includes('feed.default')}" ui-sref="feed.default">Default</button>
+      <button type="button" class="btn btn-default" ng-class="{active:$state.includes('feed.mini')}" ui-sref="feed.mini">Minified</button>
+    </div>
+  </div>
+   <div ng-controller="FeedCtrl" class="row marketing" >
+        <div class="stub-article" ng-repeat="article in articles" ng-click="article.show = !article.show">
+        <span ng-repeat="category in article.categories" class="label label-primary"> {{category}}</span>
+          <div class="stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
+          <div class="stub-caption">
+            <h2>{{article.title}} <small> {{hoursAgo(article.recent_pub_date)}} </small></h2>
+            <h4>{{striptHTML(article.summary)}}</h4>
+            <h5 class="text-uppercase">{{article.source_domain}}</h5>
+            <p ng-show="article.show">{{article.text}}</p>
+          </div>
+        </div>
+      </div>
+  <div ui-view></div>
+  </div> <!-- /container -->
