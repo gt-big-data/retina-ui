@@ -13,8 +13,8 @@ function ArticleFactory($http) {
         };
     }
 
-    exports.getLatestArticles = function() {
-        return $http(request('latest'));
+    exports.getLatestArticles = function(page) {
+        return $http(request('latest/' + page));
     }
 
     exports.getArticlesBySource = function(source) {

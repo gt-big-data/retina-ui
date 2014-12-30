@@ -20,8 +20,7 @@ app.use(function(req, res, next) {
     next();
 });
 app.use(express.static(__dirname + '/public'));
-
-app.get('/api/articles/latest', routes.getLatestArticles);
+app.get('/api/articles/latest/:page', routes.getLatestArticles);
 // app.get('/api/articles/query', routes.queryArticles);
 app.get('/api/articles/source/:source', routes.getArticlesBySource);
 app.get('/api/articles/category/:category', routes.getArticlesByCategory);
@@ -41,7 +40,7 @@ app.get('/users',
     passport.authenticate('facebook', {
                                       failureRedirect: '/login' }),
     function(req, res) {
-        res.cookie('uid', req.user.uid);
+        res.cookie('retinaID', req.user.id);
         res.redirect('/#/preferences');
     }
 );

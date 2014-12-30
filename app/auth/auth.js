@@ -27,7 +27,6 @@ passport.use(new FacebookStrategy({
                         name: profile.firstName,
                         categories: [],
                         keywords: [],
-                        sources: [],
                         articles: [],
                     }).save(function(err, newUser) {
                         if (err) {
@@ -55,11 +54,11 @@ passport.use(new GoogleStrategy({
 );
 
 passport.serializeUser(function(user, done) {
-    done(null, user.uid);
+    done(null, user.id);
 });
 
-passport.deserializeUser(function(uid, done) {
-    Users.find({'uid':uid}, function(err, user) {
+passport.deserializeUser(function(id, done) {
+    Users.find({'id':id}, function(err, user) {
         done(err, user);
     });
 });

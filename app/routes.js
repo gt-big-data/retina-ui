@@ -7,10 +7,14 @@ var articleSchema = require('./models/articles.js').articleSchema;
 var articles = db.model('articles', articleSchema);
 
 exports.getLatestArticles = function(req, res) {
+    var page = parseInt(req.params.page);
     articles.find({
             'v': config.version
-        }, {}, {
-            limit: 20,
+        }, 
+        {}, 
+        {
+            limit: page  * 20,
+            skip: (page - 1) * 20,
             sort: {
                 'recent_download_date': -1
             }
@@ -30,7 +34,9 @@ exports.queryArticles = function(req, res) {
             'v': config.version,
             'categories': categories,
             'keywords': keywords
-        }, {}, {
+        }, 
+        {}, 
+        {
             limit: 20,
             sort: {
                 'recent_download_date': -1
@@ -49,7 +55,9 @@ exports.getArticlesByCategory = function(req, res) {
     articles.find({
             'v': config.version,
             'categories': category
-        }, {}, {
+        }, 
+        {},
+        {
             limit: 20,
             sort: {
                 'recent_download_date': -1
@@ -68,7 +76,9 @@ exports.getArticlesByKeyword = function(req, res) {
     articles.find({
             'v': config.version,
             'keyword': keyword
-        }, {}, {
+        }, 
+        {}, 
+        {
             limit: 20,
             sort: {
                 'recent_download_date': -1
@@ -88,7 +98,9 @@ exports.getArticlesBySource = function(req, res) {
     articles.find({
             'v': config.version,
             'source_domain': source
-        }, {}, {
+        }, 
+        {}, 
+        {
             limit: 20,
             sort: {
                 'recent_download_date': -1
@@ -109,7 +121,8 @@ exports.getArticleById = function(req, res) {
         {
             'v': version,
             '_id': id
-        }, {},
+        }, 
+        {},
         function(err, doc) {
             if (err) {
                 throw err;

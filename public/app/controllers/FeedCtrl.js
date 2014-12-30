@@ -2,8 +2,8 @@ angular.module('myapp')
     .controller('FeedCtrl', ['$scope', '$http', 'ArticleFactory', FeedCtrl]);
 
 function FeedCtrl($scope, $http, ArticleFactory) {
-
-    ArticleFactory.getLatestArticles().success(function(data, status) {
+    $scope.page = 1;
+    ArticleFactory.getLatestArticles($scope.page).success(function(data, status) {
         $scope.articles = data;
     });
 
@@ -27,5 +27,12 @@ function FeedCtrl($scope, $http, ArticleFactory) {
     
     $scope.stripHTML = function(articleSummary) {
         return articleSummary.replace(/<(?:.|\n)*?>/gm, '');
+    }
+
+    $scope.nextPage = function() {
+        ArticleFactory.getLatestArticles($scope.page).success(function(data, status){
+            $scope.articles = data;
+            $scope.page++;
+        });
     }
 }

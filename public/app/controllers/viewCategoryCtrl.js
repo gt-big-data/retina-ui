@@ -2,7 +2,8 @@ angular.module('myapp')
     .controller('viewCategoryCtrl', ['$scope', 'ArticleFactory', viewCategoryCtrl]);
 
 function viewCategoryCtrl($scope, ArticleFactory) {
-    ArticleFactory.getLatestArticles().success(function(articles, status) {
+    $scope.page = 1;
+    ArticleFactory.getLatestArticles($scope.page).success(function(articles, status) {
         $scope.news = articles;
     });
 
