@@ -7,12 +7,12 @@
         </p>
       </div>
     </div>
-    <div id="frontpage-news" ng-controller="viewCategory">
+    <div id="frontpage-news" ng-controller="viewCategoryCtrl">
       <div id="category-select-anchor" class="category-select-anchor"></div>
       <div class="category-select-wrapper" ng-controller="catchNewsNav">
         <div class="category-select" ng-controller="sizeNewsNav">
           <ul id="news-nav-items">
-            <li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('all')">All</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('us')">U.S.</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('world')">World</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('business')">Business</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('sports')">Sports</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('technology')">Technology</li>
+            <li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('all')">All</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('us')">U.S.</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('world')">World</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('business')">Business</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('sport')">Sports</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('tech')">Technology</li>
           </ul>
         </div>
       </div>
@@ -24,7 +24,7 @@
               <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
               <div class="multi-stub-caption">
                 <h2>{{article.title}}</h2>
-                <h4>{{article.summary}}</h4>
+                <h4>{{stripHTML(article.summary)}}</h4>
                 <h5>{{article.source_domain}} | {{article.recent_pub_date}}</h5>
               </div>
             </div>
@@ -54,45 +54,52 @@
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content col-md-10" >
           <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel"><font color="black">Sign In</font></h4>
+            <h4 class="modal-title text-center" id="myModalLabel"><font color="black">Sign In</font></h4>
           </div>
 
-          <div class="modal-body">
-
-          <div class="row">
-            <div class="col-md-6">
-              <form name="user" method="post" action="/login">
-              <input type="text" class="form-control input-lg" name="username" placeholder="Username">
-              <p></p>
-              <input type="password" name="password" class="form-control input-lg" placeholder="Password">
-              <p></p>
-              <a class="btn btn-primary btn-lg" role="button" href="#">Sign In</a>
-              <a class="btn btn-primary btn-lg" role="button" data-dismiss="modal" ui-sref="signUp">Sign Up</a>
-              <!-- <a ui-sref="signUp" class="btn btn-primary btn-lg" role="button" data-dismiss="modal">Sign Up</a> -->
-              <div class="btn-group">
-          </div>
+          <form name="loginForm" ng-submit="emailLogin()" novalidate>
+          <div class="form-group has-feedback" ng-class="{ 'has-error': loginForm.email.$invalid && loginForm.email.$dirty }">
+            <input server-error class="form-control input-lg" type="text" name="email" ng-model="email" placeholder="Email" required autofocus>
+            <span class="ion-at form-control-feedback"></span>
+            <div class="help-block" ng-if="loginForm.email.$dirty" ng-messages="loginForm.email.$error">
+              <div ng-message="required">Please enter your email</div>
+              <div ng-message="server">{{errorMessage.email}}</div>
             </div>
-            </form>
-            <span id="signinButton">
-              <span
-                class="g-signin"
-                data-callback="signinCallback"
-                data-clientid="CLIENT_ID"
-                data-cookiepolicy="single_host_origin"
-                data-requestvisibleactions="http://schema.org/AddAction"
-                data-scope="https://www.googleapis.com/auth/plus.login">
-            </span>
-          </span>
-          <p></p>
-          <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false">Connect with Facebook</div>
           </div>
+ 
+          <div class="form-group has-feedback" ng-class="{ 'has-error': loginForm.password.$invalid && loginForm.password.$dirty }">
+            <input server-error class="form-control input-lg" type="password" name="password" ng-model="password" placeholder="Password" required>
+            <span class="ion-key form-control-feedback"></span>
+            <div class="help-block" ng-if="loginForm.password.$dirty" ng-messages="loginForm.password.$error">
+              <div ng-message="required">Please enter your password</div>
+              <div ng-message="server">{{errorMessage.password}}</div>
+            </div>
           </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ 
+          <button type="submit" class="btn btn-block btn-success" ng-disabled="loginForm.$invalid">Log in</button>
+ 
+          <br/>
+ 
+          <p class="text-center text-muted">
+            <small>Don't have an account yet? <a href="#/signup">Sign up</a></small>
+          </p>
+ 
+          <div class="signup-or-separator">
+            <hr>
           </div>
+        </form>
+        <a href="users/auth/facebook">
+        <button  class="btn btn-block btn-">
+          Sign in with Facebook
+        </button>
+        </a>
+        <a>
+        <button class="btn btn-block btn-instagram" >
+          Sign in with Google+
+        </button>
+        </a>
 
 
 

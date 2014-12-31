@@ -3,7 +3,7 @@ var app = angular.module("myapp",['ui.router','wu.masonry','ui.bootstrap']);
 app.run(["$rootScope","$state","$stateParams",function($rootScope,$state,$stateParams){
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
-}])
+}]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
@@ -15,7 +15,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('feed', {
 			url: '/feed',
 			abstract: true,
-			templateUrl: 'partials/feed.html'
+			templateUrl: 'views/feed.html'
 		})
 		.state('feed.default', {
 			parent: 'feed',
@@ -55,6 +55,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/settings',
 			templateUrl: 'partials/settings.html'
 		})
+		.state('preferences', {
+			url:'/preferences',
+			templateUrl: 'views/preferences.html'
+		});
 }).run(function($rootScope, $state) {//Used to set navbar buttons as "active" depending on current scope
 	$rootScope.$state = $state;
 });
@@ -63,22 +67,7 @@ app.controller("activeCtrl", function($scope, $location) {
 	$scope.isActive = function(route) {
 		return route === $location.path();
 	}
-})
-
-app.controller("stub",["$scope","$http",function($scope,$http){
-	$http.get('/latest').success(function(data){
-		$scope.news = data;
-	});
-}]);
-
-app.controller("hn",["$scope","$http",function($scope,$http){
-	$http.get('/api').success(function(data){
-		$scope.news = data;
-		$scope.show = function() {
-			scope.news.show = true;
-		}
-	});
-}]);
+});
 
 app.controller("displayModal",["$scope",function($scope){
 	$scope.showArticle = function(articleId) {
@@ -168,23 +157,3 @@ app.directive('scrollToId', function() {
   }
 })
 
-app.controller("viewCategory", ["$scope","$http",function($scope,$http){//Update the view with the category that was clicked on
-	$scope.news = $http.get('/latest').success(function(data){
-		$scope.news = data;
-		console.log("loaded category 'all'");
-	});
-	$scope.loadCategory = function(categoryName){
-		if (categoryName !== "all") {
-			$http.get('/categories/'+categoryName).success(function(data){
-					$scope.news = data;
-					console.log("loaded category '"+categoryName+"'");
-			});
-		}
-		else {
-			$http.get('/latest').success(function(data){
-				$scope.news = data;
-				console.log("loaded category 'all'");
-			});
-		}
-	};
-}])

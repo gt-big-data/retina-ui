@@ -1,0 +1,26 @@
+<div ng-controller="PrefCtrl" class="container container-main">
+  <div class="header">
+    <h1>Preferences <span class="retina-brand"></span></h1>
+  </div>
+  <div>
+      <h3>Categories</h3>
+      <ul class="list-group">
+        <li ng-repeat="category in categories" class="list-group-item">
+        {{category}}<button type="button" class="btn btn-default" ng-click="addCategory(category)">Follow</button> 
+        </li>
+      </ul>
+  </div>
+  <div>
+      <h3>Keywords</h3>
+      <ul class="list-group">
+        <li ng-repeat="keyword in keywords" class="list-group-item">
+        {{keyword}}<button type="button" class="btn btn-default" ng-click="addKeyword(keyword)">Follow</button> 
+        </li>
+      </ul>
+  </div>
+  <a href="/#/feed">
+    <button href="/feed" class="btn btn-block">
+            <i></i> Done
+  </button>
+  </a>
+</div>
