@@ -3,7 +3,7 @@
   <div class="category-show">
     <div masonry>
       <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles" >
-        <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id);">
+        <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id); record(article._id)">
           <span ng-repeat="category in article.categories" class="label label-primary"> {{category}}</span>
           <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
           <div class="multi-stub-caption">

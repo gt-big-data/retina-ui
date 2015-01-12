@@ -14,6 +14,7 @@ passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
             clientSecret: config.facebook.clientSecret,
             callbackURL: config.facebook.callbackURL,
+            profileFields: ['id', 'picture.type(large)', 'displayName']
         },
         function(accessToken, refreshToken, profile, done) {
             Users.findOne({
@@ -24,7 +25,8 @@ passport.use(new FacebookStrategy({
                 } else {
                     var newUser = new Users({
                         uid: profile.id,
-                        name: profile.firstName,
+                        name: profile.displayName,
+                        picture: profile.photos ? profile.photos[0].value : null,
                         categories: [],
                         keywords: [],
                         articles: [],

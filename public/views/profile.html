@@ -1,0 +1,74 @@
+<div ng-controller="ProfileCtrl" class="container container-main">
+	<div class="row">
+		<div class="page-header">
+			<h1>Profile</h1>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<a href="#" class="thumbnail">
+				<img ng-src="{{vm.picture}}" alt="...">
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-mid-4">
+			<h3 class="text-center">{{vm.name}}</h3>
+			<div class="page-header">
+				<h4>Categories</h4>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item"  ng-repeat="category in vm.categories">
+				<label>
+					<input type="checkbox" ng-click="modifyCategory(category)" checked> {{category}}
+				</label>
+					
+				</li>
+			</ul>
+			<a href="">
+				<p ng-click="moreCategories()">+ Add More</p>
+			</a>
+
+			<!-- Addition Categories -->
+			<div ng-show="showMoreCategories()" class="page-header">
+				<h5>Additional Categories</h4>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="category in categories" >
+				<label>
+					<input type="checkbox" ng-click="modifyCategory(category)"> {{category}}
+				</label>
+				</li>
+			</ul>
+
+
+			<div class="page-header">
+				<h4>Keywords</h4>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item"  ng-repeat="keyword in vm.keywords">
+				<label>
+					<input type="checkbox" ng-click="addOrDeleteCategory(keyword)" checked> {{keyword}}
+				</label>
+					
+				</li>
+			</ul>
+		<a href="">
+			<p ng-click="moreKeywords()">+ Add More</p>
+		</a>
+
+		<!-- Addition Keywords -->
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="keyword in keywords" >
+				<label>
+					<input type="checkbox" ng-click="addOrDeleteKeyword(keyword)"> {{keyword}}
+				</label>
+				</li>
+			</ul>
+
+	</div>
+	<div class="row">
+		<a href="/#/feed">
+		<button type="button" class="btn btn-default">Done</button>
+		</a>
+	</div>
+	
+</div>

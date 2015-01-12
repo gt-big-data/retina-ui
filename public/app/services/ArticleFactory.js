@@ -44,5 +44,6 @@ function ArticleFactory($http) {
     exports.getSources = function() {
         return $http(request('sources'));
     }
+    
     return exports;
 }

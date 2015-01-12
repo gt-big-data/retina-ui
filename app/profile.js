@@ -6,33 +6,53 @@ var db = mongoose.createConnection(config.db('big_data'));
 var userSchema = require('./models/users.js').userSchema;
 var users =  db.model('users', userSchema);
 
-exports.updatePreferences = function(req, res) {
-    var keywords = JSON.parse(req.param('keywords')); 
-    var categories = JSON.parse(req.param('categories'));
-    users.update(
-        {'uid': req.cookies.uid},
-        {
-            $push: {'keywords': { $each: keywords},
-                    'categories': { $each: categories},
-                },
-        },
-        {},
+exports.getUserInfo = function(req, res) {
+    users.findOne(
+        {'_id': req.cookies.retinaID},
+        '-_id -uid',
         function(err, doc) {
             res.json(doc);
-        }
-    );
-}
+        });
+};
 
-exports.saveArticle = function(req, res ) {
-    var article = JSON.parse(req.param('article'));
+exports.updatePreferences = function(req, res) {
+   var title = req.param('title');
+   var type = req.param('type');
     users.findOneAndUpdate(
-        {'uid': pref.uid},
-        {
-            $push: {'articles': article},
-        },
+        {'_id': req.cookies.retinaID},
+        {$push: {type: title}},
         {},
         function(err, doc) {
             res.json(doc);
         }
     );
-}
+
+};
+
+exports.recordView = function(req, res) {
+    var articleID = req.param('article');
+    console.log(articleID);
+    users.findOneAndUpdate(
+        {'_id': req.cookies.retinaID},
+        {$push:{'articles': articleID}},
+        {},
+        function(err, docs) {
+            res.send(200);
+        });
+};
+
+exports.deleteItem = function(req, res) {
+    var title = req.param('title');
+    var type = req.param('type');
+
+    users.findOneAndUpdate(
+        {'_id': req.cookies.retinaID},
+        {
+            $pull: {type: title}
+        },
+        {},
+        function(err, docs) {
+            res.json(docs);
+        });
+};
+

@@ -29,9 +29,10 @@ app.get('/api/articles/id/:id', routes.getArticleById);
 app.get('/api/articles/categories', routes.getCategoriesOfMostRecentArticles);
 app.get('/api/articles/keywords', routes.getKeywordsOfMostRecentArticles);
 app.get('/api/articles/sources', routes.getSources);
+app.get('/users/profile', profile.getUserInfo);
 app.post('/users/preferences/update', profile.updatePreferences);
-app.post('/users/preferences/save', profile.saveArticle);
-
+app.post('/users/preferences/record', profile.recordView);
+app.delete('/users/preferences/delete', profile.deleteItem);
 /*
     Passport initialization for facebook
 */
@@ -41,7 +42,7 @@ app.get('/users',
                                       failureRedirect: '/login' }),
     function(req, res) {
         res.cookie('retinaID', req.user.id);
-        res.redirect('/#/preferences');
+        res.redirect('/#/profile');
     }
 );
 

@@ -187,6 +187,15 @@ body {
 .stub-show-btn {
   margin-bottom: 0px;
 }
+
+.modal-dialog .btn {
+  margin-bottom: 10px;
+}
+
+.panel-body .btn {
+    margin-bottom: 10px;
+}
+
 .alt-stub-article {
   display: block;
   padding: 10px;

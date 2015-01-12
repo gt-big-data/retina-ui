@@ -58,7 +58,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('preferences', {
 			url:'/preferences',
 			templateUrl: 'views/preferences.html'
-		});
+		})
+		.state('profile', {
+			url:'/profile',
+			templateUrl: 'views/profile.html'
+		})
 }).run(function($rootScope, $state) {//Used to set navbar buttons as "active" depending on current scope
 	$rootScope.$state = $state;
 });

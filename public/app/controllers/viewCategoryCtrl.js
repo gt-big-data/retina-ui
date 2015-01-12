@@ -15,13 +15,13 @@ function viewCategoryCtrl($scope, ArticleFactory) {
             });
         }
         else {
-            ArticleFactory.getLatestArticles().success(function(articles, status){
+            ArticleFactory.getLatestArticles($scope.page).success(function(articles, status){
                 $scope.news = articles;
-            })
+            });
         }
-    }
+    };
 
     $scope.stripHTML = function(articleSummary) {
         return articleSummary.replace(/<(?:.|\n)*?>/gm, '');
-    }
+    };
 }

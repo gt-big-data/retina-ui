@@ -1,4 +1,4 @@
-<div ng-controller="PrefCtrl" class="container container-main">
+<div ng-controller="ProfileCtrl" class="container container-main">
   <div class="header">
     <h1>Preferences <span class="retina-brand"></span></h1>
   </div>
@@ -19,7 +19,7 @@
       </ul>
   </div>
   <a href="/#/feed">
-    <button href="/feed" class="btn btn-block">
+    <button ng-click="update()" href="/feed" class="btn btn-block">
             <i></i> Done
   </button>
   </a>

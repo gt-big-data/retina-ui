@@ -24,19 +24,19 @@ function PrefCtrl($scope, $http, ArticleFactory) {
         if (categories.indexOf(category) < 0) {
             categories.push(category);
         }
-    }
+    };
 
     $scope.addKeyword = function(keyword) {
         if (keywords.indexOf(keyword) < 0) {
             keywords.push(keyword);
         }
-    }
+    };
 
     $scope.addSource = function(source) {
         if (sources.indexOf(keyword) < 0) {
             sources.push(keyword);
         }
-    }
+    };
 
     $scope.submit = function() {
         return $http({
@@ -48,5 +48,5 @@ function PrefCtrl($scope, $http, ArticleFactory) {
             }
         }).success(function(data, status) {
         });
-    }
+    };
 }
