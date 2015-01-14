@@ -1,4 +1,4 @@
-module.exports = config('prod');
+module.exports = config('dev');
 
 function config(env) {
 
@@ -30,7 +30,7 @@ function config(env) {
     prod.facebook = {
         clientID: 545078782286873,
         clientSecret: "c8a9f573cd188ef8f55842bcda995614",
-        callbackURL: "http://retinanews.net/users/auth/facebook/",
+        callbackURL: "http://retinanews.net/users/",
     };
     prod.google = {
         clientID: null,
