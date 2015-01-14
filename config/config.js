@@ -30,7 +30,7 @@ function config(env) {
     prod.facebook = {
         clientID: 545078782286873,
         clientSecret: "c8a9f573cd188ef8f55842bcda995614",
-        callbackURL: "http://retinanews.net/auth/facebook/callback",
+        callbackURL: "http://retinanews.net/users/auth/facebook/callback",
     };
     prod.google = {
         clientID: null,
