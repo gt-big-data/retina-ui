@@ -1,6 +1,6 @@
-module.exports = config('prod');
+module.exports = config();
 
-function config(env) {
+function config() {
 
     var version = "0.0.6";
     
@@ -39,5 +39,5 @@ function config(env) {
         callbackURL: "http://retina-news.net/users/auth/google/"
     };
 
-    return this[env];
+    return this[process.NODE_ENV || 'dev'];
 }
