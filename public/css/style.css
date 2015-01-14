@@ -7,6 +7,7 @@ body {
   height: 100%;
   width: 100%;
   margin-bottom: 60px;
+  margin-top: 55px;
   font-family: 'Ubuntu', sans-serif;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
