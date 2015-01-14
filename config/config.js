@@ -4,7 +4,7 @@ function config() {
 
     var version = "0.0.6";
     
-    this.dev = {};
+    var dev = {};
     dev.version = version;
     dev.db = function(name) {
         return 'mongodb://localhost/' + name;
@@ -22,7 +22,7 @@ function config() {
     };
 
     
-    this.prod = {};
+    var prod = {};
     prod.version = version;
     prod.db = function(name) {
         return 'mongodb://146.148.59.202:27017/' + name;
@@ -39,5 +39,9 @@ function config() {
         callbackURL: "http://retina-news.net/users/auth/google/"
     };
 
-    return this[process.NODE_ENV || 'dev'];
+    if (process.env.NODE_ENV === 'prod') {
+        return prod;
+    } else {
+        return dev;
+    }
 }
