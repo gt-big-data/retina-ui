@@ -1,6 +1,6 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
-var config = require('../../config/config')('dev');
+var config = require('../../config/config');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var config = require('../config/config')('prod');
+var config = require('../config/config');
 var db = mongoose.createConnection(config.db('big_data'));
 var articleSchema = require('./models/articles.js').articleSchema;
 var articles = db.model('articles', articleSchema);
@@ -25,7 +25,7 @@ exports.getLatestArticles = function(req, res) {
             }
             res.json(docs);
         });
-}
+};
 
 exports.queryArticles = function(req, res) {
     var categories = JSON.parse(req.param('categories'));
@@ -48,7 +48,7 @@ exports.queryArticles = function(req, res) {
             }
             return docs;
         });
-}
+};
 
 exports.getArticlesByCategory = function(req, res) {
     var category = req.params.category;
@@ -69,7 +69,7 @@ exports.getArticlesByCategory = function(req, res) {
             }
             res.json(docs);
         });
-}
+};
 
 exports.getArticlesByKeyword = function(req, res) {
     var keyword = req.params.keyword;
@@ -90,7 +90,7 @@ exports.getArticlesByKeyword = function(req, res) {
             }
             res.json(docs);
         });
-}
+};
 
 exports.getArticlesBySource = function(req, res) {
     var source = req.params.source;
@@ -112,7 +112,7 @@ exports.getArticlesBySource = function(req, res) {
             }
             res.json(docs);
         });
-}
+};
 
 exports.getArticleById = function(req, res) {
     var id = req.params.id;
@@ -129,7 +129,7 @@ exports.getArticleById = function(req, res) {
             }
             res.json(doc);
         });
-}
+};
 
 exports.getCategoriesOfMostRecentArticles = function(req, res) {
     var page = req.params.page;
@@ -146,7 +146,7 @@ exports.getCategoriesOfMostRecentArticles = function(req, res) {
         function(err, docs) {
             res.json(docs.slice(0, 20));
         });
-}
+};
 
 exports.getKeywordsOfMostRecentArticles = function(req, res) {
     articles.distinct(
@@ -162,7 +162,7 @@ exports.getKeywordsOfMostRecentArticles = function(req, res) {
         function(err, docs) {
             res.json(docs.slice(0, 20));
         });
-}
+};
 
 exports.getSources = function(req, res) {
     articles.distinct(
@@ -175,4 +175,4 @@ exports.getSources = function(req, res) {
         function(err, docs) {
             res.json(docs.slice(0, 10));
         });
-}
+};

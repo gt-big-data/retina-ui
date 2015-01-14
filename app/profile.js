@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var config = require('../config/config')('dev');
+var config = require('../config/config');
 var db = mongoose.createConnection(config.db('big_data'));
 var userSchema = require('./models/users.js').userSchema;
 var users =  db.model('users', userSchema);
