@@ -82,16 +82,6 @@ app.controller("displayModal",["$scope",function($scope){
 		console.log("Hiding article "+articleId);
 		$('#'+articleId).modal('hide');
 	};
-}])
-
-app.controller("resizeFeedMiniIcons",["$scope", function($scope){
-	$(document).ready(function() {
-		$(".alt-stub-photo").each(function() {
-			console.log("I've been activated!");
-			var newHeight = $(this).width();
-			$(this).css({"height":newHeight});
-		})
-	});
 }]);
 
 app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {//This probably doesn't need to be as big
@@ -148,6 +138,13 @@ app.controller("catchNewsNav",["$scope",function scrollFixedTop() {//Catches new
 	$(window).scroll(changeFixedTop);
 }]);
 
+app.controller("loadContactForm",["$scope",function($scope){
+	$(document).ready(function(){
+		console.log("test");
+		$.getScript("https://secure.jotform.us/jsform/42496913808162");
+	})
+}]);
+
 app.directive('scrollToId', function() {
   return {
     scope: {
@@ -160,4 +157,3 @@ app.directive('scrollToId', function() {
     }
   }
 })
-
