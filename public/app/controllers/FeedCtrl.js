@@ -3,36 +3,50 @@ angular.module('myapp')
 
 function FeedCtrl($scope, $http, ArticleFactory) {
     $scope.page = 1;
-    ArticleFactory.getLatestArticles($scope.page).success(function(data, status) {
-        $scope.articles = data;
-    });
+    $scope.record = record;
+    $scope.hoursAgo = hoursAgo;
+    $scope.stripHTML = stripHTML;
+    $scope.nextPage = nextPage;
 
-    $scope.record = function(articleID) {
-        return $http({
-                    url: '/users/preferences/record',
-                    method: 'POST',
-                    params: {
-                        article: articleID,
-                    }
+    activate();
+
+    /////////////////////
+
+    function activate() {
+        ArticleFactory.getLatestArticles($scope.page).success(function(data, status) {
+            $scope.articles = data;
         });
-    };
+    }
 
-    $scope.hoursAgo = function(pubdate) {
+
+    function record(articleID) {
+        return $http({
+            url: '/users/preferences/record',
+            method: 'POST',
+            params: {
+                article: articleID,
+            }
+        });
+    }
+
+
+    function hoursAgo(pubdate) {
         var now = new Date();
         var published = new Date(pubdate);
-        var elapsed = now .getHours() - published.getHours();
+        var elapsed = now.getHours() - published.getHours();
         return elapsed + 'h ago';
-    };
+    }
 
-    
-    $scope.stripHTML = function(articleSummary) {
+
+    function stripHTML(articleSummary) {
         return articleSummary.replace(/<(?:.|\n)*?>/gm, '');
-    };
+    }
 
-    $scope.nextPage = function() {
-        ArticleFactory.getLatestArticles($scope.page).success(function(data, status){
+
+    function nextPage() {
+        ArticleFactory.getLatestArticles($scope.page).success(function(data, status) {
             $scope.articles = data;
             $scope.page++;
         });
-    };
+    }
 }

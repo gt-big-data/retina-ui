@@ -1,44 +1,57 @@
 angular.module('myapp')
-    .controller('PrefCtrl', ['$scope','$http', 'ArticleFactory', PrefCtrl]);
+    .controller('PrefCtrl', ['$scope', '$http', 'ArticleFactory', PrefCtrl]);
 
 function PrefCtrl($scope, $http, ArticleFactory) {
-   var categories = [];
-   var keywords = [];
-   var sources = [];
+    var categories = [];
+    var keywords = [];
+    var sources = [];
 
-    ArticleFactory.getSources().success(function(sources, status) {
-        $scope.sources = sources;
-    });
+    $scope.addCategory = addCategory;
+    $scope.addKeyword = addKeyword;
+    $scope.addSource = addSource;
+    $scope.submit = submit;
 
-    ArticleFactory.getCategoriesOfMostRecentArticles().success(
-        function(categories, status){
-            $scope.categories = categories;
-    });
+    activate();
 
-    ArticleFactory.getKeywordsOfMostRecentArticles().success(
-        function(keywords, status){
-            $scope.keywords = keywords;
-    });
+    /////////////////
+    
+    function activate() {
+        ArticleFactory.getSources().success(function(sources, status) {
+            $scope.sources = sources;
+        });
 
-    $scope.addCategory = function(category) {
+        ArticleFactory.getCategoriesOfMostRecentArticles().success(
+            function(categories, status) {
+                $scope.categories = categories;
+            });
+
+        ArticleFactory.getKeywordsOfMostRecentArticles().success(
+            function(keywords, status) {
+                $scope.keywords = keywords;
+            });
+    }
+
+    function addCategory(category) {
         if (categories.indexOf(category) < 0) {
             categories.push(category);
         }
-    };
+    }
 
-    $scope.addKeyword = function(keyword) {
+    function addKeyword(keyword) {
         if (keywords.indexOf(keyword) < 0) {
             keywords.push(keyword);
         }
-    };
+    }
 
-    $scope.addSource = function(source) {
+
+    function addSource(source) {
         if (sources.indexOf(keyword) < 0) {
             sources.push(keyword);
         }
-    };
+    }
 
-    $scope.submit = function() {
+
+    function submit() {
         return $http({
             url: 'users/preferences/update',
             method: 'POST',
@@ -46,7 +59,6 @@ function PrefCtrl($scope, $http, ArticleFactory) {
                 categories: JSON.stringify(categories),
                 keywords: JSON.stringify(keywords),
             }
-        }).success(function(data, status) {
-        });
-    };
+        }).success(function(data, status) {});
+    }
 }

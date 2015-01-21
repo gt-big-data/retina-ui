@@ -12,7 +12,7 @@ function UserService($http) {
             method: 'GET',
             params: null, 
         });
-    } 
+    };
     
     exports.removeFromPreferences = function(title, type) {
         return $http({
@@ -23,7 +23,7 @@ function UserService($http) {
                 type: type,
             }
         });
-    }
+    };
 
     exports.addToPreferences = function(title, type) {
         return $http({
@@ -34,7 +34,7 @@ function UserService($http) {
                 type: type,
             }
         });
-    }
+    };
 
     return exports;
 }
