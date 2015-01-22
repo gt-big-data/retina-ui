@@ -7,7 +7,7 @@ function config() {
     var dev = {};
     dev.version = version;
     dev.db = function(name) {
-        return 'mongodb://localhost/' + name;
+        return 'mongodb://146.148.59.202:27017/' + name;
     };
     dev.facebook = {
         clientID: 566737753454309,
