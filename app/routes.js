@@ -46,7 +46,7 @@ exports.queryArticles = function(req, res) {
             if (err) {
                 throw err;
             }
-            return docs;
+            req.json(docs);
         });
 };
 
@@ -119,7 +119,7 @@ exports.getArticleById = function(req, res) {
     articles.findOne(
         // return a specific article
         {
-            'v': version,
+            'v': config.version,
             '_id': id
         }, 
         {},
@@ -135,7 +135,7 @@ exports.getCategoriesOfMostRecentArticles = function(req, res) {
     var page = req.params.page;
     articles.distinct(
         'categories', {
-            'v': version,
+            'v': config.version,
             'categories': {
                 $ne: null
             },
@@ -151,7 +151,7 @@ exports.getCategoriesOfMostRecentArticles = function(req, res) {
 exports.getKeywordsOfMostRecentArticles = function(req, res) {
     articles.distinct(
         'keywords', {
-            'v': version,
+            'v': config.version,
             'keywords': {
                 $ne: null
             },
@@ -160,6 +160,7 @@ exports.getKeywordsOfMostRecentArticles = function(req, res) {
             },
         },
         function(err, docs) {
+            console.log(docs);
             res.json(docs.slice(0, 20));
         });
 };
@@ -167,7 +168,7 @@ exports.getKeywordsOfMostRecentArticles = function(req, res) {
 exports.getSources = function(req, res) {
     articles.distinct(
         'source_domain', {
-            'v': version,
+            'v': config.version,
             'source_domain': {
                 $ne: null
             }

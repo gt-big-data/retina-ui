@@ -90,11 +90,11 @@ function ProfileCtrl($scope, $http, ArticleFactory, UserService) {
     }
 
     function showMoreCategories() {
-        $scope.showMoreCategories = !scope.showMoreCategories;
+        $scope.showMoreCategories = !$scope.showMoreCategories;
     }
 
     function showMoreKeywords() {
-        $scope.showMoreKeywords = !scope.showMoreCategories;
+        $scope.showMoreKeywords = !$scope.showMoreCategories;
     }
 }
 

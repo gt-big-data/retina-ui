@@ -23,7 +23,7 @@ exports.updatePreferences = function(req, res) {
         {$push: {type: title}},
         {},
         function(err, doc) {
-            res.json(doc);
+            res.send(200);
         }
     );
 
@@ -52,7 +52,7 @@ exports.deleteItem = function(req, res) {
         },
         {},
         function(err, docs) {
-            res.json(docs);
+            res.send(200);
         });
 };
 
