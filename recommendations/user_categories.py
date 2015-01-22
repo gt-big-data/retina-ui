@@ -45,7 +45,21 @@ class UserRecommendation():
         for key in self.categories:
             f.write(key + ": " + str(self.categories[key]) + "\n")
 
+    def writeToDB(self):
+        query = {"uid" : self.user["uid"]}
+        projection = {"categories" : 1, "_id" : 0}
+        catCursor = self.db.users.find(query, projection)
+        for cat in catCursor:
+            curCat = cat;
+        for key in self.categories:
+            if key not in curCat:
+                self.db.users.update(query,
+                    {"$addToSet" : {"categories" : {key : self.categories[key]}}})
+            else:
+                catField = "categories." + key
+                self.db.users.update(query, {"$inc" : {catField : 1}})
+
 u = UserRecommendation()
 u.setUser("Matt Ersted")
 u.getUserArticles()
-u.writeToFile()
+u.writeToDB()
