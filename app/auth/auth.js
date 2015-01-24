@@ -8,8 +8,6 @@ var db = mongoose.createConnection(config.db('big_data'));
 var userSchema = require('../models/users').userSchema;
 var Users = db.model('users', userSchema);
 
-
-  
 passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
             clientSecret: config.facebook.clientSecret,
