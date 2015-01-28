@@ -55,7 +55,7 @@ body {
 .navbar .btn {
   background: transparent;
   border: 2px solid #fff;
-  margin: 6px 8px 0;
+  margin: 8px 8px 0;
   padding: 7px;
 }
 .navbar-img {
@@ -65,6 +65,9 @@ body {
 }
 .navbar-brand {
   margin-top: 4px;
+}
+.navbar-nav li a {/*Fills out navbar links vertically*/
+  padding: 17px 15px;
 }
 .noscript {
   margin: 40px auto;
@@ -335,35 +338,55 @@ body {
   display: block;
 }
 
+.login-side-img-container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.login-side-img {
+    width: auto;
+    height: auto;
+}
+
 /* Begin copied from jumbotron-narrow */
 @media (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
+  .container {
+    max-width: 830px;
+  }
 }
 .container-narrow > hr {
-    margin: 30px 0;
+  margin: 30px 0;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-right: 0;
-        padding-left: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
 }
 /* End copied from jumbotron-narrow */
+
+@media (min-width: 400px) {
+  #signupModal .modal-dialog {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 /* Media Settings */
 @media (max-height: 400px) {
@@ -474,6 +497,14 @@ body {
   }
   .jumbotron-scroll {
     display: none;
+  }
+  .login-side-col {/*Login page hide graphic on phones*/
+    display: none;
+  }
+  .login-form-col .panel-body {/*Login page limit form width*/
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
   }
 /* Tiny Screens */
 @media (max-width: 480px) {
