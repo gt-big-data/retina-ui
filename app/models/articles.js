@@ -1,3 +1,4 @@
+"use strict"
 /*
     We won't have to write articles to the database, hence the empty schema      
 */
@@ -81,29 +82,21 @@ articleSchema.statics.getById = function(id, callback) {
 };
 
 articleSchema.statics.recentCategories = function(callback) {
-    this.distinct(
-        'categories', {
-            'v': config.version,
-            'categories': {
-                $ne: null
-            },
-            'recent_download_date': {
-                $lt: new Date()
-            },
-        }, callback);
+   
+    this.aggregate([
+        {$unwind:'$categories'},
+        {$group:{_id:'$categories'}},
+        {$limit:40}
+        ], callback);
+
 };
 
 articleSchema.statics.recentKeywords = function(callback) {
-    this.distinct(
-        'keywords', {
-            'v': config.version,
-            'keywords': {
-                $ne: null
-            },
-            'recent_download_date': {
-                $lt: new Date()
-            },
-        }, callback);
+    this.aggregate([
+        {$unwind:'$keywords'},
+        {$group:{_id:'$keywords'}},
+        {$limit:40}
+        ], callback);
 };
 
 articleSchema.statics.sources = function(callback) {
