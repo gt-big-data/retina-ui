@@ -28,19 +28,17 @@ userSchema.statics.getUserInfo = function(user, callback) {
 };
 
 userSchema.statics.updateCategories = function(user, category, callback) {
-    var toObjectId = mongoose.Types.ObjectId(category);
     this.findOneAndUpdate(
         {'_id': user},
-        {$push: {'categories': toObjectId}},
+        {$push: {'categories': category}},
         {}, callback);
 
 };
 
 userSchema.statics.updateKeywords = function(user, keyword, callback) {
-    var toObjectId = mongoose.Types.ObjectId(keyword);
     this.findOneAndUpdate(
         {'_id': user},
-        {$push: {'keywords': toObjectId}},
+        {$push: {'keywords': keyword}},
         {}, callback);
 };
 
