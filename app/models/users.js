@@ -28,24 +28,27 @@ userSchema.statics.getUserInfo = function(user, callback) {
 };
 
 userSchema.statics.updateCategories = function(user, category, callback) {
+    var toObjectId = mongoose.Types.ObjectId(category);
     this.findOneAndUpdate(
         {'_id': user},
-        {$push: {'categories': category}},
+        {$push: {'categories': toObjectId}},
         {}, callback);
 
 };
 
 userSchema.statics.updateKeywords = function(user, keyword, callback) {
+    var toObjectId = mongoose.Types.ObjectId(keyword);
     this.findOneAndUpdate(
         {'_id': user},
-        {$push: {'keywords': keyword}},
+        {$push: {'keywords': toObjectId}},
         {}, callback);
 };
 
 userSchema.statics.recordView = function(user, articleID, callback) {
+    var toObjectId = mongoose.Types.ObjectId(articleID);
     this.findOneAndUpdate(
         {'_id': user},
-        {$push:{'articles': articleID}},
+        {$push:{'articles': toObjectId}},
         {}, callback);
 };
 
