@@ -82,7 +82,6 @@ articleSchema.statics.getById = function(id, callback) {
 };
 
 articleSchema.statics.recentCategories = function(callback) {
-   
     this.aggregate([
         {$unwind:'$categories'},
         {$group:{_id:'$categories'}},

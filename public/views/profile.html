@@ -27,11 +27,7 @@
 				<p ng-click="moreCategories()">+ Add More</p>
 			</a>
 
-			<!-- Addition Categories -->
-			<div ng-show="showMoreCategories()" class="page-header">
-				<h5>Additional Categories</h4>
-			</div>
-			<ul class="list-group">
+			<ul ng-show="showMoreCategories" class="list-group">
 				<li class="list-group-item" ng-repeat="category in categories" >
 				<label>
 					<input type="checkbox" ng-click="modifyCategory(category)"> {{category._id}}
@@ -43,7 +39,7 @@
 			<div class="page-header">
 				<h4>Keywords</h4>
 			</div>
-			<ul class="list-group">
+			<ul ng-show="showMoreKeywords" class="list-group">
 				<li class="list-group-item"  ng-repeat="keyword in vm.keywords">
 				<label>
 					<input type="checkbox" ng-click="addOrDeleteCategory(keyword)" checked> {{keyword._id}}

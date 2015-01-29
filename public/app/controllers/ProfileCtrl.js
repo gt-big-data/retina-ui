@@ -6,8 +6,8 @@ ProfileCtrl.$inject = ['$scope', '$http', 'ArticleFactory', 'UserService'];
 function ProfileCtrl($scope, $http, ArticleFactory, UserService) {
     
     // Bindable Members
-    $scope.showMoreCategories = showMoreCategories;
-    $scope.showMoreKeywords = showMoreKeywords;
+    $scope.showMoreCategories = true;
+    $scope.showMoreKeywords = true;
     $scope.modifyCategory = modifyCategory;
     $scope.modifyKeyword = modifyKeyword;
     $scope.modifyArticle = modifyArticle;
@@ -77,7 +77,7 @@ function ProfileCtrl($scope, $http, ArticleFactory, UserService) {
         ArticleFactory.getCategoriesOfMostRecentArticles().success(
             function(categories, status) {
                 $scope.categories = categories;
-                $scope.showMoreCategories = $scope.showMoreCategories;
+                $scope.showMoreCategories = !$scope.showMoreCategories;
             });
     }
 
@@ -89,12 +89,12 @@ function ProfileCtrl($scope, $http, ArticleFactory, UserService) {
             });
     }
 
-    function showMoreCategories() {
-        $scope.showMoreCategories = !$scope.showMoreCategories;
-    }
+    // function showMoreCategories() {
+    //     $scope.showMoreCategories = !$scope.showMoreCategories;
+    // }
 
-    function showMoreKeywords() {
-        $scope.showMoreKeywords = !$scope.showMoreCategories;
-    }
+    // function showMoreKeywords() {
+    //     $scope.showMoreKeywords = !$scope.showMoreCategories;
+    // }
 }
 
