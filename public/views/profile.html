@@ -18,7 +18,7 @@
 			<ul class="list-group">
 				<li class="list-group-item"  ng-repeat="category in vm.categories">
 				<label>
-					<input type="checkbox" ng-click="modifyCategory(category)" checked> {{category}}
+					<input type="checkbox" ng-click="modifyCategory(category)" checked> {{category._id}}
 				</label>
 					
 				</li>
@@ -34,7 +34,7 @@
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat="category in categories" >
 				<label>
-					<input type="checkbox" ng-click="modifyCategory(category)"> {{category}}
+					<input type="checkbox" ng-click="modifyCategory(category)"> {{category._id}}
 				</label>
 				</li>
 			</ul>
@@ -46,7 +46,7 @@
 			<ul class="list-group">
 				<li class="list-group-item"  ng-repeat="keyword in vm.keywords">
 				<label>
-					<input type="checkbox" ng-click="addOrDeleteCategory(keyword)" checked> {{keyword}}
+					<input type="checkbox" ng-click="addOrDeleteCategory(keyword)" checked> {{keyword._id}}
 				</label>
 					
 				</li>
@@ -59,7 +59,7 @@
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat="keyword in keywords" >
 				<label>
-					<input type="checkbox" ng-click="addOrDeleteKeyword(keyword)"> {{keyword}}
+					<input type="checkbox" ng-click="addOrDeleteKeyword(keyword)"> {{keyword._id}}
 				</label>
 				</li>
 			</ul>
