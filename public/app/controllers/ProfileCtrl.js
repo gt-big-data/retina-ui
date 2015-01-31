@@ -60,10 +60,16 @@ function ProfileCtrl($scope, $http, ArticleFactory, UserService) {
     }
     
     function addItem(title, type) {
-        UserService.addToPreferences(title, type).success(
-            function(data, status) {
-
-            });
+        if (type === 'categories') {
+            UserService.updateCategories(title, type).success(
+                function(data, status) {
+                });
+        }
+        else {
+            UserService.updateKeywords(title, type).success(
+                function(data, status) {
+                });
+        }
     }
 
     function removeItem(title, type) {

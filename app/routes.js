@@ -57,14 +57,20 @@ function getArticleById(req, res) {
 
 function recentCategories(req, res) {
     articles.recentCategories(function(err, docs) {
-        res.json(docs);
+        var categories = docs.map(function(d) {
+            return d._id;
+        });
+        res.json(categories);
     });
 }
 
 
 function recentKeywords(req, res) {
     articles.recentKeywords(function(err, docs) {
-        res.json(docs);
+        var keywords = docs.map(function(d){
+            return d._id;
+        });
+        res.json(keywords);
     });
 }
 

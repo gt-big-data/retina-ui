@@ -8,6 +8,7 @@ var users =  db.model('users', userSchema);
 
 exports.getUserInfo = getUserInfo;
 exports.updateCategories = updateCategories;
+exports.updateKeywords = updateKeywords;
 exports.recordView = recordView;
 exports.removeCategory = removeCategory;
 exports.removeCategory = removeCategory;
@@ -23,14 +24,14 @@ function getUserInfo(req, res) {
 }
 
 function updateCategories(req, res) {
-    users.updateCategories(req.cookies.retinaID, req.param('category'),
+    users.updateCategories(req.cookies.retinaID, req.param('title'),
         function(err, docs) {
             res.send(200);
         });
 }
 
 function updateKeywords(req, res) {
-    users.updateKeywords(req.cookies.retinaID, req.param('keyword'),
+    users.updateKeywords(req.cookies.retinaID, req.param('title'),
         function(err, docs) {
             res.send(200);
         });

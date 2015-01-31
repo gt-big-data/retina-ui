@@ -25,9 +25,20 @@ function UserService($http) {
         });
     };
 
-    exports.addToPreferences = function(title, type) {
+    exports.updateCategories = function(title, type) {
         return $http({
-            url: '/users/preferences/update',
+            url: '/users/preferences/update/categories',
+            method: 'POST',
+            params: {
+                title: title,
+                type: type,
+            }
+        });
+    };
+
+    exports.updateKeywords = function(title, type) {
+        return $http({
+            url: '/users/preferences/update/keywords',
             method: 'POST',
             params: {
                 title: title,

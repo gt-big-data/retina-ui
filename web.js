@@ -33,6 +33,8 @@ app.get('/api/articles/data/keywords', routes.keywordCount);
 app.get('/api/articles/data/categories', routes.categoryCount);
 app.get('/users/profile', profile.getUserInfo);
 app.post('/users/preferences/record', profile.recordView);
+app.post('/users/preferences/update/categories', profile.updateCategories);
+app.post('/users/preferences/update/keywords', profile.updateKeywords);
 /*
     Passport initialization for facebook
 */
