@@ -1,31 +1,49 @@
-    <div class="jumbotron">
-      <div class="vertical-center">
-        <h1>Retina News</h1>
-        <h3>The news...for you, by you.</h3>
-        <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed.default">Explore</a>
-        <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Sign In</a>
-        </p>
+    <div class="top-panel full-screen-panel">
+      <div class="vertical-center main-info">
+        <div class="fade-in-item fade-in-1">
+          <h1>Retina News</h1>
+          <h3>The news...for you, by you.</h3>
+        </div>
+        <div class="fade-in-item fade-in-2">
+          <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed.default">Explore</a>
+          <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Sign In</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="about-panel full-screen-panel">
+      <h2 class="text-center">What is <span class="retina-brand">RETINA</span>?</h2>
+      <h4 class="text-center"><span class="retina-brand">RE</span>al-<span class="retina-brand">T</span>ime <span class="retina-brand">I</span>ntelligent <span class="retina-brand">N</span>ews <span class="retina-brand">A</span>pp</h4>
+      <br>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-4">
+        <div class="well">
+          <h3>About</h3>
+            <p>Under development by Georgia Tech's Big Data Club, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</p>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+        <div class="well">
+          <h3>Main Components of the Project</h3>
+          <h6><b>Crawling</b> - Integrating all sources to links in HTML.</h6>
+          <h6><b>Clustering</b> - Organizes data based on titles and keywords.</h6>
+          <h6><b>API</b> - Returns news results based on recommendations</h6>
+          <h6><b>UI</b> - Responsible for the web/mobile app and account creation/registration.</h6>
+        </div>
       </div>
     </div>
     <div id="frontpage-news" ng-controller="viewCategoryCtrl">
-      <div id="category-select-anchor" class="category-select-anchor"></div>
-      <div class="category-select-wrapper" ng-controller="catchNewsNav">
-        <div class="category-select" ng-controller="sizeNewsNav">
-          <ul id="news-nav-items">
-            <li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('all')">All</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('us')">U.S.</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('world')">World</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('business')">Business</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('sport')">Sports</li><li scroll-to-id scroll-to="#category-select-anchor" ng-click="loadCategory('tech')">Technology</li>
-          </ul>
-        </div>
-      </div>
-
       <div class="category-show">
+        <h2 class="text-center">Latest news</h2>
         <div masonry>
           <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" >
             <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id);">
               <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
               <div class="multi-stub-caption">
-                <h2>{{article.title}}</h2>
-                <h4>{{stripHTML(article.summary)}}</h4>
-                <h5>{{article.source_domain}} | {{article.recent_pub_date}}</h5>
+                <h4>{{article.title}}</h5>
+                <h5>{{stripHTML(article.summary)}}</h5>
+                <h6>{{article.source_domain}} | {{article.recent_pub_date}}</h6>
               </div>
             </div>
 

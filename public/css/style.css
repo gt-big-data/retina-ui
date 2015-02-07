@@ -74,7 +74,7 @@ body {
   text-align: center;
   font-size: 20px;
 }
-.jumbotron { /*Only use Jumbotron for front page!*/
+.top-panel {
   background: url(../images/landing.jpg);
   background-repeat: no-repeat;
   background-position: center center;
@@ -82,21 +82,34 @@ body {
   color: white;
   height: 100vh;
   margin-top: -54px;
-  margin-bottom: -54px;
   padding-bottom: 0;
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
 
-.jumbotron .btn {
+.top-panel .btn {
     padding: 14px 24px;
     font-size: 21px;
 }
 
-.jumbotron h1,h3 {
+.top-panel h1,h3 {
   margin-top: 0;
+}
+
+.top-panel .main-info {
   text-shadow: 1px 1px #999;
 }
+
+.about-panel {
+  min-height: 100vh;
+  padding: 20px;
+  margin-bottom: -54px;
+}
+
+.about-panel .well h2 {
+  margin-top: 0;
+}
+
 .vertical-center {
   position: relative;
   top: 50%;
@@ -325,8 +338,11 @@ body {
   width: 100%;
 }
 .category-show {
-  padding: 20px 30px;
+  padding: 0 30px;
   background-color: #ddd;
+}
+.category-show h2 {
+  padding-top: 10px;
 }
 .masonry-brick {
   padding-left: 0;
@@ -373,12 +389,39 @@ body {
   .header {
     margin-bottom: 30px;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
+  /* End copied from jumbotron-narrow */
+  .fade-in-item {
+    opacity: 0;
+    -webkit-animation:fade-in-item ease-in 1;
+    -moz-animation:fade-in-item ease-in 1;
+    -o-animation:fade-in-item ease-in 1;
+    animation:fade-in-item ease-in 1;
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    -o-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    animation-duration: .5s;
   }
+  .fade-in-1 {
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
+  }
+  .fade-in-2 {
+    -webkit-animation-delay: .6s;
+    -moz-animation-delay: .6s;
+    -o-animation-delay: .6s;
+    animation-delay: .6s;
+  }
+  @-webkit-keyframes fade-in-item { from { opacity:0; } to { opacity:1; } }
+  @-moz-keyframes fade-in-item { from { opacity:0; } to { opacity:1; } }
+  @-o-keyframes fade-in-item { from { opacity:0; } to { opacity:1; } }
+  @keyframes fade-in-item { from { opacity:0; } to { opacity:1; } }
 }
-/* End copied from jumbotron-narrow */
 
 @media (min-width: 400px) {
   #signupModal .modal-dialog {
@@ -427,45 +470,45 @@ body {
 }
 
 /* Wide desktops */
-@media (max-width: 1200px) {
+@media (min-width: 993px) {
   h1 {
-    font-size:
+    font-size: 70px;
   }
   h2 {
-    font-size:
+    font-size: 50px;
   }
   h3 {
-    font-size:
+    font-size: 40px;
   }
   h4 {
-    font-size:
+    font-size: 30px;
   }
   h5 {
-    font-size:
+    font-size: 20px;
   }
   h6 {
-    font-size:
+    font-size: 15px;
   }
 }
 /* Laptops, desktops */
 @media (max-width: 992px) {
   h1 {
-    font-size:
+    font-size: 50px;
   }
   h2 {
-    font-size:
+    font-size: 40px;
   }
   h3 {
-    font-size:
+    font-size: 30px;
   }
   h4 {
-    font-size:
+    font-size: 20px;
   }
   h5 {
-    font-size:
+    font-size: 15px;
   }
   h6 {
-    font-size:
+    font-size: 12px;
   }
 }
 /* Tablets */
@@ -477,16 +520,16 @@ body {
     font-size: 30px;
   }
   h3 {
-    font-size:
+    font-size: 25px;
   }
   h4 {
-    font-size:
+    font-size: 15px;
   }
   h5 {
-    font-size:
+    font-size: 12px;
   }
   h6 {
-    font-size:
+    font-size: 10px;
   }
   .landing {
     padding-left: 30px;
@@ -509,22 +552,22 @@ body {
 /* Tiny Screens */
 @media (max-width: 480px) {
   h1 {
-    font-size:
+    font-size: 25px;
   }
   h2 {
     font-size: 20px;
   }
   h3 {
-    font-size:
+    font-size: 16px;
   }
   h4 {
-    font-size:
+    font-size: 14px;
   }
   h5 {
-    font-size:
+    font-size: 12px;
   }
   h6 {
-    font-size:
+    font-size: 10px;
   }
   .landing {
     padding-left: 20px;
@@ -549,7 +592,7 @@ body {
     font-size: 18px;
   }
   .category-show {
-    padding: 20px 0 20px;
+    padding: 0 0 20px;
   }
 
 }
@@ -561,7 +604,7 @@ body {
  * iPad with portrait orientation.
  */
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-  .jumbotron {
+  .full-screen-panel {
     height: 1024px;
   }
 }
@@ -570,7 +613,7 @@ body {
  * iPad with landscape orientation.
  */
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-  .jumbotron {
+  .full-screen-panel {
     height: 768px;
   }
 }
@@ -580,7 +623,7 @@ body {
  * You can also target devices with aspect ratio.
  */
 @media screen and (device-aspect-ratio: 40/71) {
-  .jumbotron {
+  .full-screen-panel {
     height: 470px;
   }
 }

@@ -27,10 +27,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/mini',
 			templateUrl: 'partials/feed-part-mini.html'
 		})
-		.state('about', {
-			url: '/about',
-			templateUrl: 'partials/about.html'
-		})
 		.state('contact', {
 			url: '/contact',
 			templateUrl: 'partials/contact.html'
