@@ -10,9 +10,8 @@ exports.getUserInfo = getUserInfo;
 exports.updateCategories = updateCategories;
 exports.updateKeywords = updateKeywords;
 exports.recordView = recordView;
-exports.removeCategory = removeCategory;
-exports.removeCategory = removeCategory;
-exports.removeKeyword = removeKeyword;
+exports.deleteCategory = deleteCategory;
+exports.deleteKeyword = deleteKeyword;
 
 ////////////////////////////////
 
@@ -44,14 +43,14 @@ function recordView(req, res) {
         });
 }
 
-function removeCategory(req, res) {
+function deleteCategory(req, res) {
     users.removeCategory(req.cookies.retinaID, req.param('category'),
         function(err, docs) {
             res.send(200);
         });
 }
 
-function removeKeyword(req, res) {
+function deleteKeyword(req, res) {
     users.removeKeyword(req.cookies.retinaID, req.param('keyword'),
         function(err, docs) {
             res.send(200);

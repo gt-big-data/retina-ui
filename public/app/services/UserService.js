@@ -6,13 +6,14 @@ UserService.$inject = ['$http'];
 function UserService($http) {
     var exports = {};
 
-    exports.getUserArticles = function() {
-        return $http({
-            url: 'users/articles/',
-            method: 'GET',
-            params: null, 
+    exports.getProfileInfo = function() {
+         return $http({
+            url:'/users/profile',
+            method:'GET',
+            params: null
         });
     };
+
     
     exports.removeFromPreferences = function(title, type) {
         return $http({
@@ -43,6 +44,26 @@ function UserService($http) {
             params: {
                 title: title,
                 type: type,
+            }
+        });
+    };
+
+    exports.removeKeyword = function(keyword) {
+        return $http({
+            url: '/users/preferences/delete/keyword',
+            method: 'POST',
+            params: {
+                keyword: keyword
+            }
+        });
+    };
+
+    exports.removeCategory = function(category) {
+        return $http({
+            url: '/users/preferences/delete/category',
+            method: 'POST',
+            params: {
+                category: category,
             }
         });
     };

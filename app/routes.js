@@ -56,7 +56,7 @@ function getArticleById(req, res) {
 }
 
 function recentCategories(req, res) {
-    articles.recentCategories(function(err, docs) {
+    articles.recentCategories(req.params.page, function(err, docs) {
         var categories = docs.map(function(d) {
             return d._id;
         });
@@ -64,9 +64,8 @@ function recentCategories(req, res) {
     });
 }
 
-
 function recentKeywords(req, res) {
-    articles.recentKeywords(function(err, docs) {
+    articles.recentKeywords(req.params.page, function(err, docs) {
         var keywords = docs.map(function(d){
             return d._id;
         });
