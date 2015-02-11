@@ -145,7 +145,7 @@ app.controller("animateFront",["$scope",function($scope){
 	$("#top-panel-pic").bgLoaded({
 		afterLoaded : function(){
 			$("#top-panel-pic-wrap").css({opacity: 1});
-			$("#top-panel-pic").fadeTo(1500, .7, function() {
+			$("#top-panel-pic").fadeTo(800, .7, function() {
 				$("#main-info-1").fadeTo(600, 1, function() {
 					$("#main-info-2").fadeTo(600, 1);
 				});
@@ -153,6 +153,39 @@ app.controller("animateFront",["$scope",function($scope){
 		}
 	});
 }]);
+
+app.controller("animateAbout",["$scope",function($scope){
+	var aboutLoaded = false;
+
+	function animateAbout() {
+		if (($("#about-point-1").visible(true) || $("#about-point-2").visible(true)) && !aboutLoaded) {
+			aboutLoaded = true;
+			$("#about-point-1").fadeTo(300, 1, function() {
+				$("#about-point-2").fadeTo(300, 1, function() {
+					$("#about-point-31").fadeTo(400, 1, function() {
+						$("#about-point-31-text").fadeTo(500, 1, function() {
+							$("#about-point-32").fadeTo(400, 1, function() {
+								$("#about-point-32-text").fadeTo(500, 1, function() {
+									$("#about-point-33").fadeTo(400, 1, function() {
+										$("#about-point-33-text").fadeTo(500, 1);
+									});
+								});
+							});
+						});
+					})
+				});
+			});
+		}
+	}
+
+
+	$(document).ready(function() {
+		animateAbout();
+	})
+	$(window).scroll(function() {
+		animateAbout();
+	})
+}])
 
 app.directive('scrollToId', function() {
   return {
