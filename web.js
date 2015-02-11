@@ -26,8 +26,8 @@ app.get('/api/articles/source/:source', routes.getArticlesBySource);
 app.get('/api/articles/category/:category', routes.getArticlesByCategory);
 app.get('/api/articles/keyword/:keyword', routes.getArticlesByKeyword);
 app.get('/api/articles/id/:id', routes.getArticleById);
-app.get('/api/articles/categories', routes.recentCategories);
-app.get('/api/articles/keywords', routes.recentKeywords);
+app.get('/api/articles/categories/:page', routes.recentCategories);
+app.get('/api/articles/keywords/:page', routes.recentKeywords);
 app.get('/api/articles/sources', routes.getSources);
 app.get('/api/articles/data/keywords', routes.keywordCount);
 app.get('/api/articles/data/categories', routes.categoryCount);
@@ -35,6 +35,8 @@ app.get('/users/profile', profile.getUserInfo);
 app.post('/users/preferences/record', profile.recordView);
 app.post('/users/preferences/update/categories', profile.updateCategories);
 app.post('/users/preferences/update/keywords', profile.updateKeywords);
+app.post('/users/preferences/delete/category', profile.deleteCategory);
+app.post('/users/preferences/delete/keyword', profile.deleteKeyword);
 /*
     Passport initialization for facebook
 */

@@ -33,12 +33,12 @@ function ArticleFactory($http) {
         return $http(request('id/' + id));
     };
 
-    exports.getCategoriesOfMostRecentArticles = function() {
-        return $http(request('categories'));    
+    exports.recentKeywords = function(page) {
+        return $http(request('categories/' + page));    
     };
 
-    exports.getKeywordsOfMostRecentArticles = function() {
-        return $http(request('keywords'));    
+    exports.recentCategories = function(page) {
+        return $http(request('keywords/' + page));    
     };
 
     exports.getSources = function() {

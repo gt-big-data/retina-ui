@@ -81,20 +81,22 @@ articleSchema.statics.getById = function(id, callback) {
         }, callback);    
 };
 
-articleSchema.statics.recentCategories = function(callback) {
+articleSchema.statics.recentCategories = function(page, callback) {
     this.aggregate([
         {$unwind:'$categories'},
         {$group:{_id:'$categories'}},
-        {$limit:40}
+        {$limit:10},
+        {$skip: (page - 1) * 10}
         ], callback);
 
 };
 
-articleSchema.statics.recentKeywords = function(callback) {
+articleSchema.statics.recentKeywords = function(page, callback) {
     this.aggregate([
         {$unwind:'$keywords'},
         {$group:{_id:'$keywords'}},
-        {$limit:40}
+        {$limit:10},
+        {$skip: (page - 1) * 10}
         ], callback);
 };
 
