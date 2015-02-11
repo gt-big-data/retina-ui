@@ -141,6 +141,19 @@ app.controller("loadContactForm",["$scope",function($scope){
 	})
 }]);
 
+app.controller("animateFront",["$scope",function($scope){
+	$("#top-panel-pic").bgLoaded({
+		afterLoaded : function(){
+			$("#top-panel-pic-wrap").css({opacity: 1});
+			$("#top-panel-pic").fadeTo(1500, .7, function() {
+				$("#main-info-1").fadeTo(600, 1, function() {
+					$("#main-info-2").fadeTo(600, 1);
+				});
+			});
+		}
+	});
+}]);
+
 app.directive('scrollToId', function() {
   return {
     scope: {

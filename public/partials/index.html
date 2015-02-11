@@ -1,71 +1,65 @@
-    <div class="top-panel full-screen-panel">
+    <div class="full-screen-panel" id="top-panel" ng-controller="animateFront">
+      <div id="top-panel-pic-wrap">
+        <div id="top-panel-pic"></div>
+      </div>
       <div class="vertical-center main-info">
-        <div class="fade-in-item fade-in-1">
+        <div id="main-info-1">
           <h1>Retina News</h1>
-          <h3>The news...for you, by you.</h3>
+          <h3>The news... for you, by you.</h3>
         </div>
-        <div class="fade-in-item fade-in-2">
+        <div id="main-info-2">
           <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed.default">Explore</a>
           <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Sign In</a>
           </p>
         </div>
       </div>
     </div>
-    <div class="about-panel full-screen-panel">
+    <div class="full-screen-panel" id="about-panel">
       <h2 class="text-center">What is <span class="retina-brand">RETINA</span>?</h2>
       <h4 class="text-center"><span class="retina-brand">RE</span>al-<span class="retina-brand">T</span>ime <span class="retina-brand">I</span>ntelligent <span class="retina-brand">N</span>ews <span class="retina-brand">A</span>pp</h4>
       <br>
-      <div class="col-sm-1"></div>
-      <div class="col-sm-4">
-        <div class="well">
-          <h3>About</h3>
-            <p>Under development by Georgia Tech's Big Data Club, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</p>
-        </div>
-      </div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-4">
-        <div class="well">
-          <h3>Main Components of the Project</h3>
-          <h6><b>Crawling</b> - Integrating all sources to links in HTML.</h6>
-          <h6><b>Clustering</b> - Organizes data based on titles and keywords.</h6>
-          <h6><b>API</b> - Returns news results based on recommendations</h6>
-          <h6><b>UI</b> - Responsible for the web/mobile app and account creation/registration.</h6>
-        </div>
+      <div class="about-content">
+        <h4>About</h4>
+        <h5>Under development by Georgia Tech's Big Data Club, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</h5>
+        <br>
+        <h4>Main Components of the Project</h4>
+        <h5><b>Crawling</b> - Integrating all sources to links in HTML.</h5>
+        <h5><b>Clustering</b> - Organizes data based on titles and keywords.</h5>
+        <h5><b>API</b> - Returns news results based on recommendations</h5>
+        <h5><b>UI</b> - Responsible for the web/mobile app and account creation/registration.</h5>
       </div>
     </div>
     <div id="frontpage-news" ng-controller="viewCategoryCtrl">
-      <div class="category-show">
-        <h2 class="text-center">Latest news</h2>
-        <div masonry>
-          <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" >
-            <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id);">
-              <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
-              <div class="multi-stub-caption">
-                <h4>{{article.title}}</h5>
-                <h5>{{stripHTML(article.summary)}}</h5>
-                <h6>{{article.source_domain}} | {{article.recent_pub_date}}</h6>
-              </div>
+      <h2 class="text-center">Top news</h2>
+      <div masonry>
+        <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" >
+          <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id);">
+            <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
+            <div class="multi-stub-caption">
+              <h4>{{article.title}}</h5>
+              <h5>{{stripHTML(article.summary)}}</h5>
+              <h6>{{article.source_domain}} | {{article.recent_pub_date}}</h6>
             </div>
-
-            <!--todo only load article content if clicked on-->
-            <div class="modal fade" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content multi-stub-modal">
-                  <div class="modal-header">
-                    <button type="button" class="close" ng-click="hideArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">{{article.title}}</h4>
-                  </div>
-                  <div class="modal-body multi-stub-modal-body">
-                    <p>{{article.text}}</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="hideArticle(article._id)">Close</button>
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
           </div>
+
+          <!--todo only load article content if clicked on-->
+          <div class="modal fade" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content multi-stub-modal">
+                <div class="modal-header">
+                  <button type="button" class="close" ng-click="hideArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">{{article.title}}</h4>
+                </div>
+                <div class="modal-body multi-stub-modal-body">
+                  <p>{{article.text}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" ng-click="hideArticle(article._id)">Close</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
         </div>
       </div>
     </div><!--frontpage-news-->
