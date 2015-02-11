@@ -30,7 +30,7 @@ userSchema.statics.getUserInfo = function(user, callback) {
 userSchema.statics.updateCategories = function(user, category, callback) {
     this.findOneAndUpdate(
         {'_id': user},
-        {$push: {'categories': category}},
+        {$addToSet: {'categories': category}},
         {}, callback);
 
 };
@@ -38,7 +38,7 @@ userSchema.statics.updateCategories = function(user, category, callback) {
 userSchema.statics.updateKeywords = function(user, keyword, callback) {
     this.findOneAndUpdate(
         {'_id': user},
-        {$push: {'keywords': keyword}},
+        {$addToSet: {'keywords': keyword}},
         {}, callback);
 };
 
@@ -46,7 +46,7 @@ userSchema.statics.recordView = function(user, articleID, callback) {
     var toObjectId = mongoose.Types.ObjectId(articleID);
     this.findOneAndUpdate(
         {'_id': user},
-        {$push:{'articles': toObjectId}},
+        {$addToSet:{'articles': toObjectId}},
         {}, callback);
 };
 
@@ -54,7 +54,7 @@ userSchema.statics.removeCategory = function(user, category, callback) {
     this.findOneAndUpdate(
         {'_id': user},
         {
-            $pull: {'category': category}
+            $pull: {'categories': category}
         },
         {}, callback);
 };
@@ -63,7 +63,7 @@ userSchema.statics.removeKeyword = function(user, keyword, callback) {
     this.findOneAndUpdate(
         {'_id': user},
         {
-            $pull: {'keyword': keyword}
+            $pull: {'keywords': keyword}
         },
         {}, callback);
 };
