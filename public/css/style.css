@@ -77,9 +77,13 @@ body {
   font-size: 20px;
 }
 
+.full-screen-panel {
+    height: 100vh;
+    width: 100%;
+}
+
 #top-panel {
   color: white;
-  height: 100vh;
   margin-top: -54px;
   padding-bottom: 0;
   text-align: center;
@@ -102,8 +106,6 @@ body {
   position: absolute;
   left:0;
   top:1px;
-  height: 100vh;
-  width: 100%;
   background: black;
   opacity: 0;
 }
@@ -121,20 +123,20 @@ body {
   padding-bottom: 0;
 }
 
-#main-info-1,#main-info-2 {
+.init-transparent {
   opacity: 0;
 }
 
 #about-panel {
   min-height: 100vh;
-  padding: 20px;
-  margin-bottom: -54px;
+  padding: 74px 20px 20px;
+  margin-top: -54px;
   color: #fff;
   background-color: #666;
 }
 
 .about-content {
-  max-width: 750px;
+  max-width: 750px;/*smaller for small screens w media query*/
   margin-left: auto;
   margin-right: auto;
 }
@@ -505,6 +507,12 @@ body {
   h6 {
     font-size: 15px;
   }
+  .about-checks {
+      font-size: 45px;
+  }
+  .about-section {
+      margin-bottom: 60px;
+  }
 }
 /* Laptops, desktops */
 @media (max-width: 992px) {
@@ -526,6 +534,15 @@ body {
   h6 {
     font-size: 13px;
   }
+  .about-checks {
+      font-size: 30px;
+  }
+  .about-content {
+    max-width: 650px;
+  }
+  .about-section {
+      margin-bottom: 40px;
+  }
 }
 /* Tablets */
 @media (max-width: 768px) {
@@ -542,11 +559,18 @@ body {
   .login-side-col {/*Login page hide graphic on phones*/
     display: none;
   }
+  .login-form-col {/*Makes it work at 768px*/
+      width: 100%;
+  }
   .login-form-col .panel-body {/*Login page limit form width*/
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
   }
+  .about-section {
+      margin-bottom: 20px;
+  }
+}
 /* Tiny Screens */
 @media (max-width: 480px) {
   .landing {
@@ -587,6 +611,9 @@ body {
   .full-screen-panel {
     height: 1024px;
   }
+  #about-panel {
+    min-height: 1024px;
+  }
 }
 
 /**
@@ -595,6 +622,9 @@ body {
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
   .full-screen-panel {
     height: 768px;
+  }
+  #about-panel {
+    min-height: 768px;
   }
 }
 
@@ -605,5 +635,8 @@ body {
 @media screen and (device-aspect-ratio: 40/71) {
   .full-screen-panel {
     height: 470px;
+  }
+  #about-panel {
+    min-height: 470px;
   }
 }

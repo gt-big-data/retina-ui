@@ -1,32 +1,50 @@
     <div class="full-screen-panel" id="top-panel" ng-controller="animateFront">
-      <div id="top-panel-pic-wrap">
-        <div id="top-panel-pic"></div>
+      <div class="full-screen-panel" id="top-panel-pic-wrap">
+        <div class="full-screen-panel" id="top-panel-pic"></div>
       </div>
       <div class="vertical-center main-info">
-        <div id="main-info-1">
+        <div class= "init-transparent" id="main-info-1">
           <h1>Retina News</h1>
           <h3>The news... for you, by you.</h3>
         </div>
-        <div id="main-info-2">
+        <div class="init-transparent" id="main-info-2">
           <p><a class="btn btn-primary btn-lg" role="button" ui-sref="feed.default">Explore</a>
           <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#signupModal">Sign In</a>
           </p>
         </div>
       </div>
     </div>
-    <div class="full-screen-panel" id="about-panel">
-      <h2 class="text-center">What is <span class="retina-brand">RETINA</span>?</h2>
-      <h4 class="text-center"><span class="retina-brand">RE</span>al-<span class="retina-brand">T</span>ime <span class="retina-brand">I</span>ntelligent <span class="retina-brand">N</span>ews <span class="retina-brand">A</span>pp</h4>
-      <br>
-      <div class="about-content">
-        <h4>About</h4>
-        <h5>Under development by Georgia Tech's Big Data Club, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</h5>
-        <br>
-        <h4>Main Components of the Project</h4>
-        <h5><b>Crawling</b> - Integrating all sources to links in HTML.</h5>
-        <h5><b>Clustering</b> - Organizes data based on titles and keywords.</h5>
-        <h5><b>API</b> - Returns news results based on recommendations</h5>
-        <h5><b>UI</b> - Responsible for the web/mobile app and account creation/registration.</h5>
+    <div id="about-panel">
+      <div class="about-section">
+          <h2 class="text-center">What is <span class="retina-brand">RETINA</span>?</h2>
+          <h4 class="text-center"><span class="retina-brand">RE</span>al-<span class="retina-brand">T</span>ime <span class="retina-brand">I</span>ntelligent <span class="retina-brand">N</span>ews <span class="retina-brand">A</span>pp</h4>
+      </div>
+      <div class="about-content" ng-controller="animateAbout">
+        <div class="init-transparent about-section" id="about-point-1">
+            <h4>About</h4>
+            <h5>Under development by Georgia Tech's Big Data Club, RETINA compiles top news sources and conveys the information into a web/mobile interface complete with news recommendations.</h5>
+        </div>
+        <div class="init-transparent about-section" id="about-point-2">
+            <h4>Main Components of the Project</h4>
+            <h5><b>Crawling</b> - Integrating all sources to links in HTML.</h5>
+            <h5><b>Clustering</b> - Organizes data based on titles and keywords.</h5>
+            <h5><b>API</b> - Returns news results based on recommendations</h5>
+            <h5><b>UI</b> - Responsible for the web/mobile app and account creation/registration.</h5>
+        </div>
+        <div class="about-section">
+            <p class="about-checks">
+                <i class="fa fa-check-square-o init-transparent" id="about-point-31"></i>
+                <span class="init-transparent" id="about-point-31-text">Select some interesting articles</span>
+            </p>
+            <p class="about-checks">
+                <i class="fa fa-check-square-o init-transparent" id="about-point-32"></i>
+                <span class="init-transparent" id="about-point-32-text">RETINA finds others you'll like</span>
+            </p>
+            <p class="about-checks">
+                <i class="fa fa-check-square-o init-transparent" id="about-point-33"></i>
+                <span class="init-transparent" id="about-point-33-text">Keep reading for a smarter profile</span>
+            </p>
+          </div>
       </div>
     </div>
     <div id="frontpage-news" ng-controller="viewCategoryCtrl">
