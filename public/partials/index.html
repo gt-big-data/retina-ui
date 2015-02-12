@@ -51,7 +51,7 @@
       <h2 class="text-center">Top news</h2>
       <div masonry>
         <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in news" >
-          <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id);">
+          <div class="multi-stub-article" ng-controller="displayModal" ng-click="toggleArticle(article._id);">
             <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
             <div class="multi-stub-caption">
               <h4>{{article.title}}</h5>
@@ -61,25 +61,18 @@
           </div>
 
           <!--todo only load article content if clicked on-->
-          <div class="modal fade" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content multi-stub-modal">
-                <div class="modal-header">
-                  <button type="button" class="close" ng-click="hideArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title">{{article.title}}</h4>
-                </div>
-                <div class="modal-body multi-stub-modal-body">
-                  <p>{{article.text}}</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" ng-click="hideArticle(article._id)">Close</button>
-                </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
+          <div class="article-modal" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
+            <div class="article-modal-content">
+              <button type="button" class="close" ng-click="toggleArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title">{{article.title}}</h4>
+              <p>{{article.text}}</p>
+              <button type="button" class="btn btn-default" ng-click="toggleArticle(article._id)">Close</button>
+            </div><!-- /.modal-content -->
           </div><!-- /.modal -->
 
         </div>
       </div>
+      <div class="modal-screen-cover" ng-controller="displayModal" ng-click="hideArticles();"></div>
     </div><!--frontpage-news-->
 
     <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">

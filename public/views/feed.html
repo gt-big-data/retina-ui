@@ -1,40 +1,39 @@
 <div ng-controller="FeedCtrl">
-  <h1>Latest</h1>
+  <h2 class="text-center">Latest</h2>
   <div class="category-show">
     <div masonry>
       <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles" >
-        <div class="multi-stub-article" ng-controller="displayModal" ng-click="showArticle(article._id); record(article._id)">
+        <div class="multi-stub-article" ng-controller="displayModal" ng-click="toggleArticle(article._id); record(article._id)">
           <span ng-repeat="category in article.categories" class="label label-primary"> {{category}}</span>
           <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
           <div class="multi-stub-caption">
-            <h2>{{article.title}}</h2>
-            <h4>{{stripHTML(article.summary)}}</h4>
-            <h5><span class="text-uppercase">{{article.source_domain}}</span> | <small> {{hoursAgo(article.recent_pub_date)}} </small></h5>
+            <h4>{{article.title}}</h4>
+            <h5>{{stripHTML(article.summary)}}</h5>
+            <h6><span class="text-uppercase">{{article.source_domain}}</span> | <small> {{hoursAgo(article.recent_pub_date)}} </small></h6>
           </div>
         </div>
-        
-        <div class="modal fade" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content multi-stub-modal">
+
+        <div class="article-modal" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
+          <div class="article-modal-content">
               <div class="modal-header">
-                <button type="button" class="close" ng-click="hideArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" ng-click="toggleArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">{{article.title}}</h4>
               </div>
               <div class="modal-body multi-stub-modal-body">
                 <p>{{article.text}}</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="hideArticle(article._id)">Close</button>
+                <button type="button" class="btn btn-default" ng-click="toggleArticle(article._id)">Close</button>
               </div>
-              </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->
+              </div><!-- /.article-modal-content -->
+              </div><!-- /.article-modal -->
             </div>
           </div>
         </div>
         <button ng-click="nextPage()" type="button" class="btn btn-primary btn-lg btn-block">
         More
         </button>
+        <div class="modal-screen-cover" ng-controller="displayModal" ng-click="hideArticles();"></div>
         </div><!--frontpage-news-->
         <div ui-view></div>
         </div> <!-- /container -->

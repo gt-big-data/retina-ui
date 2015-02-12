@@ -78,8 +78,8 @@ body {
 }
 
 .full-screen-panel {
-    height: 100vh;
-    width: 100%;
+  height: 100vh;
+  width: 100%;
 }
 
 #top-panel {
@@ -415,6 +415,67 @@ body {
   height: 100vh;
 }
 
+.article-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+  z-index: 2000;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(0.7);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(0.7);
+  -ms-transform: translateX(-50%) translateY(-50%) scale(0.7);
+  transform: translateX(-50%) translateY(-50%) scale(0.7);
+  visibility: hidden;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.article-modal-show {
+  visibility: visible;
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(1);
+  -ms-transform: translateX(-50%) translateY(-50%) scale(1);
+  transform: translateX(-50%) translateY(-50%) scale(1);
+  opacity: 1;
+}
+
+.article-modal-content {
+  color: #333;
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-screen-cover {
+  width: 10000px;
+  height: 10000px;
+  position: fixed;
+  z-index: 1900;
+  top: 0;
+  left: 0;
+  background-color: black;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.modal-screen-cover-show {
+  visibility: visible;
+  opacity: .4;
+}
+
 /* Begin copied from jumbotron-narrow */
 @media (min-width: 768px) {
   .container {
@@ -540,9 +601,6 @@ body {
   .about-content {
     max-width: 650px;
   }
-  .about-section {
-      margin-bottom: 40px;
-  }
 }
 /* Tablets */
 @media (max-width: 768px) {
@@ -566,9 +624,6 @@ body {
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
-  }
-  .about-section {
-      margin-bottom: 20px;
   }
 }
 /* Tiny Screens */
@@ -600,6 +655,12 @@ body {
   }
 
 }
+@media (max-height: 720px) {
+  .about-section {
+      margin-bottom: 20px;
+  }
+}
+
 @media (max-height: 320px) {
 
 }

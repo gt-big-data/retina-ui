@@ -74,14 +74,24 @@ app.controller("activeCtrl", function($scope, $location) {
 });
 
 app.controller("displayModal",["$scope",function($scope){
-	$scope.showArticle = function(articleId) {
-		console.log("Showing article "+articleId);
-		$('#'+articleId).modal('show');
+	$scope.toggleArticle = function(articleId) {
+		console.log("Toggling article "+articleId);
+		$('.modal-screen-cover').toggleClass("modal-screen-cover-show");
+		$('#'+articleId).toggleClass("article-modal-show");
 	};
-	$scope.hideArticle = function(articleId) {
-		console.log("Hiding article "+articleId);
-		$('#'+articleId).modal('hide');
+	$scope.hideArticles = function() {
+		console.log("Hiding articles");
+		$('.modal-screen-cover').toggleClass("modal-screen-cover-show");
+		$('.article-modal-show').toggleClass("article-modal-show");
 	};
+	function resizeModal() {
+		$(".article-modal").css({"max-height":$(window).height()-40});
+		$(".article-modal-content").css({"max-height":$(window).height()-80});
+	}
+	resizeModal();//Run once
+	$(window).resize(function() {//Run on window resize
+		resizeModal();
+	})
 }]);
 
 app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {//This probably doesn't need to be as big
