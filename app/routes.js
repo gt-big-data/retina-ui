@@ -4,12 +4,15 @@ var config = require('../config/config');
 var db = mongoose.createConnection(config.db('big_data'));
 var articleSchema = require('./models/articles.js').articleSchema;
 var articles = db.model('articles', articleSchema);
+var clusterSchema = require('./models/clusters.js').clusterSchema;
+var clusters = db.model('clusters', clusterSchema);
 
 exports.getLatestArticles = getLatestArticles;
 exports.getArticlesByCategory = getArticleByCategory;
 exports.getArticlesByKeyword = getArticlesByKeyword;
 exports.getArticlesBySource = getArticlesBySource;
 exports.getArticleById = getArticleById;
+exports.getCluster = getCluster;
 exports.recentCategories = recentCategories;
 exports.recentKeywords = recentKeywords;
 exports.getSources = getSources;
@@ -89,5 +92,11 @@ function keywordCount(req, res) {
 function categoryCount(req, res) {
     articles.categoryCount(function(err, docs) {
         res.send(docs);
+    });
+}
+
+function getCluster(req, res) {
+    clusters.getCluster(req.params.cluster, function(err, docs) {
+        res.json(docs);
     });
 }
