@@ -13,6 +13,7 @@ exports.getArticlesByKeyword = getArticlesByKeyword;
 exports.getArticlesBySource = getArticlesBySource;
 exports.getArticleById = getArticleById;
 exports.getCluster = getCluster;
+exports.getClusterNames = getClusterNames;
 exports.recentCategories = recentCategories;
 exports.recentKeywords = recentKeywords;
 exports.getSources = getSources;
@@ -98,5 +99,11 @@ function categoryCount(req, res) {
 function getCluster(req, res) {
     clusters.getCluster(req.params.cluster, function(err, docs) {
         res.json(docs);
+    });
+}
+
+function getClusterNames(req, res) {
+    clusters.getClusterNames(function(err, docs) {
+        res.json('docs');
     });
 }
