@@ -8,7 +8,7 @@ body {
   width: 100%;
   margin-bottom: 60px;
   margin-top: 55px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -301,11 +301,12 @@ body {
   display: block;
   padding: 10px;
   margin: 0 6px 20px;
-  background-color: #eee;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: all .2s ease-in-out;
   word-wrap: break-word;
+  cursor: pointer;
 }
 
 .multi-stub-article span {
@@ -454,6 +455,18 @@ body {
   padding: 10px;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.article-modal-text {
+  color: black;
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 20px;
+  white-space: pre-wrap;
+}
+
+.article-paragraph {
+  margin-bottom: 10px;
 }
 
 .modal-screen-cover {

@@ -54,9 +54,9 @@
           <div class="multi-stub-article" ng-controller="displayModal" ng-click="toggleArticle(article._id);">
             <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
             <div class="multi-stub-caption">
-              <h4>{{article.title}}</h5>
+              <h4>{{article.title}}</h4>
               <h5>{{stripHTML(article.summary)}}</h5>
-              <h6>{{article.source_domain}} | {{article.recent_pub_date}}</h6>
+              <h6>{{article.source_domain}} | {{formatDate(article.recent_pub_date)}}</h6>
             </div>
           </div>
 
@@ -65,7 +65,7 @@
             <div class="article-modal-content">
               <button type="button" class="close" ng-click="toggleArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
               <h4 class="modal-title">{{article.title}}</h4>
-              <p>{{article.text}}</p>
+              <div class="article-modal-text" ng-bind-html="formatText(article.text)"></div>
               <button type="button" class="btn btn-default" ng-click="toggleArticle(article._id)">Close</button>
             </div><!-- /.modal-content -->
           </div><!-- /.modal -->

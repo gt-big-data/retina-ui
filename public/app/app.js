@@ -1,4 +1,4 @@
-var app = angular.module("myapp",['ui.router','wu.masonry','ui.bootstrap']);
+var app = angular.module("myapp",['ui.router','wu.masonry','ui.bootstrap','ngSanitize']);
 
 app.run(["$rootScope","$state","$stateParams",function($rootScope,$state,$stateParams){
 	$rootScope.$state = $state;
@@ -87,11 +87,17 @@ app.controller("displayModal",["$scope",function($scope){
 	function resizeModal() {
 		$(".article-modal").css({"max-height":$(window).height()-40});
 		$(".article-modal-content").css({"max-height":$(window).height()-80});
-	}
+	};
+	$scope.formatDate = function(dateString) {
+		return moment(dateString).fromNow();
+	};
+	$scope.formatText = function(articleString) {
+		return "<p class='article-paragraph'>" + articleString.replace(/\n\n/g, "</p><p class='article-paragraph'>") + "<p class='article-paragraph'>";
+	};
 	resizeModal();//Run once
 	$(window).resize(function() {//Run on window resize
 		resizeModal();
-	})
+	});
 }]);
 
 app.controller("sizeNewsNav",["$scope",function sizeNewsNav($scope) {//This probably doesn't need to be as big
