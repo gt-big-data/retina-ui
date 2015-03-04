@@ -71,7 +71,7 @@ userSchema.statics.removeKeyword = function(user, keyword, callback) {
 userSchema.statics.viewData = function(callback) {
     this.aggregate([
         {$unwind:'$articles'},
-        {$group: {_id:'$articles', count:{$sum:1}}},
+        {$group: {_id:'$articles.title', count:{$sum:1}}},
         {$sort: {count: -1}},
         {$limit: 20}
         ], callback);

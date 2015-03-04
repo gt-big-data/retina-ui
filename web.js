@@ -48,7 +48,7 @@ app.get('/users',
                                       failureRedirect: '/login' }),
     function(req, res) {
         res.cookie('retinaID', req.user.id);
-        res.redirect('/#/profile');
+        res.redirect('/#/feed');
     }
 );
 
