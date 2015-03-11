@@ -1,39 +1,35 @@
-<div ng-controller="FeedCtrl">
-  <h2 class="text-center">Latest</h2>
-  <div class="category-show">
-    <div masonry>
-      <div class="masonry-brick col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="article in articles" >
-        <div class="multi-stub-article" ng-controller="displayModal" ng-click="toggleArticle(article._id); record(article._id)">
-          <span ng-repeat="category in article.categories" class="label label-primary"> {{category}}</span>
-          <div class="multi-stub-photo" style="background-image: url('{{article.images[0]}}')"></div>
-          <div class="multi-stub-caption">
-            <h4>{{article.title}}</h4>
-            <h5>{{stripHTML(article.summary)}}</h5>
-            <h6><span class="text-uppercase">{{article.source_domain}}</span> | <small> {{hoursAgo(article.recent_pub_date)}} </small></h6>
-          </div>
-        </div>
-
-        <div class="article-modal" ng-controller="displayModal" id="{{article._id}}" aria-hidden="true">
-          <div class="article-modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" ng-click="toggleArticle(article._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">{{article.title}}</h4>
-              </div>
-              <div class="modal-body multi-stub-modal-body">
-                <p>{{article.text}}</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="toggleArticle(article._id)">Close</button>
-              </div>
-              </div><!-- /.article-modal-content -->
-              </div><!-- /.article-modal -->
+<div class="container-fluid">
+    <div class="col-md-2">
+        <ul class="list-group">
+            <li class="list-group-item">
+            <a href="/#/profile">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            Profile
+            </a>
+            </li>
+            <li class="list-group-item">
+            <a href="">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            Search
+            </a>
+            </li>
+            <li class="list-group-item">
+            <a href="">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            About
+            </a></li>
+        </ul>
+    </div>
+    <div ng-controller="FeedCtrl"class="col-md-6 col-md-offset-1">
+        <div ng-repeat="article in articles"class="list-group">
+            <div class="thumbnail">
+                <h3>{{article.title}}</h3>
+                <img ng-src="{{article.images[0]}}" alt="...">
+                <div class="caption">
+                    <p>{{article.summary}}</p>
+                    <p><a href="" class="btn btn-primary" role="button" data-toggle="modal"
+   data-target="#basicModal">  Read  </a></p>
             </div>
-          </div>
         </div>
-        <button ng-click="nextPage()" type="button" class="btn btn-primary btn-lg btn-block">
-        More
-        </button>
-        <div class="modal-screen-cover" ng-controller="displayModal" ng-click="hideArticles();"></div>
-        </div><!--frontpage-news-->
-        <div ui-view></div>
-        </div> <!-- /container -->
+    </div>
+</div>
