@@ -33,6 +33,9 @@ function ArticleFactory($http) {
         return $http(request('id/' + id));
     };
 
+    exports.getArticleById = function(id) {
+        return $http(request('id/' + id));
+    };
     exports.recentKeywords = function(page) {
         return $http(request('categories/' + page));    
     };

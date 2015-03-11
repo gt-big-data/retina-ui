@@ -1,12 +1,15 @@
 angular.module('myapp')
-    .controller('FeedCtrl', ['$scope', '$http', 'ArticleFactory', FeedCtrl]);
+    .controller('FeedCtrl', FeedCtrl);
 
-function FeedCtrl($scope, $http, ArticleFactory) {
+FeedCtrl.$inject = ['$scope', '$http', 'ArticleFactory', 'ArticleModalService'];
+
+function FeedCtrl($scope, $http, ArticleFactory, ArticleModalService) {
     $scope.page = 1;
     $scope.record = record;
     $scope.hoursAgo = hoursAgo;
     $scope.stripHTML = stripHTML;
     $scope.nextPage = nextPage;
+    $scope.showArticle = showArticle;
 
     activate();
 
@@ -48,5 +51,19 @@ function FeedCtrl($scope, $http, ArticleFactory) {
             $scope.articles = data;
             $scope.page++;
         });
+    }
+
+    function showArticle(articlesId) {
+        ArticleFactory.getArticleById(articlesId).success(function(article, status) {
+            var modalOptions = article;
+            ArticleModalService.showModal({}, modalOptions).then(function (result) {
+                dataService.deleteCustomer($scope.customer.id).then(function () {
+                    $location.path('/customers');
+                }, processError);
+            });
+        });
+
+
+
     }
 }
