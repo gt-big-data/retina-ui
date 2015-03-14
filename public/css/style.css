@@ -357,6 +357,12 @@ body {
   background-color: #232324;
 }
 
+.keywords {
+  border-radius:0;
+  background-color: #232324;
+  color: #fff;
+  padding: 2px;
+}
 
 .caption {
   padding: 10px;
