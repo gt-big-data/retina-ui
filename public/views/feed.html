@@ -5,6 +5,7 @@
             <div class="article-thumbnail">
             <div class="article-photo" style="background-image: url('{{article.images[0]}}')"></div>
                 <div class="caption">
+                    <span ng-show="article.keywords[0]" class="keywords"> {{article.keywords[0]}}</span>
                     <h4 class="thumbnail-title">{{article.title}}</h4>
                     <p class="thumbnail-summary">{{article.summary}}</p>
                     <p><a href="" class="btn btn-primary btn-sharp" role="button" 
