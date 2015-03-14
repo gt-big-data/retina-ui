@@ -1,34 +1,14 @@
 <div class="container-fluid">
-    <div class="col-md-2">
-        <ul class="list-group">
-            <li class="list-group-item">
-            <a href="/#/profile">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            Profile
-            </a>
-            </li>
-            <li class="list-group-item">
-            <a href="">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            Search
-            </a>
-            </li>
-            <li class="list-group-item">
-            <a href="">
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            About
-            </a></li>
-        </ul>
-    </div>
-    <div ng-controller="FeedCtrl"class="col-md-6 col-md-offset-1">
+    <div  class="sidebar" ng-include="'../partials/sidebar.html'"></div>
+    <div ng-controller="FeedCtrl"class="col-md-4  col-md-offset-4">
         <div ng-repeat="article in articles"class="list-group">
-            <div class="thumbnail">
-                <h3>{{article.title}}</h3>
-                <img ng-src="{{article.images[0]}}" alt="...">
+            <div class="article-thumbnail">
+            <div class="article-photo" style="background-image: url('{{article.images[0]}}')"></div>
                 <div class="caption">
-                    <p>{{article.summary}}</p>
-                    <p><a href="" class="btn btn-primary" role="button" data-toggle="modal"
-   data-target="#basicModal" ng-click="showArticle(article._id)">  Read  </a></p>
+                    <h4 class="thumbnail-title">{{article.title}}</h4>
+                    <p class="thumbnail-summary">{{article.summary}}</p>
+                    <p><a href="" class="btn btn-primary btn-sharp" role="button" 
+                    ng-click="showArticle(article._id)">  Read  </a></p>
             </div>
         </div>
     </div>

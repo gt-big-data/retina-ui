@@ -7,7 +7,7 @@ body {
   height: 100%;
   width: 100%;
   margin-bottom: 60px;
-  margin-top: 55px;
+  margin-top: 10px;
   font-family: 'Source Sans Pro', sans-serif;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -327,6 +327,52 @@ body {
   min-height: 150px;
   margin: 5px 0px 0px 0px;
 }
+
+.sidebar {
+  position: fixed;
+}
+.article-photo {
+  display: block;
+  position: relative;
+  background-color: #ffff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 250px;
+  /*border-top: 5px solid #529bda; */
+}
+
+.article-thumbnail {
+  display: block;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
+}
+
+.btn-sharp {
+  border-radius:0;
+  background-color: #232324;
+}
+
+
+.caption {
+  padding: 10px;
+  background-color:#529bda;
+  border-top: 5px solid #fff;
+}
+
+.thumbnail-summary {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.thumbnail-title {
+  color: #232324;
+}
+
 .multi-stub-caption {
 }
 .multi-stub-show-btn {
