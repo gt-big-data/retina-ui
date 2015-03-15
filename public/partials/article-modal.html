@@ -5,6 +5,7 @@
   <p>{{modalOptions.text}}</p>
 </div>
 <div class="modal-footer">
+	<span ng-repeat="keyword in modalOptions.keywords" class="modal-keywords"> {{keyword}}</span>
   <button class="btn btn-primary" 
           data-ng-click="modalOptions.ok();">{{modalOptions.closeButtonText}}</button>
 </div>
