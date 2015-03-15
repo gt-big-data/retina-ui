@@ -5,11 +5,14 @@ FeedCtrl.$inject = ['$scope', '$http', 'ArticleFactory', 'ArticleModalService'];
 
 function FeedCtrl($scope, $http, ArticleFactory, ArticleModalService) {
     $scope.page = 1;
-    $scope.record = record;
+    $scope.recordView = recordView;
     $scope.hoursAgo = hoursAgo;
     $scope.stripHTML = stripHTML;
     $scope.nextPage = nextPage;
     $scope.showArticle = showArticle;
+    $scope.getSource = getSource;
+    $scope.getImageUrl = getImageUrl;
+
 
     activate();
 
@@ -22,7 +25,7 @@ function FeedCtrl($scope, $http, ArticleFactory, ArticleModalService) {
     }
 
 
-    function record(articleID) {
+    function recordView(articleID) {
         return $http({
             url: '/users/preferences/record',
             method: 'POST',
@@ -37,6 +40,9 @@ function FeedCtrl($scope, $http, ArticleFactory, ArticleModalService) {
         var now = new Date();
         var published = new Date(pubdate);
         var elapsed = now.getHours() - published.getHours();
+        if (elapsed == 0) {
+            return 'just now';
+        }
         return elapsed + 'h ago';
     }
 
@@ -53,17 +59,24 @@ function FeedCtrl($scope, $http, ArticleFactory, ArticleModalService) {
         });
     }
 
-    function showArticle(articlesId) {
-        ArticleFactory.getArticleById(articlesId).success(function(article, status) {
+    function showArticle(articleId) {
+        $scope.recordView(articleId);
+        ArticleFactory.getArticleById(articleId).success(function(article, status) {
             var modalOptions = article;
             ArticleModalService.showModal({}, modalOptions).then(function (result) {
-                dataService.deleteCustomer($scope.customer.id).then(function () {
-                    $location.path('/customers');
-                }, processError);
+                
             });
         });
+    }
 
+    function getSource(source) {
+        if (source) {
+            return source.split('.')[1].toUpperCase();
+        }
+        return "";
+    }
 
-
+    function getImageUrl(source) {
+        return '../images/news-icons/' + source + '.png';
     }
 }

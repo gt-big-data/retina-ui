@@ -7,9 +7,21 @@
                 <div class="caption">
                     <span ng-show="article.keywords[0]" class="keywords"> {{article.keywords[0]}}</span>
                     <h4 class="thumbnail-title">{{article.title}}</h4>
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#">
+                          <img class="media-object article-source-img " ng-src="{{getImageUrl(article.source_domain)}}" alt="...">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                    <p>{{getSource(article.source_domain)}} | {{hoursAgo(article.recent_download_date)}}</p>
+                      </div>
+                    </div>
                     <p class="thumbnail-summary">{{article.summary}}</p>
-                    <p><a href="" class="btn btn-primary btn-sharp" role="button" 
+                    <p class="inline"><a href="" class="btn btn-primary btn-sharp" role="button" 
                     ng-click="showArticle(article._id)">  Read  </a></p>
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true">
+                    
             </div>
         </div>
     </div>
