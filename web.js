@@ -24,6 +24,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/api/articles/latest/:page', routes.getLatestArticles);
 app.get('/api/cluster/:cluster', routes.getCluster);
 app.get('/api/cluster/names', routes.getClusterNames);
+app.get('/api/categories/recent', routes.getRecentCategories);
 app.get('/api/articles/source/:source', routes.getArticlesBySource);
 app.get('/api/articles/category/:category', routes.getArticlesByCategory);
 app.get('/api/articles/keyword/:keyword', routes.getArticlesByKeyword);
