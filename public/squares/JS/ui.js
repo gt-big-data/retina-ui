@@ -3,6 +3,7 @@ var tileW = 370, tileH = 200;
 var rows, cols;
 var config = [];
 var loadInterval;
+var categories = ['Politics', 'Sports', 'Technology', 'Arts', 'Justice', 'Travel', 'Dining', 'Health', 'Business', 'World', 'Theater', 'Science', 'US', 'Movies', 'Opinion'];
 function initialize() {
 	screenW = $(document).width();
 	screenH = $(document).height();
@@ -58,7 +59,7 @@ function buildUI() {
 		$('#content').append(newTile);
 	}
 	if(rows*cols > config.length) {
-		addNewTile();
+		openNewTile();
 	}
 }
 function reloadInput() {
@@ -77,8 +78,23 @@ function reloadTile(index, article) {
 	$('#tile'+index+' .tileBack').css({"background-image": "url("+article.img+")"});
 
 }
-function addNewTile() {
-	newTile = '<div id="newTile" style="width: '+tileW+'px; height: '+tileH+'px;">Add a new category</div>';
+function openNewTile() {
+	newTile = '<div id="newTile" style="width: '+tileW+'px; height: '+tileH+'px;" onclick="showSelect();">Add a new category</div>';
 	$('#content').append(newTile);
+}
+function showSelect() {
+	var newText = '<select id="chosenCat" onchange="addNewTile(this.value);" onclick="event.stopPropagation();">';
+	for (var i = 0; i < categories.length; i++) {
+		notGood = false;
+		for (var j = 0; j < config.length; j++) if (config[j].category == categories[i]) notGood = true;
+		if(!notGood) newText += '<option value='+categories[i]+'>'+categories[i]+'</option>';
+	}
+	newText += '</select>';
+	$('#newTile').html(newText);
+}
+function addNewTile(cat) {
+	config.push({width: 1, height: 1, category: cat});
+	saveConfig();
+	window.location.reload();
 }
 initialize();
