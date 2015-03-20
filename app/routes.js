@@ -6,12 +6,15 @@ var articleSchema = require('./models/articles.js').articleSchema;
 var articles = db.model('articles', articleSchema);
 var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
+var cleanArticlesSchema = require('./models/cleanArticles.js');
+var cleanArticles = db.model('cleanarticles', cleanArticlesSchema);
 
 exports.getLatestArticles = getLatestArticles;
 exports.getArticlesByCategory = getArticleByCategory;
 exports.getArticlesByKeyword = getArticlesByKeyword;
 exports.getArticlesBySource = getArticlesBySource;
 exports.getArticleById = getArticleById;
+exports.getRecentCategories = getRecentCategories;
 exports.getCluster = getCluster;
 exports.getClusterNames = getClusterNames;
 exports.recentCategories = recentCategories;
@@ -51,6 +54,15 @@ function getArticlesBySource(req, res) {
     });
 }
 
+function getRecentCategories(req, res) {
+    cleanArticles.getRecentCategories(articles, function(err, docs) {
+        if (err) {
+            res.json({'Error' : err});
+        } else {
+            res.json({'Data' : docs});
+        }
+    });
+}
 
 function getArticleById(req, res) {
     var id = req.params.id;
