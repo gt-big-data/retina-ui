@@ -56,7 +56,6 @@ function getArticlesBySource(req, res) {
 
 function getRecentCategories(req, res) {
     cleanArticles.getRecentCategories(articles, function(err, docs) {
-        console.log(docs);
         if (err) {
             res.json({'Error' : err});
         } else {
