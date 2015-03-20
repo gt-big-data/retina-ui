@@ -11,7 +11,7 @@ function initialize() {
 	loadConfig(); // load the user's config
 	buildUI();
 	reloadInput();
-	loadInterval = setInterval(function() {reloadInput();}, 5000);
+	//loadInterval = setInterval(function() {reloadInput();}, 5000);
 }
 function loadConfig() {
 	config[0] = {width: 1, height: 1, r: 0, c: 0, category: 'Politics'};
@@ -30,15 +30,16 @@ function buildUI() {
 }
 function reloadInput() {
 	console.log('Reloaded');
-	var articles = getLatestArticles(); // this function is in dbCall.js
-	for (var i = 0; i < config.length; i++) {
-		conf = config[i];
-		for (var j = 0; j < articles.length; j++) {
-			if(articles[j].category == conf.category) {
-				reloadTile(i, articles[j]);
+	getLatestArticles(function(err, articles) {
+		for (var i = 0; i < config.length; i++) {
+			conf = config[i];
+			for (var j = 0; j < articles.length; j++) {
+				if(articles[j].category == conf.category) {
+					reloadTile(i, articles[j]);
+				}
 			}
 		}
-	}
+	});
 }
 function reloadTile(index, article) {
 	$('#tile'+index+' .tileTitle').html(article.title);
