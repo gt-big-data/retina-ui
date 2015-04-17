@@ -8,6 +8,8 @@ var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
 var cleanArticlesSchema = require('./models/cleanArticles.js');
 var cleanArticles = db.model('cleanarticles', cleanArticlesSchema);
+var topicsSchema = require('./models/topics');
+var topics = db.model('graph_topics', topicsSchema);
 
 exports.getLatestArticles = getLatestArticles;
 exports.getArticlesByCategory = getArticleByCategory;
@@ -22,6 +24,7 @@ exports.recentKeywords = recentKeywords;
 exports.getSources = getSources;
 exports.categoryCount = categoryCount;
 exports.keywordCount = keywordCount;
+exports.getTopics = getTopics;
 
 //////////////////////////////////////
 
@@ -116,6 +119,12 @@ function getCluster(req, res) {
 
 function getClusterNames(req, res) {
     clusters.getClusterNames(function(err, docs) {
-        res.json('docs');
+        res.json(docs);
+    });
+}
+
+function getTopics(req, res) {
+    topics.getTopics(function(err, docs) {
+        res.json(docs);
     });
 }

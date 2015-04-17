@@ -34,6 +34,7 @@ app.get('/api/articles/keywords/:page', routes.recentKeywords);
 app.get('/api/articles/sources', routes.getSources);
 app.get('/api/articles/data/keywords', routes.keywordCount);
 app.get('/api/articles/data/categories', routes.categoryCount);
+app.get('/api/topics', routes.getTopics);
 app.get('/users/profile', profile.getUserInfo);
 app.post('/users/preferences/record', profile.recordView);
 app.post('/users/preferences/update/categories', profile.updateCategories);
