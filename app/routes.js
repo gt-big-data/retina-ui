@@ -25,6 +25,7 @@ exports.getSources = getSources;
 exports.categoryCount = categoryCount;
 exports.keywordCount = keywordCount;
 exports.getTopics = getTopics;
+exports.filterTopics = filterTopics;
 
 //////////////////////////////////////
 
@@ -125,6 +126,14 @@ function getClusterNames(req, res) {
 
 function getTopics(req, res) {
     topics.getTopics(function(err, docs) {
+        res.json(docs);
+    });
+}
+
+function filterTopics(req, res) {
+    console.log(req.param('day'));
+    var day = new Date(req.param('day'));
+    topics.getTopicsByDay(day, function(err, docs) {
         res.json(docs);
     });
 }
