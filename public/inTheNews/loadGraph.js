@@ -1,13 +1,13 @@
 var graph;
+var smallRad = 3, bigRad = 4;
 function myGraph() {
-	this.addNode = function (id, group) {
-		nodes.push({"id": id, "group": group, "tagged": true});
+	this.addNode = function (id, group, name) {
+		nodes.push({"id": id, "group": group, "tagged": true, "name": name});
 	};
 	this.update = function() {
 		update();
 	}
 	this.removeNodeObj = function (n) {
-		document.title='Yolo'+n.id;
 		var i = 0;
 		while (i < links.length) {
 			if ((links[i]['source'] == n) || (links[i]['target'] == n)) {
@@ -60,7 +60,7 @@ function myGraph() {
 
 	var w = $(document).width(), h = $(document).height();
 
-	var color = d3.scale.category10();
+	var color = d3.scale.category20();
 
 	var vis = d3.select("body").append("svg:svg").attr("width", w).attr("height", h).attr("id", "svg").attr("pointer-events", "all").attr("viewBox", "0 0 " + w + " " + h).attr("perserveAspectRatio", "xMinYMid").append('svg:g');
 
@@ -70,14 +70,20 @@ function myGraph() {
 	var update = function () {
 		var link = vis.selectAll("line").data(links, function (d) {return d.source.id + "-" + d.target.id;});
 
-		link.enter().append("line").attr("id", function (d) { return d.source.id + "-" + d.target.id;}).attr("stroke-width", function (d) { return d.value / 10;}).attr("class", "link");
+		link.enter().append("line").attr("id", function (d) { return d.source.id + "-" + d.target.id;}).attr("stroke-width", function (d) { return 1;}).attr("class", "link");
 		
 		link.exit().remove();
 
 		var node = vis.selectAll("g.node").data(nodes, function (d) {return d.id;});
 
 		var nodeEnter = node.enter().append("g").attr("class", "node");
-		nodeEnter.append("svg:circle").attr("r", 3).attr("id", function (d) {return "Node;" + d.id;}).attr("class", "nodeStrokeClass").attr("fill", function(d) { return color(d.group); });
+		nodeEnter.append("svg:circle").attr("r", smallRad).attr("id", function (d) {return d.id;}).attr("class", "node").attr("fill", function(d) { return color(d.group); });
+		nodeEnter.append("title").text(function(d) { return d.name; });
+		nodeEnter.on('mouseover', function(d){
+			d3.select(this).select('circle').attr('r', bigRad);
+	    }).on('mouseout', function(d){
+			d3.select(this).select('circle').attr('r', smallRad);
+	    });
 
 		node.exit().remove();
 
@@ -87,14 +93,12 @@ function myGraph() {
 		});
 		force.charge(-40).linkDistance(10).linkDistance( function(d) { return d.value } ).size([w, h]).start(); // Restart the force layout.
 	};
-	// Make it all go
-	update();
 }
 
 function startDay() {
 	myTime = new Date().getTime(); myTime = myTime;
 	graph = new myGraph("#svgdiv");
-
+	$('#whatDay').css('left', (($(document).width()-$('#whatDay').width())/2));
 	reloadGraph();
 }
 function changeDay(which) {
@@ -105,7 +109,8 @@ function reloadGraph() {
 	dateObj = new Date(myTime);
 	var fullDate = dateObj.getFullYear()+'-'+(((dateObj.getMonth()+1)<10)?'0':'')+(dateObj.getMonth()+1)+'-'+((dateObj.getDate()<10)?'0':'')+dateObj.getDate();
 	$('#whatDay').html(fullDate);
-	$.getJSON("/api/topics/filter?day="+fullDate, function( data ) {
+	// $.getJSON("/api/topics/filter?day="+fullDate, function( data ) {
+	$.getJSON(fullDate+".json", function( data ) {
 		if(data[0]) {mergeGraphs(data[0].graph);}
 	});
 }
@@ -117,7 +122,7 @@ function mergeGraphs(graphData) {
 	for(nod in graphData.nodes) {
 		myNode = graphData.nodes[nod];
 		if((n = graph.findNode(myNode.id)) != -1) {n.tagged = true;}
-		else {graph.addNode(myNode.id, myNode.group); newNodes.push(myNode.id);}
+		else {graph.addNode(myNode.id, myNode.group, myNode.name); newNodes.push(myNode.id);}
 	}
 	graph.removeExtraNodes();
 
@@ -139,7 +144,7 @@ function mergeGraphs(graphData) {
 }
 startDay();
 function keepNodesOnTop() {
-	$(".nodeStrokeClass").each(function( index ) {
+	$(".node").each(function( index ) {
 		var gnode = this.parentNode;
 		gnode.parentNode.appendChild(gnode);
 	});
