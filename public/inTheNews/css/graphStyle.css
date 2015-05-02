@@ -4,13 +4,12 @@ body {
   font-family: sans-serif;
 }
 .node {
-  stroke: #fff;
-  stroke-width: 1px;
-  stroke: black;
+	stroke: #fff;
+	stroke-width: 1px;
+	stroke: #c0c0c0;
 }
-
 .link {
-  stroke: black;
+	stroke: #d0d0d0;
 }
 #prevIcon, #nextIcon, #whatDay {
 	position: fixed; top: -1px;
@@ -29,4 +28,9 @@ body {
 	top: -1px; right: -1px;}
 #prevIcon:hover, #nextIcon:hover {
 	background: #f0f0f0;
+}
+.keyword {
+	text-anchor: middle;
+	stroke: black;
+	stroke-width: 0.3px;
 }

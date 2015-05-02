@@ -4,12 +4,13 @@
 	<title>In the News</title>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="graphStyle.css">
+	<script type="text/javascript" src="JS/smartGraph.js"></script>
+	<script type="text/javascript" src="JS/loadGraph.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/graphStyle.css">
 </head>
-<body>
+<body onload="startDay();">
 	<div id="prevIcon" onclick="changeDay(-1);">Prev. Day</div>
 	<div id="nextIcon" onclick="changeDay(1);">Next Day</div>
-	<div id="whatDay">Coucou</div>
-	<script type="text/javascript" src="loadGraph.js"></script>
+	<div id="whatDay"></div>
 </body>
 </html>
