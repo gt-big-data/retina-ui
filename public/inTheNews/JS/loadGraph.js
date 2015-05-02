@@ -28,8 +28,8 @@ function reloadGraph() {
 	dateObj = new Date(myTime);
 	var fullDate = dateObj.getFullYear()+'-'+(((dateObj.getMonth()+1)<10)?'0':'')+(dateObj.getMonth()+1)+'-'+((dateObj.getDate()<10)?'0':'')+dateObj.getDate();
 	$('#whatDay').html(fullDate);
-	// $.getJSON("/api/topics/filter?day="+fullDate, function( data ) {
-	$.getJSON("json/"+fullDate+".json", function( data ) {
+	$.getJSON("/api/topics/filter?day="+fullDate, function( data ) {
+	// $.getJSON("json/"+fullDate+".json", function( data ) {
 		if(data[0]) {
 			graphData = data[0].graph;
 			graph.mergeData(graphData, placeKeywords);
