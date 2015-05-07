@@ -1,7 +1,30 @@
-.jumbotron {
+.container-fluid .jumbotron {
 	margin-bottom: 0px;
+	border-radius: 0px;
 }
+
 
 .main-background-img {
 	background-image: url('../images/explore.jpg');
+	background-size: cover;
+	
+}
+
+.jumbotron h2 {
+	color: #eb6864;
+}
+
+@media (min-width: 768px) {
+	.brand-name {
+		font-size: 36px;
+	}
+	.main-background-img {
+		height: 800px;
+		background-size: cover cover;
+		background-repeat: no-repeat;
+	}
+
+	.jumbotron-copy {
+		margin-top: 150px;
+	}
 }
