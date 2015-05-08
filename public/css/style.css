@@ -14,6 +14,16 @@
 	color: #eb6864;
 }
 
+.panel-heading {
+	border-radius: 0px;
+}
+
+.card-img {
+	min-width: 100%;
+	background-size: cover;
+}
+
+
 @media (min-width: 768px) {
 	.brand-name {
 		font-size: 36px;

@@ -3,11 +3,9 @@ var mongoose = require('mongoose');
 var config = require('../config/config');
 var db = mongoose.createConnection(config.db('big_data'));
 var articleSchema = require('./models/articles.js').articleSchema;
-var articles = db.model('articles', articleSchema);
+var articles = db.model('cleanarticles', articleSchema);
 var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
-var cleanArticlesSchema = require('./models/cleanArticles.js');
-var cleanArticles = db.model('cleanarticles', cleanArticlesSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
 
@@ -59,7 +57,7 @@ function getArticlesBySource(req, res) {
 }
 
 function getRecentCategories(req, res) {
-    cleanArticles.getRecentCategories(articles, function(err, docs) {
+    articles.getRecentCategories(articles, function(err, docs) {
         if (err) {
             res.json({'Error' : err});
         } else {
