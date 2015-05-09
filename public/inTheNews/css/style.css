@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #816998;
+	text-decoration: none;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	-ms-transition: 0.5s;
+	transition: 0.5s;
+}
+a:hover, a.selected {
+	color: #665378;
+}
+
+#timeline {
+	z-index: 3;
+	width: 800px;
+	overflow: hidden;
+	margin: 5px auto;
+	position: relative;
+	background: url('../images/dot.gif') left 45px repeat-x;
+}
+#dates {
+	width: 800px;
+	height: 50px;
+	overflow: hidden;
+}
+#dates li {
+	list-style: none;
+	float: left;
+	width: 100px;
+	height: 50px;
+	font-size: 24px;
+	text-align: center;
+	background: url('../images/biggerdot.png') center bottom no-repeat;
+}
+#dates a {
+	line-height: 38px;
+	padding-bottom: 10px;
+}
+#dates .selected {
+	font-size: 38px;
+}

@@ -2,8 +2,8 @@ function smartGraph() {
 	charge = -40; linkD = 50;
 	var smallRad = 3, bigRad = 4;
 	var transX, transY;
-	this.addNode = function (id, group, name) {
-		nodes.push({"id": id, "group": group, "tagged": true, "name": name});
+	this.addNode = function (id, group, name, img) {
+		nodes.push({"id": id, "group": group, "tagged": true, "name": name, 'img': img});
 	};
 	this.getTranslation = function() {
 		return {'transX': transX, 'transY': transY};
@@ -73,6 +73,7 @@ function smartGraph() {
 
 	var force = d3.layout.force();
 	var nodes = force.nodes(), links = force.links();
+	var noKeywords;
 
 	this.update = function (whenEnd) {
 		var link = vis.selectAll("line").data(links, function (d) {return d.source.id + "-" + d.target.id;});
@@ -84,18 +85,22 @@ function smartGraph() {
 
 		var nodeEnter = node.enter().append("g").attr("class", "node").attr("id", function (d) {return 'g-'+d.id;});
 		nodeEnter.append("svg:circle").attr("r", smallRad).attr("id", function (d) {return d.id;}).attr("class", "node").attr("fill", function(d) { return color(d.group); });
-		nodeEnter.append("title").text(function(d) { return d.name; });
 		nodeEnter.on('mouseover', function(d){
 			d3.select(this).select('circle').attr('r', bigRad);
-	    }).on('mouseout', function(d){
+			openNotif(d);
+		})
+		.on('mouseout', function(d){
 			d3.select(this).select('circle').attr('r', smallRad);
-	    });
+			deleteNotif();
+		});
 
 		node.exit().remove();
 
-		tickMod = 0;
-		n = 6;
+		tickMod = 0; n = 10;
+		noKeywords = true;
+
 		force.on("tick", function () {
+			if(force.alpha() < 0.02 && noKeywords) {noKeywords = false; whenEnd();}
 			if(tickMod%n == n-1) {
 				mm = graph.getMinMax(); transX = Math.max(0,-mm.minX); transY = Math.max(0,-mm.minY)+50;
 				height = Math.max(dH, (mm.maxY+transY+50)); width = Math.max(dW, (mm.maxX+transY));
@@ -106,7 +111,6 @@ function smartGraph() {
 			}
 			tickMod ++;
 		});
-		force.on("end", whenEnd)
 		force.charge(charge).linkDistance(linkD).size([dW, dH]).start();
 	};
 	this.mergeData = function(graphData, whenEnd) {
@@ -116,7 +120,7 @@ function smartGraph() {
 		for(nod in graphData.nodes) {
 			myNode = graphData.nodes[nod];
 			if((n = this.findNode(myNode.id)) != -1) {n.tagged = true;}
-			else {this.addNode(myNode.id, myNode.group, myNode.name); newNodes.push(myNode.id);}
+			else {this.addNode(myNode.id, myNode.group, myNode.name, myNode.img); newNodes.push(myNode.id);}
 		}
 		this.removeExtraNodes();
 

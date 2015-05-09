@@ -4,33 +4,33 @@ body {
   font-family: sans-serif;
 }
 .node {
-	stroke: #fff;
 	stroke-width: 1px;
 	stroke: #c0c0c0;
+	cursor: pointer;
 }
 .link {
 	stroke: #d0d0d0;
-}
-#prevIcon, #nextIcon, #whatDay {
-	position: fixed; top: -1px;
-	border: 1px solid black;
-	background: #f6f6f6;
-	cursor: pointer;
-	padding: 5px 10px;
-	text-align: center;
-	width: 150px;
-	font-size: 25px;
-
-}
-#prevIcon {
-	top: -1px; left: -1px;}
-#nextIcon {
-	top: -1px; right: -1px;}
-#prevIcon:hover, #nextIcon:hover {
-	background: #f0f0f0;
 }
 .keyword {
 	text-anchor: middle;
 	stroke: black;
 	stroke-width: 0.3px;
+}
+.artImg {
+	float: left;
+	height: 50px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+}
+.dayText, #line1, #line2 {
+	font-size: 70px;
+	stroke: #404040;
+	stroke-width: 0.5px;
+	fill: #cfc6d8;
+}
+#line2 {
+	font-size: 50px;
+}
+#svg {
+	position: absolute; top: 0px;
 }

@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
 <head>
-	<title>In the News</title>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/style.css" media="screen" />	
+	<link rel="stylesheet" href="css/graphStyle.css" media="screen" />	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+ 	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script type="text/javascript" src="JS/lib/noty.js"></script>
 	<script type="text/javascript" src="JS/smartGraph.js"></script>
 	<script type="text/javascript" src="JS/loadGraph.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/graphStyle.css">
+	<script type="text/javascript" src="JS/buildDate.js"></script>
+	<script src="JS/lib/timelinr.js"></script>
 </head>
+
 <body onload="startDay();">
-	<div id="prevIcon" onclick="changeDay(-1);">Prev. Day</div>
-	<div id="nextIcon" onclick="changeDay(1);">Next Day</div>
-	<div id="whatDay"></div>
+	<div id="timeline"><ul id="dates"></ul></div>
 </body>
 </html>
