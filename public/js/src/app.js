@@ -19,7 +19,13 @@ retina.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 	})
 	.state('feed', {
 		url:'/feed',
-		templateUrl: '../../views/feed.html'
+		templateUrl: '../../views/feed.html',
+		controller: 'FeedController as feed',
+		resolve: {
+			ArticleServiceData : function(ArticleService) {
+				return ArticleService.promise
+			}
+		}
 	});
 
 	// $locationProvider.html5Mode(true);

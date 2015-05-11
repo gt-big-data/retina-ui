@@ -19,10 +19,41 @@
 }
 
 .card-img {
-	min-width: 100%;
-	background-size: cover;
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 130px;
 }
 
+.panel-img {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  min-height: 60px;
+  min-width: 140px;
+  margin-right: 5px;
+}
+
+.list-group-item:last-child {
+	margin: 0px;
+	border-radius: 0px;
+}
+
+.list-group-item:first-child {
+	margin: 0px;
+	border-radius: 0px;
+}
+
+.media-heading {
+	margin-left: 10px;
+}
+
+.navbar {
+
+}
 
 @media (min-width: 768px) {
 	.brand-name {
