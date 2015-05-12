@@ -7,16 +7,14 @@ var articleSchema = mongoose.Schema({});
 var config = require('../../config/config');
 
 articleSchema.statics.latest = function(page, callback) {
-    this.find(
-        {},
-        null,
-        {
-            limit:  20,
-            skip: (page - 1) * 20,
-            sort: {
-                'recent_download_date': -1
-            },
-        }, callback);
+  
+    var query = this.find({})
+    .limit(20)
+    .skip((page - 1) * 20)
+    .sort('-recent_download_date')
+    .select('title img download_time keywords id')
+    .exec(callback);
+
 };
 
 //TODO: Enable pagination

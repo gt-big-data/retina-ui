@@ -15,9 +15,4 @@ function FeedController($scope, ArticleService) {
 		}
 	});
 
-	$scope.getArticles = function(amount) {
-		console.log(amount);]
-		return $scope.articles.splice(0, amount);
-	}
-
 }

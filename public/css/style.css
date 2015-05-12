@@ -22,9 +22,23 @@
   display: block;
   position: relative;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: top center;
   background-size: cover;
-  min-height: 130px;
+  min-height: 160px;
+  margin-top: 10px;
+}
+
+.extended-card-img {
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  min-height: 200px;
+}
+
+.extended-card {
+	border: 1px solid black;
 }
 
 .panel-img {
@@ -52,7 +66,18 @@
 }
 
 .navbar {
+	border-radius: 0px;
+}
+.footer {
+	margin-bottom: 0px;
+	margin-top: 10px;
+	min-height: 30px;
+	border-radius: 0px;
+}
 
+.card {
+	padding-left: 1px;
+	padding-right: 1px;
 }
 
 @media (min-width: 768px) {
