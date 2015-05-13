@@ -30,7 +30,6 @@ exports.sourceCounts = sourceCounts;
 
 //////////////////////////////////////
 
-
 function getLatestArticles(req, res) {
     var page = parseInt(req.params.page);
     articles.latest(page, function(err, docs) {
@@ -139,7 +138,7 @@ function filterTopics(req, res) {
 }
 
 function sourceCounts(req, res) {
-    qdoc.getTopics(function(docs) {
+    qdoc.sourceCounts(function(docs) {
         res.json(docs);
     });
 }
