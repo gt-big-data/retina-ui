@@ -8,6 +8,7 @@ var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
+var qdocSchema = db.model('./models/qdoc', qdocSchema);
 var qdoc = db.model('qdoc', qdocSchema);
 
 exports.getLatestArticles = getLatestArticles;
