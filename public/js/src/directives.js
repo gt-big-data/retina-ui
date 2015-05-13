@@ -2,16 +2,15 @@ var retina = angular.module('retina');
 
 retina.directive('simpleList', ['ArticleService', SimpleList]);
 retina.directive('mediaList', ['ArticleService', MediaList]);
-retina.directive('panel', Panel);
-retina.directive('picturePanel', PicturePanel);
-retina.directive('card', ['ArticleService', Card]);
-retina.directive('extendedCard', ['ArticleService', ExtendedCard]);
+retina.directive('card', ['$state','ArticleService', Card]);
+retina.directive('extendedCard', ['$state', 'ArticleService', ExtendedCard]);
 
 function SimpleList(ArticleService) {
 
     var directive = {
         scope: {
-            articles: '='
+            articles: '=',
+            navigate: '&'
         },
         restrict: 'AE',
         replace: true,
@@ -19,14 +18,6 @@ function SimpleList(ArticleService) {
     };
 
     directive.controller = function($scope, ArticleService) {
-        // var NUM_ARTICLES = 10;
-        // var articleService = ArticleService;
-        // $scope.articles = [];
-        // articleService.request(function(articles) {
-        //     for (var i = 0; i < NUM_ARTICLES; i++) {
-        //         $scope.articles.push(articles.pop()); 
-        //     }
-        // })
     };
 
     directive.link = function($scope, $elem, $attrs) {
@@ -59,49 +50,6 @@ function MediaList(ArticleService) {
     return directive;
 }
 
-function Panel() {
-
-    var directive = {
-        scope: {
-            article: '='
-        },
-        restrict: 'AE',
-        templateUrl: 'templates/panel.html',
-    };
-
-    directive.controller = function($scope) {
-    };
-
-    directive.link = function($scope, $elem, $attrs) {
-
-    };
-
-    return directive;
-}
-
-function PicturePanel() {
-
-    var directive = {
-        scope: {
-            article: '='
-        },
-        restrict: 'AE',
-        templateUrl: 'templates/picture-panel.html',
-    };
-
-    directive.controller = function($scope) {
-
-    };
-
-    directive.link = function($scope, $elem, $attrs) {
-
-    };
-
-    return directive;
-}
-
-
-
 function Card() {
     var directive = {
         scope: {},
@@ -110,12 +58,16 @@ function Card() {
         templateUrl: 'templates/card.html',
     };
 
-    directive.controller = function($scope, ArticleService) {
+    directive.controller = function($scope, ArticleService, NavigationService) {
         var articleService = ArticleService;
         $scope.article = [];
         articleService.request(function(articles) {
             $scope.article = articles.pop();
-        })
+        });
+
+        $scope.navigate = function(id) {
+           NavigationService.toArticle(id);
+        };
        
     };
 
@@ -134,7 +86,7 @@ function ExtendedCard() {
         templateUrl: 'templates/extended-card.html',
     };
 
-    directive.controller = function($scope, ArticleService) {
+    directive.controller = function($scope, $state, ArticleService) {
         var articleService = ArticleService;
         $scope.article = [];
         articleService.request(function(articles) {

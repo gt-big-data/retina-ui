@@ -65,18 +65,18 @@ articleSchema.statics.getBySource = function(source, callback) {
 };
 
 articleSchema.statics.getById = function(id, callback) {
-    this.findOne(
-        {
-            'v': config.version,
-            '_id': id
-        }, 
-        null,
-        {
-            limit: 20,
-            sort: {
-                'recent_download_date': -1
-            }
-        }, callback);    
+    var query = this.findOne({})
+    .where({_id: id})
+    .exec(callback);
+};
+
+articleSchema.statics.getSimilar = function(keyword, callback) {
+
+    //TODO: Get this to work with multiple keywords
+    var query = this.find({})
+    .where(keyword).in('$keywords')
+    .select('title img download_time keywords id')
+    .exec(callback);
 };
 
 articleSchema.statics.recentCategories = function(page, callback) {

@@ -2,6 +2,7 @@ var retina = angular.module('retina');
 
 retina.service('AuthService', AuthService);
 retina.factory('ArticleService', ArticleService);
+retina.service('NavigationService', NavigationService);
 
 AuthService.$inject = ['$http'];
 function AuthService($http) {
@@ -44,7 +45,7 @@ function ArticleService($http) {
         return  $http.get('/api/articles/latest/' + page)
         .success(function(data, status) {
             articles = data;
-        })
+        });
     }
     
     service.promise = latest();
@@ -52,7 +53,22 @@ function ArticleService($http) {
     service.request = function(callback) {
         service.promise.then(callback(articles));
         console.log(articles.length);
-    }
+    };
+
+    service.getArticle = function(id) {
+        return $http.get('/api/articles/id/'+ id);
+    };
+
+    return service;
+}
+
+NavigationService.$inject = ['$state'];
+function NavigationService($state) {
+    var service = {};
+
+    service.toArticle = function(id) {
+        $state.go('main.article', {id: id});
+    };
 
     return service;
 }

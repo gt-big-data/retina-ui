@@ -3,7 +3,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">Latest</h3>
 		</div>
-		<panel ng-repeat="article in articles track by $index" article="article"></panel>
+		<a  href="" ng-click="navigate(article._id)" ng-repeat="article in articles track by $index" class="list-group-item">{{article.title}}</a>
 	</div>
 	
 </div>
