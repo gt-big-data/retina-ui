@@ -11,7 +11,15 @@ qdocSchema.statics.sourceCounts = function(callback) {
     for(u = 0; u < days; u ++) initialCount[u] = 0;
     this.find({'timestamp': {'$gte': oldTime}}).exec(function(err, data) {
         if(!err) {
-            console.log(data);
+
+			art = data[i];
+//			console.log(data[i]);
+			console.log(data[i].keys());
+			days = Math.floor((time- art['timestamp'])/(86400));
+	//		if(counts[art['source']]) {counts[art['source']] = initialCount;}
+	//		counts[art['source']][days] ++;
+		}
+//	    console.log(data);
         }
     });
     callback(counts);
