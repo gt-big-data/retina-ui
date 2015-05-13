@@ -8,8 +8,8 @@ var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
-var qdocSchema = require('./models/qdoc', qdocSchema);
-var qdoc = db.model('qdoc', qdocSchema);
+var qdocSchema = require('./models/qdoc');
+var qdocVar = db.model('qdoc', qdocSchema);
 
 exports.getLatestArticles = getLatestArticles;
 exports.getArticlesByCategory = getArticleByCategory;
@@ -139,7 +139,7 @@ function filterTopics(req, res) {
 }
 
 function sourceCounts(req, res) {
-	qdoc.sourceCounts(function(docs) {
+    qdocVar.sourceCounts(function(err, docs) {
         res.json(docs);
     });
 }
