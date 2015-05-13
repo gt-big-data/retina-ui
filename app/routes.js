@@ -139,7 +139,7 @@ function filterTopics(req, res) {
 }
 
 function sourceCounts(req, res) {
-    qdoc.getTopics(function(docs) {
+	qdoc.sourceCounts(function(docs) {
         res.json(docs);
     });
 }
