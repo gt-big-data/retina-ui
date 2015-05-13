@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var qdocSchema = mongoose.Schema({});
+var qdocSchema = mongoose.Schema({}, {collection: 'qdoc'});
 
 qdocSchema.statics.sourceCounts = function(callback) {
 //    var time = Math.floor(new Date().getTime() / 1000);
