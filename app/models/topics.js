@@ -13,7 +13,6 @@ topicSchema.statics.getTopicsByDay = function(day, callback) {
     this.find({
         date: {$lt: nextDay, $gte: day}
     }).exec(callback);
-    callback()
 }
 
 module.exports = topicSchema;
