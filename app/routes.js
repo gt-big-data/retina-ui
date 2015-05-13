@@ -8,6 +8,7 @@ var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
+var qdoc = db.model('qdoc', qdocSchema);
 
 exports.getLatestArticles = getLatestArticles;
 exports.getArticlesByCategory = getArticleByCategory;
@@ -24,6 +25,7 @@ exports.categoryCount = categoryCount;
 exports.keywordCount = keywordCount;
 exports.getTopics = getTopics;
 exports.filterTopics = filterTopics;
+exports.sourceCounts = sourceCounts;
 
 //////////////////////////////////////
 
@@ -91,7 +93,6 @@ function recentKeywords(req, res) {
     });
 }
 
-
 function getSources(req, res) {
     articles.sources(function(err, docs) {
         res.json(docs);
@@ -132,6 +133,12 @@ function filterTopics(req, res) {
     console.log(req.param('day'));
     var day = new Date(req.param('day'));
     topics.getTopicsByDay(day, function(err, docs) {
+        res.json(docs);
+    });
+}
+
+function sourceCounts(req, res) {
+    qdoc.getTopics(function(docs) {
         res.json(docs);
     });
 }
