@@ -9,11 +9,7 @@ var clusters = db.model('clusters', clusterSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
 var qdocSchema = require('./models/qdoc');
-<<<<<<< HEAD
 var qdoc = db.model('qdoc', qdocSchema);
-=======
-var qdocVar = db.model('qdoc', qdocSchema);
->>>>>>> 3f47fd997a4f688a4cd773d2f38dcb20b55fd041
 
 exports.getLatestArticles = getLatestArticles;
 exports.getArticlesByCategory = getArticleByCategory;
@@ -142,11 +138,16 @@ function filterTopics(req, res) {
 }
 
 function sourceCounts(req, res) {
-<<<<<<< HEAD
-    qdoc.sourceCounts(function(docs) {
-=======
-    qdocVar.sourceCounts(function(err, docs) {
->>>>>>> 3f47fd997a4f688a4cd773d2f38dcb20b55fd041
-        res.json(docs);
+    var time = Math.floor(new Date().getTime() / 1000);
+    days = 30;
+    oldTime = time - days*86400;
+    counts = {};
+    var initialCount = [];
+    for(u = 0; u < days; u ++) initialCount[u] = 0;
+    qdoc.sourceCounts(function(data) {
+        for(u in data) {
+            console.log(data[u]['timestamp'])
+        }
+        res.json(counts);
     });
 }
