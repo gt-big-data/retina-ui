@@ -9,14 +9,11 @@ qdocSchema.statics.sourceCounts = function(callback) {
     counts = {};
     var initialCount = [];
     for(u = 0; u < days; u ++) initialCount[u] = 0;
-    this.find({timestamp: {$gte: oldTime}})
-	.exec(function(err, data) {
+    this.find({timestamp: {$gte: oldTime}}).exec(function(err, data) {
 		if(!err) {
-
+			counts = data;
 		}
     });
-	counts['cnn'] = initialCount;
-	counts['reuters'] = initialCount;
 
 	callback(counts);
 };
