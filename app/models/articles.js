@@ -12,7 +12,7 @@ articleSchema.statics.latest = function(page, callback) {
     .limit(20)
     .skip((page - 1) * 20)
     .sort('-recent_download_date')
-    .select('title img download_time keywords id')
+    .select('-text')
     .exec(callback);
 
 };
@@ -20,18 +20,12 @@ articleSchema.statics.latest = function(page, callback) {
 //TODO: Enable pagination
 
 articleSchema.statics.getByCategory = function(category, callback) {
-    this.find(
-        {
-            'v': config.version,
-            'categories': category
-        }, 
-        null,
-        {
-            limit: 20,
-            sort: {
-                'recent_download_date': -1
-            }
-        }, callback);    
+    this.find({})
+    .where('category').equals(category)
+    .limit(5)
+    .sort('-recent_download_date')
+    .select('-text')
+    .exec(callback);
 };
 
 articleSchema.statics.getByKeyword = function(keyword, callback) {

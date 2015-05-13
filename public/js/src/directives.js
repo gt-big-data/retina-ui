@@ -10,6 +10,7 @@ function SimpleList(ArticleService) {
     var directive = {
         scope: {
             articles: '=',
+            title: '=',
             navigate: '&'
         },
         restrict: 'AE',
@@ -32,7 +33,8 @@ function MediaList(ArticleService) {
 
     var directive = {
         scope: {
-            articles: '='
+            articles: '=',
+            title: '='
         },
         restrict: 'AE',
         replace: true,

@@ -27,4 +27,13 @@ function FeedController($scope, ArticleService, NavigationService) {
 ArticleController.$inject = ['$scope', 'ArticleService', 'article'];
 function ArticleController($scope, ArticleService, article) {
     $scope.article = article.data;
+    $scope.related = [];
+
+    ArticleService.getByCategory($scope.article.category).then(function(articles) {
+    	console.log(articles)
+    	articles.data.forEach(function(article) {
+    		$scope.related.push(article);
+    	});
+    });
+
 }

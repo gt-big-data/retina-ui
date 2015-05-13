@@ -59,6 +59,10 @@ function ArticleService($http) {
         return $http.get('/api/articles/id/'+ id);
     };
 
+    service.getByCategory = function(category) {
+        return $http.get('/api/articles/category/' + category);
+    }
+
     return service;
 }
 

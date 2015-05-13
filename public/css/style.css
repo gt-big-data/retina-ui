@@ -80,6 +80,20 @@
 	padding-right: 1px;
 }
 
+.buffer {
+	margin: 3px 3px 3px 3px;
+}
+
+.article-text {
+	color: black;
+	white-space: pre-wrap;
+}
+
+.navbar-inverse {
+	background-color: transparent;;
+	border: none;
+}
+
 @media (min-width: 768px) {
 	.brand-name {
 		font-size: 36px;
