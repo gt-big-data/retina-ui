@@ -9,7 +9,6 @@ var clusters = db.model('clusters', clusterSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
 var qdocSchema = require('./models/qdoc');
-
 var qdoc = db.model('qdoc', qdocSchema);
 
 exports.getLatestArticles = getLatestArticles;
@@ -139,7 +138,14 @@ function filterTopics(req, res) {
 }
 
 function sourceCounts(req, res) {
-    qdoc.sourceCounts(function(docs) {
-        res.json(docs);
+    var time = Math.floor(new Date().getTime() / 1000);
+    var days = 30;
+    var oldTime = time - days*86400;
+    var counts = {};
+    var initialCount = [];
+    for(var u = 0; u < days; u ++) initialCount[u] = 0;
+    qdoc.sourceCounts(function(err, data) {
+        console.log('Yolo');
+        res.json(data);
     });
 }
