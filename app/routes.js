@@ -145,7 +145,6 @@ function sourceCounts(req, res) {
     var initialCount = [];
     for(var u = 0; u < days; u ++) initialCount[u] = 0;
     qdoc.sourceCounts(function(err, data) {
-        console.log('Yolo');
         res.json(data);
     });
 }
