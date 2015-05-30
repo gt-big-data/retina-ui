@@ -43,8 +43,8 @@ function removeKeywords() {
 }
 function reloadGraph() {
 	niceDate(currentDate);
-	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
-	$.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
+	$.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
+	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
 		if(data[0]) {
 			graphData = data[0].graph;
 			graph.mergeData(graphData, placeKeywords);
