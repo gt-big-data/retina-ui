@@ -5,7 +5,7 @@ body {
 }
 .node {
 	stroke-width: 1px;
-	stroke: #c0c0c0;
+	stroke: #808080;
 	cursor: pointer;
 }
 .link {
