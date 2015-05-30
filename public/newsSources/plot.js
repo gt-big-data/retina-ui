@@ -37,6 +37,4 @@ function plotGraph(counts) {
   city.append("text").datum(function(d) { return {name: d.name, value: d.values[0]}; })
       .attr("transform", function(d) {return "translate(" + x(d.value.date) + "," + y(d.value.articles) + ")"; }).attr("x", 3).attr("dy", ".35em").attr('class', 'labels')
       .text(function(d) { return d.name; }).attr('fill', function(d) { return color(d.name); });
-
-  });
 }

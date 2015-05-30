@@ -12,7 +12,7 @@ function startDay() {
 	dayVis1 = vis.append('text').attr("x", 100).attr("y", 150).text('').attr({'class': 'dayText', 'id': 'line1'});
 	dayVis2 = vis.append('text').attr("x", 100).attr("y", 200).text('').attr({'class': 'dayText', 'id': 'line2'})
 	color = d3.scale.category20();
-	myTime = 1430128971991;
+	myTime = new Date().getTime(); // - 1*86400000
 	currentDate = new Date(myTime);
 	loadTimeline();
 	graph = new smartGraph("#svgdiv");
@@ -43,8 +43,8 @@ function removeKeywords() {
 }
 function reloadGraph() {
 	niceDate(currentDate);
-	$.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
-	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
+	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
+	$.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
 		if(data[0]) {
 			graphData = data[0].graph;
 			graph.mergeData(graphData, placeKeywords);
@@ -65,11 +65,13 @@ function placeKeywords() {
 		for(k in thisK) {
 			keyw = thisK[k];
 			if(!keywordGroups[keyw]) {keywordGroups[keyw] = [];}
-			keywordGroups[keyw].push(graphData.nodes[i].group);
+			if(Array.isArray(keywordGroups[keyw])) {
+				keywordGroups[keyw].push(graphData.nodes[i].group);
+			}
 		}
 	}
 	sortedKeyword = Object.keys(keywordGroups).sort(function(a,b){return mode(keywordGroups[b]).count-mode(keywordGroups[a]).count})
-	nbKeywords = 30;
+	nbKeywords = Math.floor(graphData.nodes.length/7);
 	alreadyIn = [];
 	yolo = 0;
 	for(u = 0; u < nbKeywords; u ++) {
@@ -109,7 +111,7 @@ function placeKeywords() {
 			var keyword = vis.append('text');
 			var translations = graph.getTranslation();
 			keyword.attr("x", (textX+translations.transX)).attr("y", (bestTextY+translations.transY))
-			.text(key).attr("font-size", (5+2*size)+"px").attr("fill", color(modeGroup)).attr('class', 'keyword').attr('opacity', 0).attr('id', key);
+			.text(key).attr("font-size", (15+2*size)+"px").attr("fill", color(modeGroup)).attr('class', 'keyword').attr('opacity', 0).attr('id', key);
 			alreadyIn.push([textX, bestTextY]);
 		}
 	}
