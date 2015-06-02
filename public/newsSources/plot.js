@@ -23,7 +23,7 @@ function plotGraph(counts) {
   var firstSource = counts[0].values;
   x.domain([firstSource[firstSource.length-1].date, firstSource[0].date]);
 
-  y.domain([0,200]);
+  y.domain([0,400]);
 
   svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
