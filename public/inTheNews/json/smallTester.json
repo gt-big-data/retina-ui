@@ -1,0 +1,10 @@
+[{"graph": {"nodes": 
+[
+	{"id": "1", "keywords": ["key1", "key2"], "source": "cnn", "url": "", "img": "", "group": 1, "name": "Art1"},
+	{"id": "2", "keywords": ["key1", "key2"], "source": "cnn", "url": "", "img": "", "group": 2, "name": "Art2"},
+	{"id": "3", "keywords": ["key1", "key2"], "source": "reuters", "url": "", "img": "", "group": 3, "name": "Art2"}
+
+], "edges": [
+	{"value":3,"target":"1","source":"3"},
+	{"value":3,"target":"2","source":"3"}
+]}}]

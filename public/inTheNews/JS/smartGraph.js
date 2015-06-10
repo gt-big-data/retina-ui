@@ -2,8 +2,10 @@ function smartGraph() {
 	charge = -40; linkD = 50;
 	var smallRad = 3, bigRad = 4;
 	var transX, transY;
-	this.addNode = function (id, group, name, img) {
-		nodes.push({"id": id, "group": group, "tagged": true, "name": name, 'img': img});
+	this.addNode = function (oldNode) {
+		newNode = $.extend(true, {}, oldNode)
+		newNode.tagged = true;
+		nodes.push(newNode);
 	};
 	this.getTranslation = function() {
 		return {'transX': transX, 'transY': transY};
@@ -92,6 +94,10 @@ function smartGraph() {
 		.on('mouseout', function(d){
 			d3.select(this).select('circle').attr('r', smallRad);
 			deleteNotif();
+		})
+		.on('dblclick', function(d) {
+			var win = window.open(d.url, '_blank');
+			win.focus();
 		});
 
 		node.exit().remove();
@@ -120,7 +126,7 @@ function smartGraph() {
 		for(nod in graphData.nodes) {
 			myNode = graphData.nodes[nod];
 			if((n = this.findNode(myNode.id)) != -1) {n.tagged = true;}
-			else {this.addNode(myNode.id, myNode.group, myNode.name, myNode.img); newNodes.push(myNode.id);}
+			else {this.addNode(myNode); newNodes.push(myNode.id);}
 		}
 		this.removeExtraNodes();
 

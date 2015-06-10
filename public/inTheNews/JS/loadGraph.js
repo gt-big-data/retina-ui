@@ -1,10 +1,12 @@
 var graph;
-var graphData;
+var allGraphData, graphData;
 var vis;
 var dH, dH;
 var color;
 var dayVis1, dayVis2;
-
+var sources = ['cnn', 'reuters', 'business_insider', 'bbc', 'aljazeera', 'france24', 'venture_beat', 'guardian', 'techcrunch'];
+cleanSourceName = {'cnn': 'CNN', 'reuters': 'Reuters', 'business_insider': 'Business Insider', 'bbc': 'BBC', 'aljazeera': 'Aljazeera', 'venture_beat': 'Venture Beat', 'france24': 'France24', 'guardian': 'The Guardian', 'techcrunch': 'TechCrunch'};
+var sourceOptions = [];
 function startDay() {
 	dW = $(document).width(); dH = $(document).height();
 	vis = d3.select("body").append("svg:svg").attr("width", dW).attr("height", dH);
@@ -12,15 +14,81 @@ function startDay() {
 	dayVis1 = vis.append('text').attr("x", 100).attr("y", 150).text('').attr({'class': 'dayText', 'id': 'line1'});
 	dayVis2 = vis.append('text').attr("x", 100).attr("y", 200).text('').attr({'class': 'dayText', 'id': 'line2'})
 	color = d3.scale.category20();
-	myTime = new Date().getTime(); // - 1*86400000
+	myTime = new Date().getTime();
 	currentDate = new Date(myTime);
 	loadTimeline();
 	graph = new smartGraph("#svgdiv");
-	reloadGraph();
+	loadSources();
+}
+function loadSources() {
+	loadSourceOptions();
+	var n = 4; margin = 7, tileSize = 35;
+	var r = 0, c = 0;
+	var toAppend = '';
+	for(i in sources) {
+		tSrc = sources[i];
+		toAppend += '<img src="images/sources/'+tSrc+'.png" onclick="toggleSource(\''+tSrc+'\')" title="'+cleanSourceName[tSrc]+' - '+((sourceOptions[tSrc])?'On':'Off')+'" id="src_'+tSrc+'" class="sourceIcon '+((sourceOptions[tSrc])?'':'inactiveSource')+'" style="top: '+(margin+(tileSize+margin)*r)+'px; left: '+(margin+(tileSize+margin)*c)+'px;" />';
+		r ++;
+		if(r >= n) {r = 0; c ++; n --;} // yolo
+	}
+	$('#sources').append(toAppend);
+}
+function toggleSource(sourceName) {
+	if(sourceOptions[sourceName]) { // we're disabling it
+		$('#src_'+sourceName).addClass('inactiveSource').attr('title', cleanSourceName[sourceName]+' - Off');
+	}
+	else {
+		$('#src_'+sourceName).removeClass('inactiveSource').attr('title', cleanSourceName[sourceName]+' - On');
+	}
+	sourceOptions[sourceName] = !sourceOptions[sourceName];
+	saveSourceOptions();
+	reloadWithSource();
+}
+function loadSourceOptions() {
+	if($.cookie('inTheNewsSources')) {
+		options = ($.cookie('inTheNewsSources')).split(';');
+		for(opt in options) {
+			toks = options[opt].split(',');
+			sourceOptions[toks[0]] = (toks[1]=='1');
+		}
+	}
+	else {
+		for(i in sources) sourceOptions[sources[i]] = true; // see it all
+	}
+}
+function saveSourceOptions() {
+	toStr = []
+	for(src in sourceOptions) {
+		console.log(src);
+		toStr.push(src+','+((sourceOptions[src])?'1':'0'));
+
+	}
+	console.log(toStr.join(';'));
+	$.cookie('inTheNewsSources', toStr.join(';'), { expires: 7 });
+}
+function reloadWithSource() {
+	graphData = {nodes: [], edges: []};
+	nodes = allGraphData.nodes;
+	edges = allGraphData.edges;
+	allIds = [];
+	for(i in nodes) {
+		if(sourceOptions[nodes[i].source]) {
+			graphData.nodes.push(nodes[i]);
+			allIds.push(nodes[i].id);
+		}
+	}
+	for(o in edges) {
+		if($.inArray(edges[o]['source'], allIds)!=-1 && $.inArray(edges[o]['target'], allIds)!=-1) {
+			graphData.edges.push(edges[o]);
+		}
+	}
+	removeKeywords();
+	graph.mergeData(graphData, placeKeywords);
+	keepNodesOnTop();
 }
 function changeDay(time) {
 	currentDate = new Date(time);
-	$('.keyword').remove();
+	removeKeywords();
 	reloadGraph();
 }
 function loadTimeline() {
@@ -43,16 +111,14 @@ function removeKeywords() {
 }
 function reloadGraph() {
 	niceDate(currentDate);
-	$.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
-	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
+	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
+	$.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
 		if(data[0]) {
-			graphData = data[0].graph;
-			graph.mergeData(graphData, placeKeywords);
-
-			keepNodesOnTop();
+			allGraphData = data[0].graph;
+			reloadWithSource();
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
-		graphData = {nodes: [], links: []};
+		graphData = {nodes: [], edges: []};
 		graph.mergeData(graphData, bla);
 	});
 }
@@ -73,7 +139,6 @@ function placeKeywords() {
 	sortedKeyword = Object.keys(keywordGroups).sort(function(a,b){return mode(keywordGroups[b]).count-mode(keywordGroups[a]).count})
 	nbKeywords = Math.floor(graphData.nodes.length/7);
 	alreadyIn = [];
-	yolo = 0;
 	for(u = 0; u < nbKeywords; u ++) {
 		key = sortedKeyword[u];
 		nodeIdList = [];
@@ -120,7 +185,7 @@ function placeKeywords() {
 }
 function openNotif(data) {
 	deleteNotif();
-	var n = noty({text: '<img src="'+data.img+'" class="artImg" /><b>'+data.name+'</b>', layout: 'bottomLeft', speed: 300});
+	noty({text: '<img src="images/sources/'+data.source+'.png" class="artImg" /><b>'+data.name+'</b><div class="dblClickInfo">Double click to open article</div>', layout: 'bottomLeft', speed: 300});
 }
 function deleteNotif() {
 	$('.noty_bar').parent().remove();
