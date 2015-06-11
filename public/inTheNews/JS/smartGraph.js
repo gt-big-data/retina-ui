@@ -35,7 +35,8 @@ function smartGraph() {
 		for(i in links) links[i].tagged = false;
 	};
 	this.removeExtraNodes = function() {
-		for(var i = 1; i < nodes.length; i ++) {
+		toRemove = [];
+		for(var i = nodes.length-1; i >= 0; i --) {
 			n = nodes[i];
 			if(!n.tagged) {this.removeNodeObj(n);}
 		}
@@ -123,6 +124,7 @@ function smartGraph() {
 		this.tagNodes();
 		this.tagLinks();
 		newNodes = [];
+		console.log(graphData)
 		for(nod in graphData.nodes) {
 			myNode = graphData.nodes[nod];
 			if((n = this.findNode(myNode.id)) != -1) {n.tagged = true;}

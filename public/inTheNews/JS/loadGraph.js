@@ -58,12 +58,7 @@ function loadSourceOptions() {
 }
 function saveSourceOptions() {
 	toStr = []
-	for(src in sourceOptions) {
-		console.log(src);
-		toStr.push(src+','+((sourceOptions[src])?'1':'0'));
-
-	}
-	console.log(toStr.join(';'));
+	for(src in sourceOptions) toStr.push(src+','+((sourceOptions[src])?'1':'0'));
 	$.cookie('inTheNewsSources', toStr.join(';'), { expires: 7 });
 }
 function reloadWithSource() {
@@ -111,13 +106,14 @@ function removeKeywords() {
 }
 function reloadGraph() {
 	niceDate(currentDate);
-	$.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
-	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
+	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
+	$.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
 		if(data[0]) {
 			allGraphData = data[0].graph;
 			reloadWithSource();
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
+		document.title=textStatus;
 		graphData = {nodes: [], edges: []};
 		graph.mergeData(graphData, bla);
 	});
