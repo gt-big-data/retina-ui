@@ -54,6 +54,8 @@ a:hover, a.selected {
 	color: #707070;
 }
 #sources {
+	position: fixed;
+	top: 0px; left: 0px;
 }
 .sourceIcon {
 	box-shadow: 0px 0px 3px black;
