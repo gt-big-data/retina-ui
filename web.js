@@ -27,7 +27,6 @@ app.get('/api/cluster/:cluster', routes.getCluster);
 app.get('/api/cluster/names', routes.getClusterNames);
 app.get('/api/categories/recent', routes.getRecentCategories);
 app.get('/api/articles/source/:source', routes.getArticlesBySource);
-app.get('/api/articles/category/:category', routes.getArticlesByCategory);
 app.get('/api/articles/keyword/:keyword', routes.getArticlesByKeyword);
 app.get('/api/articles/id/:id', routes.getArticleById);
 app.get('/api/articles/categories/:page', routes.recentCategories);
