@@ -8,6 +8,8 @@ var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
+var qdocSchema = require('./models/qdoc');
+var qdoc = db.model('qdoc', qdocSchema);
 
 exports.getLatestArticles = function(req, res) {
     var page = parseInt(req.params.page);
@@ -120,5 +122,17 @@ exports.filterTopics = function(req, res) {
 exports.getSimilar = function(req, res) {
     articles.getSimilar(req.params.keyword, function(err, docs) {
         res.json(docs);
+    });
+};
+
+exports.sourceCounts = function(req, res) {
+    var time = Math.floor(new Date().getTime() / 1000);
+    var days = 30;
+    var oldTime = time - days*86400;
+    var counts = {};
+    var initialCount = [];
+    for(var u = 0; u < days; u ++) initialCount[u] = 0;
+    qdoc.sourceCounts(function(err, data) {
+        res.json(data);
     });
 };
