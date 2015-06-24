@@ -22,11 +22,11 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(__dirname + '/public'));
 app.get('/api/articles/latest/:page', routes.getLatestArticles);
+app.get('/api/articles/similar/:keyword', routes.getSimilar);
 app.get('/api/cluster/:cluster', routes.getCluster);
 app.get('/api/cluster/names', routes.getClusterNames);
 app.get('/api/categories/recent', routes.getRecentCategories);
 app.get('/api/articles/source/:source', routes.getArticlesBySource);
-app.get('/api/articles/category/:category', routes.getArticlesByCategory);
 app.get('/api/articles/keyword/:keyword', routes.getArticlesByKeyword);
 app.get('/api/articles/id/:id', routes.getArticleById);
 app.get('/api/articles/categories/:page', routes.recentCategories);
@@ -52,7 +52,7 @@ app.get('/users',
                                       failureRedirect: '/login' }),
     function(req, res) {
         res.cookie('retinaID', req.user.id);
-        res.redirect('/#/feed');
+        res.redirect('/#/main/feed');
     }
 );
 

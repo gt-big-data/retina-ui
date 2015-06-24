@@ -17,9 +17,30 @@ retina.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 		url: '/register',
 		templateUrl: '../../views/register.html'
 	})
-	.state('feed', {
+	.state('main', {
+		url: '/main',
+		templateUrl: '../../views/main.html'	
+	})
+	.state('main.feed', {
 		url:'/feed',
-		templateUrl: '../../views/feed.html'
+		templateUrl: '../../views/feed.html',
+		controller: 'FeedController as feed',
+		resolve: {
+			ArticleServiceData : function(ArticleService) {
+				return ArticleService.promise
+			}
+		}
+	})
+	.state('main.article', {
+		url: '/article/:id',
+		templateUrl: '../../views/article.html',
+		controller: 'ArticleController',
+		resolve: {
+			article: ['$stateParams', 'ArticleService',
+			function($stateParams, ArticleService) {
+				return ArticleService.getArticle($stateParams.id);
+			}]
+		}
 	});
 
 	// $locationProvider.html5Mode(true);

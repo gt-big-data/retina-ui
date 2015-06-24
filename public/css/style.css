@@ -19,10 +19,80 @@
 }
 
 .card-img {
-	min-width: 100%;
-	background-size: cover;
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  min-height: 160px;
+  margin-top: 10px;
 }
 
+.extended-card-img {
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  min-height: 200px;
+}
+
+.extended-card {
+	border: 1px solid black;
+}
+
+.panel-img {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  min-height: 60px;
+  min-width: 140px;
+  margin-right: 5px;
+}
+
+.list-group-item:last-child {
+	margin: 0px;
+	border-radius: 0px;
+}
+
+.list-group-item:first-child {
+	margin: 0px;
+	border-radius: 0px;
+}
+
+.media-heading {
+	margin-left: 10px;
+}
+
+.navbar {
+	border-radius: 0px;
+}
+.footer {
+	margin-bottom: 0px;
+	margin-top: 10px;
+	min-height: 30px;
+	border-radius: 0px;
+}
+
+.card {
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+.buffer {
+	margin: 3px 3px 3px 3px;
+}
+
+.article-text {
+	color: black;
+	white-space: pre-wrap;
+}
+
+.navbar-inverse {
+	background-color: transparent;;
+	border: none;
+}
 
 @media (min-width: 768px) {
 	.brand-name {

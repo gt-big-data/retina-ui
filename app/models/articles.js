@@ -1,4 +1,4 @@
-"use strict"
+'use strict';
 /*
     We won't have to write articles to the database, hence the empty schema      
 */
@@ -6,81 +6,96 @@ var mongoose = require('mongoose');
 var articleSchema = mongoose.Schema({});
 var config = require('../../config/config');
 
+
+/**
+ * Returns the latest articles by date
+ * @param {int} page - the page of articles to return, each page is 20 articles 
+ * long by default
+ * @param {callback} callback - the callback to run once the query is completed, 
+ * it should take in an error and an object. 
+ */
 articleSchema.statics.latest = function(page, callback) {
-    this.find(
-        {},
-        null,
-        {
-            limit:  20,
-            skip: (page - 1) * 20,
-            sort: {
-                'recent_download_date': -1
-            },
-        }, callback);
+    this.find({})
+    .limit(20)
+    .skip((page - 1) * 20)
+    .sort('-recent_download_date')
+    // Exclude the actual text of the article, reduces the amount of data thats
+    // being sent back to the client.
+    .select('-text')
+    .exec(callback);
+
 };
 
-//TODO: Enable pagination
 
+/**
+ * Returns the articles that match a given category
+ * @param {string} category - the category to query by
+ * @param {callback} callback - the callback to run once the query is completed,
+ *  it should take in an error and an object. 
+ */
 articleSchema.statics.getByCategory = function(category, callback) {
-    this.find(
-        {
-            'v': config.version,
-            'categories': category
-        }, 
-        null,
-        {
-            limit: 20,
-            sort: {
-                'recent_download_date': -1
-            }
-        }, callback);    
+    this.find({})
+    .where('category').equals(category)
+    .limit(5)
+    .sort('-recent_download_date')
+    .select('-text')
+    .exec(callback);
 };
 
+
+
+/**
+ * Returns the articles that match a given keyword
+ * @param {string} keyword - the keyword to query by
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.getByKeyword = function(keyword, callback) {
-    this.find(
-        {
-            'v': config.version,
-            'keyword': keyword
-        }, 
-        null,
-        {
-            limit: 20,
-            sort: {
-                'recent_download_date': -1
-            }
-        }, callback);    
+    this.find({})
+    .where('keyword').equals(keyword)
+    .limit(5)
+    .sort('-recent_download_date')
+    .select('-text')
+    .exec(callback);
 };
 
+
+/**
+ * Returns the articles that match a given source
+ * @param {string} source - the source to query by
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.getBySource = function(source, callback) {
-    this.find(
-        {
-            'v': config.version,
-            'source': source
-        }, 
-        null,
-        {
-            limit: 20,
-            sort: {
-                'recent_download_date': -1
-            }
-        }, callback);    
+    this.find({})
+    .where('source').equals(source)  
+    .where('v').equals(config.version)
+    .sort('-recent_download_date')
+    .select('-text')
+    .exec(callback);  
 };
 
+
+
+/**
+ * Returns an article with a given id
+ * @param {string} id - the id to query by
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.getById = function(id, callback) {
-    this.findOne(
-        {
-            'v': config.version,
-            '_id': id
-        }, 
-        null,
-        {
-            limit: 20,
-            sort: {
-                'recent_download_date': -1
-            }
-        }, callback);    
+    this.findOne({})
+    .where({_id: id})
+    .exec(callback);
 };
 
+
+/**
+ * Returns the categories
+ * @param {string} id - the id to query by
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.recentCategories = function(page, callback) {
     this.aggregate([
         {$unwind:'$categories'},
@@ -91,6 +106,23 @@ articleSchema.statics.recentCategories = function(page, callback) {
 
 };
 
+
+articleSchema.statics.getSimilar = function(keyword, callback) {
+
+    //TODO: Get this to work with multiple keywords
+    this.find({})
+    .where(keyword).in('$keywords')
+    .select('title img download_time keywords id')
+    .exec(callback);
+};
+
+
+/**
+ * Returns an article with a given id
+ * @param {string} id - the id to query by
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.recentKeywords = function(page, callback) {
     this.aggregate([
         {$unwind:'$keywords'},
