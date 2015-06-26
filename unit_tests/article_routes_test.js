@@ -6,6 +6,11 @@ var supertest = require('supertest');
 describe('article_routes_tests.js', function() {
     
     it('should test getLatestArticles', function(done) {
+        supertest(app)
+        .get('/api/articles/latest/1')
+        .expect('Content-Type', /json/)
+        .expect('Content-Length', '20')
+        .expect(200, done);
         done();
     });
 
