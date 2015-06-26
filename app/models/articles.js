@@ -124,12 +124,12 @@ articleSchema.statics.getSimilar = function(keyword, callback) {
  * should take in an error and an object. 
  */
 articleSchema.statics.recentKeywords = function(page, callback) {
-    this.aggregate([
-        {$unwind:'$keywords'},
-        {$group:{_id:'$keywords'}},
-        {$limit:10},
-        {$skip: (page - 1) * 10}
-        ], callback);
+    this.aggregate()
+    .unwind('keywords')
+    .group({_id:'$keywords'})
+    .limit(10)
+    .skip((page - 1) * 10)
+    .exec(callback);
 };
 
 articleSchema.statics.sources = function(callback) {
@@ -142,44 +142,34 @@ articleSchema.statics.sources = function(callback) {
         }, callback);
 };
 
+/**
+ * Returns the frequency distribution of categories.
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.categoryCount = function(callback) {
-    this.aggregate([
-        {
-            $unwind: '$categories'
-        },
-        {
-            $group: {_id:'$categories', count:{$sum:1}} 
-        },
-        {
-            $match: {count:{$gt:20}}
-        },
-        {
-            $sort:{count:-1}
-        },
-        {
-            $limit: 50
-        }
-        ], callback);
+    this.aggregate()
+    .unwind('categories')
+    .group({_id:'$categories', count:{$sum:1}})
+    .match({count:{$gt:20}})
+    .sort({count:-1})
+    .limit(50)
+    .exec(callback);
 };
 
+/**
+ * Returns the frequency distribution of keywords.
+ * @param {callback} callback - the callback to run once the query is completed, it
+ * should take in an error and an object. 
+ */
 articleSchema.statics.keywordCount = function(callback) {
-    this.aggregate([
-        {
-            $unwind: '$keywords'
-        },
-        {
-            $group: {_id:'$keywords', count:{$sum:1}} 
-        },
-        {
-            $match: {count:{$gt:20}}
-        },
-        {
-            $sort: {count:-1}
-        },
-        {
-            $limit: 50
-        }
-        ], callback);
+    this.aggregate()
+    .unwind('keywords')
+    .group({_id:'$keywords', count:{$sum:1}})
+    .match({count:{$gt:20}})
+    .sort({count:-1})
+    .limit(50)
+    .exec(callback);
 };
 
 
