@@ -28,5 +28,10 @@
   },
   "bugs": {
     "url": "https://github.com/gt-big-data/retina-ui/issues"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.5",
+    "should": "~7.0.1",
+    "supertest": "~1.0.1"
   }
 }
