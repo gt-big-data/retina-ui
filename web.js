@@ -62,5 +62,11 @@ app.get('/users/auth/google', passport.authenticate('google'));
 app.get('/users/auth/google/callback', 
     passport.authenticate('google', { successRedirect: '/feed',
                                       failureRedirect: '/login' }));
+var app = require('./web.js');
+var server = app.listen(5000, function() {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('Listening at http://%s:%s', host, port);
+});
 
 module.exports = app;
