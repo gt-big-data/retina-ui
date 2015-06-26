@@ -29,6 +29,7 @@ var userSchema = mongoose.Schema({
 userSchema.statics.getUserInfo = function(userId, callback) {
     this.findOne({})
     .where('_id').equals(userId)
+    // dont include the object id or the facebook idea in the response
     .select('-_id -uid')
     .exec(callback);
 };
