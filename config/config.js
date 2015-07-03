@@ -9,11 +9,13 @@ function config() {
     dev.db = function(name) {
         return 'mongodb://146.148.59.202:27017/' + name;
     };
+
     dev.facebook = {
         clientID: 566737753454309,
         clientSecret: "eba56ecd3a902b791cb8ba258f72a501",
         callbackURL: "http://localhost:5000/users"
     };
+
     dev.google = {
         clientID: null,
         clientSecret: null,
@@ -30,7 +32,7 @@ function config() {
     prod.facebook = {
         clientID: 545078782286873,
         clientSecret: "c8a9f573cd188ef8f55842bcda995614",
-        callbackURL: "http://retinanews.net/users/",
+        callbackURL: "http://retinanews.net/users",
     };
     prod.google = {
         clientID: null,

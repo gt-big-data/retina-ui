@@ -38,13 +38,6 @@ exports.getArticlesByKeyword = function(req, res) {
 
 exports.getArticlesBySource = function(req, res) {
     var source = req.params.source;
-    articles.getArticlesBySource(function(err, docs) {
-        res.json(docs);
-    });
-};
-
-
-exports.getArticlesBySource = function(req, res) {
     articles.getBySource(source, function(err, docs) {
         res.json(docs);
     });

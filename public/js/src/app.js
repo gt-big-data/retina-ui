@@ -1,6 +1,6 @@
+'use strict';
 var retina = angular.module('retina', ['ui.router']);
-
-retina.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+retina.config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('home');
 
@@ -27,7 +27,7 @@ retina.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 		controller: 'FeedController as feed',
 		resolve: {
 			ArticleServiceData : function(ArticleService) {
-				return ArticleService.promise
+				return ArticleService.promise;
 			}
 		}
 	})
@@ -42,6 +42,4 @@ retina.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 			}]
 		}
 	});
-
-	// $locationProvider.html5Mode(true);
 });
