@@ -1,34 +1,8 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-9">
-      <div class="row">
-        <extended-card> </extended-card>
-      </div>
-      <div class="col-md-4">
-        <card></card>
-      </div>
-      <div class="col-md-4">
-        <card></card>
-      </div>
-      <div class="col-md-4">
-        <card></card>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <simple-list articles="articles" title="Latest" navigate="navigate(id)"></simple-list>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="text-center">
-        <a href="#" class="btn btn-success btn-lg btn-block">More</a>
-      </div>
-      
-    </div>
-  </div>
-
+<div class="">
+<!-- 	<p>feed</p>
+	<p>{{feed.articles.length}}</p> -->
+	<article-grid articles='feed.articles'></article-grid>
+	<div class="col-md-2 col-md-offset-5">
+		<a ng-click="feed.moreArticles()" class="btn disabled btn-default btn-block">view more</a>
+	</div>
 </div>
-<nav class="navbar navbar-default footer">
-  <div class="container">
-  </div>
-</nav>

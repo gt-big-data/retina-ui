@@ -90,8 +90,26 @@
 }
 
 .navbar-inverse {
-	background-color: transparent;;
+	background-color: transparent;
 	border: none;
+}
+
+.grid-sizer {
+
+}
+
+.grid-item {
+	width: 30%;
+	float: left;
+	margin: 1px 1px 1px 1px;
+}
+
+.grid-item-with-pic {
+
+}
+
+.grid-item-no-pic {
+
 }
 
 @media (min-width: 768px) {

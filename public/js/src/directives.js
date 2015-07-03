@@ -1,105 +1,76 @@
 var retina = angular.module('retina');
 
-retina.directive('simpleList', ['ArticleService', SimpleList]);
-retina.directive('mediaList', ['ArticleService', MediaList]);
-retina.directive('card', ['$state','ArticleService', Card]);
-retina.directive('extendedCard', ['$state', 'ArticleService', ExtendedCard]);
+retina.directive('articleGrid', [ArticleGrid]);
+retina.directive('articleCard', [ArticleCard]);
 
-function SimpleList(ArticleService) {
+function ArticleGrid() {
 
     var directive = {
         scope: {
-            articles: '=',
-            title: '=',
-            navigate: '&'
+            articles: '='
         },
         restrict: 'AE',
         replace: true,
-        templateUrl: 'templates/simple-list.html',
+        templateUrl: 'templates/article-grid.html',
     };
 
-    directive.controller = function($scope, ArticleService) {
+    directive.controller = function($scope) {
+
     };
 
-    directive.link = function($scope, $elem, $attrs) {
+    directive.link = function($scope, $element, $attrs) {
 
     };
 
     return directive;
 }
 
-
-function MediaList(ArticleService) {
+function ArticleCard() {
 
     var directive = {
         scope: {
-            articles: '=',
-            title: '='
+            article:'='
         },
         restrict: 'AE',
         replace: true,
-        templateUrl: 'templates/media-list.html',
+        templateUrl: 'templates/article-card.html',
     };
 
-    directive.controller = function($scope, ArticleService) {
-       
-    };
+    directive.controller = function($scope) {};
+
+    directive.link = function($scope, $element, $attrs) {
+        var article = $scope.article;
+        var panel = angular.element('<div>').addClass(randomColor());
+        var heading = angular.element('<div>').addClass('panel-heading');
+        var htag = article.img ? '<h4>': '<h1>';
+        console.log(htag);
+        var title = angular.element(htag).addClass('panel-title')
+                    .text(article.title);
+        heading.append(title);
+        panel.append(heading);
+        $element.append(panel);
+        /*
+            Dom should look like this:
+            <div class="panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{$scope.article.title}}</h3>
+                </div>
+            </div>
+         */
         
-    directive.link = function($scope, $elem, $attrs) {
+        var image = angular.element('<div>')
 
     };
+
+    function randomColor() {
+        var colors = ['panel-primary', 'panel-success', 'panel-warning', 
+                        'panel-danger', 'panel-info'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
 
     return directive;
 }
 
-function Card() {
-    var directive = {
-        scope: {},
-        restrict: 'AE',
-        replace: true,
-        templateUrl: 'templates/card.html',
-    };
 
-    directive.controller = function($scope, ArticleService, NavigationService) {
-        var articleService = ArticleService;
-        $scope.article = [];
-        articleService.request(function(articles) {
-            $scope.article = articles.pop();
-        });
 
-        $scope.navigate = function(id) {
-           NavigationService.toArticle(id);
-        };
-       
-    };
-
-    directive.link = function($scope, $elem, $attrs) {
-
-    };
-
-    return directive;
-}
-
-function ExtendedCard() {
-    var directive = {
-        scope: {},
-        restrict: 'AE',
-        replace: true,
-        templateUrl: 'templates/extended-card.html',
-    };
-
-    directive.controller = function($scope, $state, ArticleService) {
-        var articleService = ArticleService;
-        $scope.article = [];
-        articleService.request(function(articles) {
-            $scope.article = articles.pop();
-        });
-       
-    };
-
-    directive.link = function($scope, $elem, $attrs) {
-
-    };
-
-    return directive;
-}

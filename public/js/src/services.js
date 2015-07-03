@@ -1,3 +1,4 @@
+'use strict';
 var retina = angular.module('retina');
 
 retina.service('AuthService', AuthService);
@@ -38,30 +39,14 @@ function AuthService($http) {
 ArticleService.$inject = ['$http'];
 function ArticleService($http) {
     var service = {};
-    var articles = [];
-    var page = 1;
 
-    function latest() {
-        return  $http.get('/api/articles/latest/' + page)
-        .success(function(data, status) {
-            articles = data;
-        });
-    }
+    service.latest = function latest(page) {
+        return $http.get('/api/articles/latest/' + page);
+    };
     
-    service.promise = latest();
-
-    service.request = function(callback) {
-        service.promise.then(callback(articles));
-        console.log(articles.length);
-    };
-
-    service.getArticle = function(id) {
-        return $http.get('/api/articles/id/'+ id);
-    };
-
     service.getByCategory = function(category) {
         return $http.get('/api/articles/category/' + category);
-    }
+    };
 
     return service;
 }
