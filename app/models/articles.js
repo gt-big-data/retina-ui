@@ -18,7 +18,7 @@ articleSchema.statics.latest = function(page, callback) {
     this.find({})
     .limit(20)
     .skip((page - 1) * 20)
-    .sort('-recent_download_date')
+    .sort('-download_time')
     // Exclude the actual text of the article, reduces the amount of data thats
     // being sent back to the client.
     .select('-text')
@@ -37,7 +37,7 @@ articleSchema.statics.getByCategory = function(category, callback) {
     this.find({})
     .where('category').equals(category)
     .limit(5)
-    .sort('-recent_download_date')
+    .sort('-download_time')
     .select('-text')
     .exec(callback);
 };
@@ -54,7 +54,7 @@ articleSchema.statics.getByKeyword = function(keyword, callback) {
     this.find({})
     .where('keyword').equals(keyword)
     .limit(5)
-    .sort('-recent_download_date')
+    .sort('-download_time')
     .select('-text')
     .exec(callback);
 };
@@ -70,7 +70,7 @@ articleSchema.statics.getBySource = function(source, callback) {
     this.find({})
     .where('source').equals(source)  
     .where('v').equals(config.version)
-    .sort('-recent_download_date')
+    .sort('-download_time')
     .select('-text')
     .exec(callback);  
 };

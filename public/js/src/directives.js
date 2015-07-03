@@ -42,23 +42,18 @@ function ArticleCard() {
         var article = $scope.article;
         var panel = angular.element('<div>').addClass(randomColor());
         var heading = angular.element('<div>').addClass('panel-heading');
-        var htag = article.img ? '<h4>': '<h1>';
-        console.log(htag);
-        var title = angular.element(htag).addClass('panel-title')
-                    .text(article.title);
+        var htag = '<h3>';
+        var title = angular.element(htag).text(article.title);
         heading.append(title);
+        
+        var url = article.img;
+        // if (url) {
+        //     var thumbnail = angular.element('<div>').addClass('card-img');
+        //     thumbnail.css('background-image', 'url(' + url +')');
+        //     $element.append(thumbnail);
+        // }
         panel.append(heading);
         $element.append(panel);
-        /*
-            Dom should look like this:
-            <div class="panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"> {{$scope.article.title}}</h3>
-                </div>
-            </div>
-         */
-        
-        var image = angular.element('<div>')
 
     };
 

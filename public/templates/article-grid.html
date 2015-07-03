@@ -1,9 +1,7 @@
 <div class="container grid js-masonry"  data-masonry-options='{ "itemSelector": ".grid-item", columnWidth: ".grid-sizer",
   percentPosition: true}'>
-	<!-- width of .grid-sizer used for columnWidth -->
-	<div class="grid-sizer"></div>
-	<div ng-repeat="article in articles">
-		<article-card article='article'></article-card>
-	</div>
-
+		<div class="grid-sizer"></div>
+		<div ng-repeat="article in articles">
+			<article-card article='article'></article-card>
+		</div>
 </div>
