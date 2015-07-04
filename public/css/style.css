@@ -11,15 +11,10 @@ body {
 .main-background-img {
 	background-image: url('../images/explore.jpg');
 	background-size: cover;
-	
 }
 
 .jumbotron h2 {
 	color: white;
-}
-
-.panel-heading {
-	border-radius: 0px;
 }
 
 .card-img {
@@ -28,7 +23,7 @@ body {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
-  min-height: 160px;
+  min-height: 200px;
 }
 
 .extended-card-img {
@@ -43,6 +38,7 @@ body {
 .extended-card {
 	border: 1px solid black;
 }
+
 
 .panel-img {
   position: relative;
@@ -97,19 +93,90 @@ body {
 	border: none;
 }
 
+.panel-category {
+	color: white;
+}
 .grid-sizer {
 
 }
 
 .grid-item {
-	max-width: 30%;
+	max-width: 18%;
 	float: left;
-	display: inline-block;
-	margin: 5px;
+	margin: 2px;
 }
 
+.politics-color {
+	background-color: #F39C12;
+	border-color: #F39C12;
+}
 
-@media (max-width: 768px) {
+.movies-color {
+	background-color: #18BC9C;
+	border-color: #18BC9C;
+}
+
+.opinion-color {
+	background-color: #3498DB;
+	border-color: #3498DB;
+}
+
+.arts-color {
+	background-color: #E74C3C;
+	border-color: #E74C3C;
+}
+
+.theater-color {
+	background-color: #8e44ad;
+	border-color: #8e44ad;
+}
+
+.sports-color {
+	background-color: #757D75;
+	border-color: #757D75;
+}
+
+.travel-color {
+	background-color: #003171;
+	border-color: #003171;
+}
+
+.justice-color {
+	background-color: #763568;
+	border-color: #763568;
+}
+
+.business-color {
+	background-color: #A17917;
+	border-color: #A17917;
+}
+
+.world-color {
+	background-color: #7A942E;
+	border-color: #7A942E;
+}
+
+.health-color {
+	background-color: #F58F84;
+	border-color: #F58F84;
+}
+
+.science-color {
+	background-color: #F62459;
+	border-color: #F62459;
+}
+
+.us-color {
+	background-color: #22A7F0;
+	border-color: #22A7F0;
+}
+
+.technology-color {
+	background-color: #87D37C;
+	border-color: #87D37C;
+}
+
+@media (min-width: 768px) {
 	.brand-name {
 		font-size: 36px;
 	}
@@ -122,38 +189,5 @@ body {
 	.jumbotron-copy {
 		margin-top: 150px;
 	}
-	.grid-item {
-		width: 100%;
-		float: left;
-		margin: 1px 1px 1px 1px;
-	}
-
-	.card-img {
-	  display: block;
-	  position: relative;
-	  background-repeat: no-repeat;
-	  background-position: top center;
-	  background-size: cover;
-	  min-height: 200px;
-	}
-
-	.container-fluid {
-		margin: 0px;
-		padding: 0px;
-	}
-
-	.container {
-		margin: 0px;
-		padding: 0px;
-	}
-}
-
-@media (min-width: 900px) {
-	.main-background-img {
-		height: 800px;
-		background-size: cover cover;
-		background-repeat: no-repeat;
-	}
-
 }
 

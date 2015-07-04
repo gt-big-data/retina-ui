@@ -40,29 +40,8 @@ function ArticleCard() {
 
     directive.link = function($scope, $element, $attrs) {
         var article = $scope.article;
-        var panel = angular.element('<div>').addClass(randomColor());
-        var heading = angular.element('<div>').addClass('panel-heading');
-        var htag = '<h3>';
-        var title = angular.element(htag).text(article.title);
-        heading.append(title);
-        
-        var url = article.img;
-        // if (url) {
-        //     var thumbnail = angular.element('<div>').addClass('card-img');
-        //     thumbnail.css('background-image', 'url(' + url +')');
-        //     $element.append(thumbnail);
-        // }
-        panel.append(heading);
-        $element.append(panel);
-
+        $element.addClass(article.category.toLowerCase() + '-color');        
     };
-
-    function randomColor() {
-        var colors = ['panel-primary', 'panel-success', 'panel-warning', 
-                        'panel-danger', 'panel-info'];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
 
     return directive;
 }
