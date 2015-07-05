@@ -4,15 +4,13 @@ retina.controller('FeedController', FeedController);
 
 FeedController.inject = ['ArticleService'];
 function FeedController(ArticleService, articles) {
-    // console.log(articles);
     this.page = 1;
     this.articles = articles.data;
 
     this.moreArticles = function() {
         this.page++;
-        ArticleService.latest(this.page)
-            .success(function(newArticles) {
+        ArticleService.latest(this.page).success(function(newArticles) {
                 this.articles = this.articles.concat(newArticles.data);
-            }.bind(this));
+        }.bind(this));
     };
 }

@@ -40,7 +40,11 @@ function ArticleCard() {
 
     directive.link = function($scope, $element, $attrs) {
         var article = $scope.article;
-        $element.addClass(article.category.toLowerCase() + '-color');        
+        $element.addClass(article.category.toLowerCase() + '-color');
+
+        $element.on('mouseover', function() {
+            // $element.children('span').removeClass('hide');
+        });
     };
 
     return directive;

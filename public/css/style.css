@@ -99,11 +99,15 @@ body {
 .grid-sizer {
 
 }
+.hidden {
+	color: red;
+}
 
 .grid-item {
 	max-width: 18%;
 	float: left;
 	margin: 2px;
+	min-height: 170px;
 }
 
 .politics-color {
