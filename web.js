@@ -37,6 +37,7 @@ app.get('/api/articles/data/categories', routes.categoryCount);
 app.get('/api/topics', routes.getTopics);
 app.get('/api/topics/filter', routes.filterTopics);
 app.get('/api/sourceCounts', routes.sourceCounts);
+app.get('/api/topicCount', routes.topicCount);
 app.get('/users/user', user.getUserInfo);
 app.post('/users/preferences/record', user.recordView);
 app.post('/users/preferences/update/categories', user.updateCategories);

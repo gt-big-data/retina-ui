@@ -6,8 +6,10 @@ var articleSchema = require('./models/articles.js').articleSchema;
 var articles = db.model('cleanarticles', articleSchema);
 var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
+
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
+
 var qdocSchema = require('./models/qdoc');
 var qdoc = db.model('qdoc', qdocSchema);
 
@@ -109,20 +111,17 @@ exports.getCluster = function(req, res) {
     });
 };
 
-
 exports.getClusterNames = function(req, res) {
     clusters.getClusterNames(function(err, docs) {
         res.json(docs);
     });
 };
 
-
 exports.getTopics = function(req, res) {
     topics.getTopics(function(err, docs) {
         res.json(docs);
     });
 };
-
 
 exports.filterTopics = function(req, res) {
     console.log(req.param('day'));
@@ -132,25 +131,23 @@ exports.filterTopics = function(req, res) {
     });
 };
 
-
 exports.getSimilar = function(req, res) {
     articles.getSimilar(req.params.keyword, function(err, docs) {
         res.json(docs);
     });
 };
 
-
 exports.sourceCounts = function(req, res) {
-    var time = Math.floor(new Date().getTime() / 1000);
-    var days = 30;
-    var oldTime = time - days*86400;
-    var counts = {};
-    var initialCount = [];
-    for(var u = 0; u < days; u ++) initialCount[u] = 0;
     qdoc.sourceCounts(function(err, data) {
         res.json(data);
     });
 };
 
+exports.topicCount = function(req, res) {
+    var topic = new Date(req.param('topic'));
+    qdoc.loadTopic(topic, function(err, docs) {
+        res.json(docs);
+    });
+};
 
 return exports;
