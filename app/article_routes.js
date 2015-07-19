@@ -144,8 +144,9 @@ exports.sourceCounts = function(req, res) {
 };
 
 exports.topicCount = function(req, res) {
-    var topic = new Date(req.param('topic'));
-    qdoc.loadTopic(topic, function(err, docs) {
+
+    var topic = parseInt(req.param('topic'));
+    qdoc.topicCount(topic, function(err, docs) {
         res.json(docs);
     });
 };
