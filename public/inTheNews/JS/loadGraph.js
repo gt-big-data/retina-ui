@@ -105,33 +105,33 @@ function loadTimeline() {
 function removeKeywords() {
 	$('.keyword').remove();
 }
-// function reloadGraph() {
-// 	niceDate(currentDate);
-// 	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
-// 	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
-// 		if(data[0]) {
-// 			allGraphData = data[0].graph;
-// 			reloadWithSource();
-// 		}
-// 	}).fail(function(jqXHR, textStatus, errorThrown) {
-// 		document.title=errorThrown;
-// 		graphData = {nodes: [], edges: []};
-// 		graph.mergeData(graphData, bla);
-// 	});
-// }
 function reloadGraph() {
-	niceDate(currentDate);
+ 	niceDate(currentDate);
+ 	$.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
+ 	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
+ 		if(data[0]) {
+ 			allGraphData = data[0].graph;
+ 			reloadWithSource();
+ 		}
+ 	}).fail(function(jqXHR, textStatus, errorThrown) {
+ 		document.title=errorThrown;
+ 		graphData = {nodes: [], edges: []};
+ 		graph.mergeData(graphData, bla);
+ 	});
+ }
+//function reloadGraph() {
+//	niceDate(currentDate);
 	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
 	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
-	$.getJSON("json/test.json", function( data ) {
-		allGraphData = data;
-		reloadWithSource();
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-		document.title=errorThrown;
-		graphData = {nodes: [], edges: []};
-		graph.mergeData(graphData, bla);
-	});
-}
+//	$.getJSON("json/test.json", function( data ) {
+//		allGraphData = data;
+//		reloadWithSource();
+//	}).fail(function(jqXHR, textStatus, errorThrown) {
+//		document.title=errorThrown;
+//		graphData = {nodes: [], edges: []};
+//		graph.mergeData(graphData, bla);
+//	});
+//}
 function bla() {}
 function placeKeywords() {
 	noKeywords = false;
