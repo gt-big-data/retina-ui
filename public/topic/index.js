@@ -5,7 +5,7 @@ $(document).ready(function() {
 	topic = 1;
 	location.search.substr(1).split("&").forEach(function (item) {
 		tmp = item.split("=");
-		if (tmp[0] == 'topic') topic = parseInt(tpm[1]);
+		if (tmp[0] == 'topic') topic = parseInt(tmp[1]);
 	});
 	$.getJSON("/api/topicCount?topic="+topic, function( data ) {
 	// $.getJSON("data.json", function( data ) {
