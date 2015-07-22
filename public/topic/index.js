@@ -1,46 +1,72 @@
 counts = [];
-var parseDate = d3.time.format("%Y%m%d").parse;
-$.getJSON("/api/sourceCounts/", function( data ) {
-// $.getJSON("data.json", function( data ) {
+var intervalSize = 3*3600;
+// $.getJSON("/api/sourceCounts/", function( data ) {
+$(document).ready(function() {
+	topic = 1;
+	location.search.substr(1).split("&").forEach(function (item) {
+		tmp = item.split("=");
+		if (tmp[0] == 'topic') topic = parseInt(tpm[1]);
+	});
+	$.getJSON("/api/topicCount?topic="+topic, function( data ) {
+	// $.getJSON("data.json", function( data ) {
+		loadGraph(data);
+	});
+});
+function loadGraph(data) {
 	var time = Math.floor(new Date().getTime()/1000);
     days = 30;
     dayArray = [];
+    keywordCount = {};
     for(u = 0; u < days; u ++) {
 		var date = new Date((time-86400*u)*1000);
     	dayArray[u] = date;
     }
+    var minTime = data[0]['timestamp'], maxTime = data[0]['timestamp'];
+	obj = {name: 'Test', values: []};
 	for(i in data) {
 		art = data[i];
-		day = Math.floor((time-art['timestamp'])/86400);
-		dayFormat = buildDate(art['timestamp']);
-		var uu = -1;
-		for(test in counts) {
-			if(counts[test].name == art['source']) {uu = test; break;}
+		minTime = Math.min(art['timestamp'], minTime);
+		maxTime = Math.max(art['timestamp'], maxTime);
+		for(k in art['keywords']) {
+			if(keywordCount[art['keywords'][k]]) keywordCount[art['keywords'][k]] ++;
+			else keywordCount[art['keywords'][k]] = 1;
 		}
-		if(uu == -1) {
-			uu = counts.length;
-			obj = {};
-			obj.name = art['source'];
-			obj.values = [];
-		    for(u = 0; u < days; u ++) {
-		    	oneDay = buildDate((time-86400*u));
-		    	obj.values.push({articles: 0, date: oneDay});
-		    }
-			counts.push(obj);
-		}
-		for(oo in counts[uu].values) {
-			if(toStr(counts[uu].values[oo].date) === toStr(dayFormat)) {
-				counts[uu].values[oo].articles ++; break;
+	}
+	intervalSize = Math.max(3600, Math.floor((maxTime-minTime)/100));
+	sortedWords = getSortedKeys(keywordCount);
+	$('#bigName').html(fLetter(sortedWords[0])+' ~ '+fLetter(sortedWords[1])+' ~ '+fLetter(sortedWords[2]));
+	obj.name = fLetter(sortedWords[0]);
+
+	hourSpan = Math.ceil((maxTime-minTime)/intervalSize);
+	for(var i = hourSpan; i >= 0; i --) {
+		obj.values.push({articles: 0, date: buildDate(minTime+intervalSize*i)});
+	}
+
+	for(i in data) {
+		for(h in obj.values) {
+			console.log(obj.values[h]);
+			if(toID(buildDate(data[i]['timestamp'])) === toID(obj.values[h].date)) {
+				obj.values[h].articles ++; break;
 			}
 		}
 	}
-	plotGraph(counts);
-});
-function buildDate(timestamp) {
-	date = new Date(timestamp*1000);
-	l = date.getFullYear()+''+((date.getMonth()<10)?'0':'')+date.getMonth()+''+((date.getDate()<10)?'0':'')+date.getDate();
-	return parseDate(l);
+	sortedDatesByArticleNb = getSortedKeys2(obj.values);
+	plotGraph([obj], obj.values[sortedDatesByArticleNb[0]].articles);
 }
-function toStr(date) {
-	return date.getFullYear()+''+((date.getMonth()<10)?'0':'')+date.getMonth()+''+((date.getDate()<10)?'0':'')+date.getDate();
+function buildDate(timestamp) {
+	return new Date(timestamp*1000);
+}
+function fLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function toID(date) {
+	return Math.floor(date.getTime()/(1000*intervalSize));
+}
+function getSortedKeys(obj) {
+	var keys = []; for(var key in obj) keys.push(key);
+	return keys.sort(function(a,b){return obj[b]-obj[a]});
+}
+function getSortedKeys2(obj) {
+	var keys = []; for(var key in obj) keys.push(key);
+	return keys.sort(function(a,b){return obj[b].articles-obj[a].articles});
 }

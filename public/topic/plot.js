@@ -1,10 +1,10 @@
 var margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = $(document).width() - 30 - margin.left - margin.right,
+    height = $(document).height() - 70 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%Y%m%d").parse;
 
-function plotGraph(counts) {
+function plotGraph(counts, maxVal) {
   var x = d3.time.scale().range([0, width]);
   var y = d3.scale.linear().range([height, 0]);
 
@@ -23,7 +23,7 @@ function plotGraph(counts) {
   var firstSource = counts[0].values;
   x.domain([firstSource[firstSource.length-1].date, firstSource[0].date]);
 
-  y.domain([0,400]);
+  y.domain([0,Math.ceil(1.1*maxVal)]);
 
   svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 

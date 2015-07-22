@@ -1,26 +1,38 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300);
 body {
-  font: 10px sans-serif;
+	font: 10px "Open Sans", sans-serif;
+	padding: 0px;
+	margin: 0px;
 }
 
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
 
 .x.axis path {
-  display: none;
 }
 
 .line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 1.5px;
 }
 .labels {
 	font-size: 15px;
 	font-weight: bold;
 	stroke: #404040;
 	stroke-width: 0.5px;
+}
+#bigName {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	font-size: 30px;
+	padding-top: 30px;
+	font-weight: 800;
+	text-shadow: 1px 1px 0px steelblue, -1px 1px 0px steelblue, 1px -1px 0px steelblue, -1px -1px 0px steelblue;
+	color: white;
 }

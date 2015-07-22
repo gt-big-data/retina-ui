@@ -1,6 +1,6 @@
 counts = [];
 var parseDate = d3.time.format("%Y%m%d").parse;
-$.getJSON("/api/sourceCounts/", function( data ) {
+$.getJSON("/api/topicCount?topic="+, function( data ) {
 // $.getJSON("data.json", function( data ) {
 	var time = Math.floor(new Date().getTime()/1000);
     days = 30;
