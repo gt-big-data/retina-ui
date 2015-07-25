@@ -14,3 +14,19 @@ function FeedController(ArticleService, articles) {
         }.bind(this));
     };
 }
+
+function MainSplash() {
+    this.scroll = 0;
+    this.scrollParent = 0;
+    this.inverseScrollPercent = 100;
+
+    $window.onscroll = function() {
+        $scope.scroll = $(window).scrollTop();
+        if ($scope.scroll > ($(window).height() / 2)) {
+            this.scrollPercent = 100;
+        } else {
+            this.scrollPercent = (2 * $scope.scroll / $(window).height()) * 100;
+        }
+        this.inverseScrollPercent = 100 - this.scrollPercent;
+    }
+}

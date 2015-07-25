@@ -2,6 +2,7 @@ var retina = angular.module('retina');
 
 retina.directive('articleGrid', [ArticleGrid]);
 retina.directive('articleCard', [ArticleCard]);
+retina.directive('scrollToId', [ScrollToId]);
 
 function ArticleGrid() {
 
@@ -50,5 +51,15 @@ function ArticleCard() {
     return directive;
 }
 
-
-
+function ScrollToId() {
+    return {
+      scope: {
+        scrollTo: "@"
+      },
+      link: function($scope, $elm, $attr) {
+        $elm.on('click', function() {
+          $('html,body').animate({scrollTop: $($scope.scrollTo).offset().top - 70}, "slow");
+        });
+      }
+    }
+}
