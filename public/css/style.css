@@ -36,18 +36,24 @@ body {
 }
 
 .nav-mobile-button {
-	width: 10px;
-	height: 10px;
+	width: 25px;
+	height: 24px;
 	display: none;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-
 }
 
 @media (max-width: 600px) {
 	.nav-mobile-button {
 		display: block;
 	}
+}
+
+.nav-mobile-button-bar {
+	width: 25px;
+	height: 4px;
+	float: left;
+	margin: 2px 0 2px;
+	border-radius: 2px;
+	background-color: black;
 }
 
 .nav a {
@@ -73,6 +79,20 @@ body {
 @media (max-width: 600px) {
 	.nav-right {
 		display: none;
+		background-color: white;
+		width: 100vw;
+		height: auto;
+		position: absolute;
+		left: 40px;
+		margin-top: 70px;
+		        transition: visibility .5s;
+		-webkit-transition: visibility .5s;
+	}
+	.nav-right a {
+		display: block;
+		text-align: center;
+		margin: 30px 10px 30px;
+		font-size: 25px;
 	}
 }
 
