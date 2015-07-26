@@ -15,7 +15,9 @@
 	</button>
 </div>
 
-<div class="main-splash-background" ng-controller="MainSplash" ng-style="{'filter': 'grayscale('+inverseScrollPercent+'%)'}">
+<div class="main-splash-background">
+	<div class="main-splash-background-inner">
+	</div>
 </div>
 <div class="main-splash">
 	<div class="main-splash-content">
@@ -24,10 +26,43 @@
 		<button onclick="$('html,body').animate({scrollTop: $('#learn-more').offset().top - 70}, 'slow')" class="btn btn-primary btn-lg">LEARN MORE</button>
 	</div>
 </div>
-<div class="main-info" id="learn-more">
-	<div class="container">
-		<h2 class="text-center">About Retina</h2>
-		<h4 class="text-center">Retina is a news aggregator that surfaces new content based on what you've looked at in the past.</h4>
+<div class="main-lower-wrapper">
+	<div class="main-lower">
+		<div class="main-info" id="learn-more">
+			<div class="section">
+				<h2 class="text-center">About Retina</h2>
+				<h4 class="text-center">Retina is a news aggregator that surfaces new content based on what you've looked at in the past.</h4>
+			</div>
+			<div class="section">
+				<button class="btn btn-primary btn-lg">GET STARTED</button>
+			</div>
+		</div>
+		<div class="section">
+			<div class="news-card-feed">
+				<ul class="news-cards">
+					<li><a><img src="http://lorempixel.com/300/300/nature/1"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/2"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/3"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/4"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/5"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/6"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/7"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/8"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/9"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/10"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/1"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/2"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/3"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/4"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/5"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/6"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/7"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/8"></img></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<p><a href="http://bdc.gatech.edu/">GT Big Data</a> - 2015</p>
+		</div>
 	</div>
-	<button class="btn btn-primary btn-lg">GET STARTED</button>
 </div>
