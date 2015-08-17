@@ -16,6 +16,7 @@
 
 ##Alternative node installer for OSX
 Using Homebrew (a package manager for OSX) will allow you to easily manage (update, remove) packages you install
+
 1. Install Homebrew from http://brew.sh/
 2. run `brew install node`
 
