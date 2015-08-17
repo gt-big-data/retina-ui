@@ -1,39 +1,67 @@
-<div class="container-fluid">
-	<div class="row">
-	<div class="jumbotron no-bottom-margin main-background-img">
-	<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header no-curve">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand brand-name" href="#">Retina</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="login">Login</a></li>
-        <li><a ui-sref="register">Register</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<!--  --><div class="jumbotron-copy"></div>
-		<h2 class="text-center text-primary"> the news </h2>
-		<h2 class="text-center text-primary"> for you,  by you</h2>
-		<div class="text-center">
-			<a href="#" class="btn btn-primary btn-lg">Learn More</a>
-		</div>
-		</div>
-		<!--  -->
-</div>
-<div class="row">
-	<div class="jumbotron">
-		<h2 class="text-center"> About </h2>
-		<p class="text-center"> Retina is a news aggregator that surfaces new content based on what you've looked at in the past.</p>
+<!-- Fixed navbar -->
+<div class="nav">
+	<div class="nav-section nav-left pull-left">
+		<a href="#">RETINA</a>
+	</div>
+	<div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
+		<span class="nav-mobile-button-bar"></span>
+		<span class="nav-mobile-button-bar"></span>
+		<span class="nav-mobile-button-bar"></span>
+	</div>
+	<div class="nav-section nav-right pull-right">
+		<a ui-sref="login">LOGIN</a>
+		<a ui-sref="register">REGISTER</a>
 	</div>
 </div>
+
+<div class="main-splash-background">
+	<div class="main-splash-background-inner">
+	</div>
+</div>
+<div class="main-splash">
+	<div class="main-splash-content">
+		<h1 class="text-center text-primary">THE NEWS</h1>
+		<h1 class="text-center text-primary">FOR YOU, BY YOU</h1>
+		<button onclick="$('html,body').animate({scrollTop: $('#learn-more').offset().top - 70}, 'slow')" class="btn btn-primary btn-lg">LEARN MORE</button>
+	</div>
+</div>
+<div class="main-lower-wrapper">
+	<div class="main-lower">
+		<div class="main-info" id="learn-more">
+			<div class="section">
+				<h2 class="text-center">About Retina</h2>
+				<h4 class="text-center">Retina is a news aggregator that surfaces new content based on what you've looked at in the past.</h4>
+			</div>
+			<div class="section">
+				<button class="btn btn-primary btn-lg">GET STARTED</button>
+			</div>
+		</div>
+		<div class="section">
+			<div class="news-card-feed">
+				<ul class="news-cards">
+					<li><a><img src="http://lorempixel.com/300/300/nature/1"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/2"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/3"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/4"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/5"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/6"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/7"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/8"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/9"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/nature/10"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/1"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/2"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/3"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/4"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/5"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/6"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/7"></img></a></li>
+					<li><a><img src="http://lorempixel.com/300/300/animals/8"></img></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<p><a href="http://bdc.gatech.edu/">GT Big Data</a> - 2015</p>
+		</div>
+	</div>
 </div>
