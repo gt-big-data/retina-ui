@@ -17,7 +17,18 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('main', {
 		url: '/main',
-		templateUrl: '../../views/main.html'	
+		templateUrl: '../../views/main.html'
+	})
+	.state('feed', {
+		url: '/feed',
+		templateUrl: '../../views/feed.html',
+		controller: 'FeedController',
+		controllerAs: 'feed',
+		resolve: {
+			articles: function(ArticleService) {
+				return ArticleService.latest(1);
+			}
+		}
 	})
 	.state('main.newsfeed', {
 		url:'/newsfeed',

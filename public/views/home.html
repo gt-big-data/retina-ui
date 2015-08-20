@@ -1,18 +1,4 @@
-<!-- Fixed navbar -->
-<div class="nav">
-	<div class="nav-section nav-left pull-left">
-		<a href="#">RETINA</a>
-	</div>
-	<div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
-		<span class="nav-mobile-button-bar"></span>
-		<span class="nav-mobile-button-bar"></span>
-		<span class="nav-mobile-button-bar"></span>
-	</div>
-	<div class="nav-section nav-right pull-right">
-		<a ui-sref="login">LOGIN</a>
-		<a ui-sref="register">REGISTER</a>
-	</div>
-</div>
+
 
 <div class="main-splash-background">
 	<div class="main-splash-background-inner">
@@ -33,7 +19,7 @@
 				<h4 class="text-center">Retina is a news aggregator that surfaces new content based on what you've looked at in the past.</h4>
 			</div>
 			<div class="section">
-				<button class="btn btn-primary btn-lg">GET STARTED</button>
+				<button ui-sref="feed" class="btn btn-primary btn-lg">GET STARTED</button>
 			</div>
 		</div>
 		<div class="section">
