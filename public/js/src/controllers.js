@@ -1,11 +1,13 @@
 'use strict';
 var retina = angular.module('retina');
+
 retina.controller('FeedController', FeedController);
+retina.controller('ArticleController', ArticleController);
 
 FeedController.inject = ['ArticleService'];
 function FeedController(ArticleService, articles) {
     this.page = 1;
-    this.articles = articles.data;
+    this.articles = articles;
 
     this.moreArticles = function() {
         this.page++;
@@ -13,4 +15,9 @@ function FeedController(ArticleService, articles) {
                 this.articles = this.articles.concat(newArticles.data);
         }.bind(this));
     };
+}
+
+
+function ArticleController(article) {
+    this.vm = article;
 }

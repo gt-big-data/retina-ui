@@ -1,10 +1,10 @@
-<div class="">
-<article-grid articles='feed.articles'></article-grid>
-<div class="page-header">
-</div>
-<div class="row">
-	<div class="col-md-2 col-md-offset-5">
-		<a ng-click="feed.moreArticles()" class="btn btn-default btn-block">view more</a>
-	</div>
-</div>
+<div>
+    <p>feed</p>
+    <li>
+        <ul ng-repeat="article in feed.articles">
+            <li>
+                <a ui-sref="main.article({id: article._id})">{{article.title}}</a>
+            </li>
+        </ul>
+    </li>
 </div>

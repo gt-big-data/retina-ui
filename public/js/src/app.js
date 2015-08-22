@@ -15,31 +15,35 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 		url: '/register',
 		templateUrl: '../../views/register.html'
 	})
-	.state('main', {
-		url: '/main',
-		templateUrl: '../../views/main.html'	
-	})
-	.state('main.newsfeed', {
-		url:'/newsfeed',
-		templateUrl: '../../views/newsfeed.html',
-	})
-    .state('main.newsfeed.feed', {
+    .state('main', {
+        url: '/main',
+        templateUrl: '../../views/main.html'
+    })
+    .state('main.feed', {
         url:'/feed',
         templateUrl: '../../views/feed.html',
         controller: 'FeedController',
         controllerAs: 'feed',
         resolve: {
             articles: function(ArticleService) {
-                return ArticleService.latest(1);
+                return ArticleService.latest(1).then(function(response) {
+                    return response.data;
+                });
             }
         }
     })
-    .state('main.newsfeed.categories', {
-        url:'/categories',
-        templateUrl: '../../views/categories.html'
-    })
-    .state('main.newsfeed.topics', {
-        url:'/topics',
-        templateUrl: '../../views/topics.html'
+    .state('main.article', {
+        url:'/article/:id',
+        templateUrl: '../../views/article.html',
+        controller: 'ArticleController',
+        controllerAs: 'article',
+        resolve: {
+            article: function($stateParams, ArticleService) {
+                return ArticleService.getArticle($stateParams.id).then(
+                    function(response) {
+                        return response.data;
+                    });
+            }
+        }
     });
 });

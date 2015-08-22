@@ -28,7 +28,7 @@ app.get('/api/cluster/names', routes.getClusterNames);
 app.get('/api/categories/recent', routes.getRecentCategories);
 app.get('/api/articles/source/:source', routes.getArticlesBySource);
 app.get('/api/articles/keyword/:keyword', routes.getArticlesByKeyword);
-app.get('/api/articles/id/:id', routes.getArticleById);
+app.get('/api/articles/:id', routes.getArticleById);
 app.get('/api/articles/categories/:page', routes.recentCategories);
 app.get('/api/articles/keywords/:page', routes.recentKeywords);
 app.get('/api/articles/sources', routes.getSources);
@@ -53,7 +53,7 @@ app.get('/users',
                                       failureRedirect: '/login' }),
     function(req, res) {
         res.cookie('retinaID', req.user.id);
-        res.redirect('/#/main/newsfeed/feed');
+        res.redirect('/#/main/feed');
     }
 );
 
