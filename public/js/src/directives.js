@@ -1,51 +1,16 @@
 var retina = angular.module('retina');
 
-retina.directive('articleGrid', [ArticleGrid]);
-retina.directive('articleCard', [ArticleCard]);
+retina.directive('articleList', [ArticleList])
 retina.directive('scrollToId', [ScrollToId]);
 
-function ArticleGrid() {
-
+function ArticleList() {
     var directive = {
         scope: {
             articles: '='
         },
-        restrict: 'AE',
+        restrict:'AE',
         replace: true,
-        templateUrl: 'templates/article-grid.html',
-    };
-
-    directive.controller = function($scope) {
-
-    };
-
-    directive.link = function($scope, $element, $attrs) {
-
-    };
-
-    return directive;
-}
-
-function ArticleCard() {
-
-    var directive = {
-        scope: {
-            article:'='
-        },
-        restrict: 'AE',
-        replace: true,
-        templateUrl: 'templates/article-card.html',
-    };
-
-    directive.controller = function($scope) {};
-
-    directive.link = function($scope, $element, $attrs) {
-        var article = $scope.article;
-        $element.addClass(article.category.toLowerCase() + '-color');
-
-        $element.on('mouseover', function() {
-            // $element.children('span').removeClass('hide');
-        });
+        templateUrl: '../../templates/articlelist.html'
     };
 
     return directive;

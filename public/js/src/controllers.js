@@ -9,11 +9,11 @@ function FeedController(ArticleService, articles) {
     this.page = 1;
     this.articles = articles;
 
-    this.moreArticles = function() {
+    this.loadMoreArticles = function() {
         this.page++;
         ArticleService.latest(this.page).success(function(newArticles) {
-                this.articles = this.articles.concat(newArticles.data);
-        }.bind(this));
+            Array.prototype.push.apply(this.articles, newArticles);
+        }, this);
     };
 }
 

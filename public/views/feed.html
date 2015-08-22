@@ -1,10 +1,6 @@
 <div>
-    <p>feed</p>
-    <li>
-        <ul ng-repeat="article in feed.articles">
-            <li>
-                <a ui-sref="main.article({id: article._id})">{{article.title}}</a>
-            </li>
-        </ul>
-    </li>
+    <div class="page-header">
+        <h1>Feed</h1>
+    </div>
+    <article-list articles="feed.articles"> </article-list>
 </div>
