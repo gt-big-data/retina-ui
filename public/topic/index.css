@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300);
 body {
-	font: 10px "Open Sans", sans-serif;
+	font: 15px "Open Sans", sans-serif;
 	padding: 0px;
 	margin: 0px;
 }
@@ -9,30 +9,42 @@ body {
 .axis line {
 	fill: none;
 	stroke: #000;
-	shape-rendering: crispEdges;
 }
 
 .x.axis path {
+
 }
 
+.city {
+	fill: #ebe3fd;
+}
 .line {
-	fill: none;
-	stroke: steelblue;
-	stroke-width: 1.5px;
+	stroke: #af8bf6;
+	stroke-width: 5px;
 }
 .labels {
-	font-size: 15px;
+	font-size: 25px;
 	font-weight: bold;
-	stroke: #404040;
-	stroke-width: 0.5px;
+	fill: #af8bf6;
 }
-#bigName {
+#bigName, #lowerName {
 	position: absolute;
 	text-align: center;
 	width: 100%;
-	font-size: 30px;
+	font-size: 50px;
 	padding-top: 30px;
 	font-weight: 800;
-	text-shadow: 1px 1px 0px steelblue, -1px 1px 0px steelblue, 1px -1px 0px steelblue, -1px -1px 0px steelblue;
-	color: white;
+	text-shadow: 1px 1px 0px #969298, -1px 1px 0px #969298, 1px -1px 0px #969298, -1px -1px 0px #969298;
+	color: #cfc6d8;
+}
+#lowerName {
+	margin-top: 70px;
+	font-size: 20px;
+	font-weight: 400;
+	color: #664974;
+	text-shadow: none;
+}
+.area {
+    fill: transparent;
+    stroke-width: 0;
 }
