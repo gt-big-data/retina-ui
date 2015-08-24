@@ -119,19 +119,6 @@ function reloadGraph() {
  		graph.mergeData(graphData, bla);
  	});
  }
-//function reloadGraph() {
-//	niceDate(currentDate);
-	// $.getJSON("/api/topics/filter?day="+buildFullDate(currentDate), function( data ) {
-	// $.getJSON("json/"+buildFullDate(currentDate)+".json", function( data ) {
-//	$.getJSON("json/test.json", function( data ) {
-//		allGraphData = data;
-//		reloadWithSource();
-//	}).fail(function(jqXHR, textStatus, errorThrown) {
-//		document.title=errorThrown;
-//		graphData = {nodes: [], edges: []};
-//		graph.mergeData(graphData, bla);
-//	});
-//}
 function bla() {}
 function placeKeywords() {
 	noKeywords = false;
