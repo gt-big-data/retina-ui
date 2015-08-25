@@ -1,3 +1,18 @@
+<div class="nav">
+            <div class="nav-section nav-left pull-left">
+                <a ui-sref="home">RETINA</a>
+            </div>
+            <div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
+                <span class="nav-mobile-button-bar"></span>
+                <span class="nav-mobile-button-bar"></span>
+                <span class="nav-mobile-button-bar"></span>
+            </div>
+            <div class="nav-section nav-right pull-right">
+                <a ui-sref="main.feed">FEED</a>
+                <a href="/inTheNews">DISCOVERY</a>
+                <a ui-sref="main.profile">PROFILE</a>
+            </div>
+        </div>
 <div class="nav-push"></div>
 <div class="container-fluid">
   <div ui-view></div>

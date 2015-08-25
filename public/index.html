@@ -12,23 +12,6 @@
 	</head>
 	<body ng-app="retina">
 		<!-- Fixed navbar -->
-		<div class="nav">
-			<div class="nav-section nav-left pull-left">
-				<a ui-sref="home">RETINA</a>
-			</div>
-			<div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
-				<span class="nav-mobile-button-bar"></span>
-				<span class="nav-mobile-button-bar"></span>
-				<span class="nav-mobile-button-bar"></span>
-			</div>
-			<div class="nav-section nav-right pull-right">
-				<a ui-sref="main.feed">FEED</a>
-				<a href="/inTheNews">DISCOVERY</a>
-				<a ui-sref="login">LOG IN</a>
-				<a ui-sref="register">REGISTER</a>
-				<!--<a ui-sref="main.profile">PROFILE</a>-->
-			</div>
-		</div>
 		<div ui-view class="wrapper"></div>
 	</body>
 	<script src="js/lib/jquery-1.11.3.min.js"></script>
