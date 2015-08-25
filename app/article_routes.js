@@ -6,6 +6,8 @@ var articleSchema = require('./models/articles.js').articleSchema;
 var articles = db.model('cleanarticles', articleSchema);
 var clusterSchema = require('./models/clusters.js').clusterSchema;
 var clusters = db.model('clusters', clusterSchema);
+var userSchema = require('./models/users.js').userSchema;
+var users =  db.model('users', userSchema);
 
 var topicsSchema = require('./models/topics');
 var topics = db.model('graph_topics', topicsSchema);
@@ -59,8 +61,12 @@ exports.getRecentCategories = function(req, res) {
 
 exports.getArticleById = function(req, res) {
     var id = req.params.id;
-    articles.getById(id, function(err, docs) {
-        res.json(docs);
+    articles.getById(id, function(err, doc) {
+        res.json(doc);
+        var userId = req.cookies.retinaID;
+        if (userId) {
+            users.recordView(userId, doc._id);
+        }
     });
 };
 

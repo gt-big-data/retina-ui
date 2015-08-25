@@ -17,7 +17,7 @@ exports.deleteKeyword = deleteKeyword;
 
 
 function getUserInfo(req, res) {
-    users.getUserInfo(req.cookies.retinaID, function(err, docs) {
+    users.getUserInfo(req.params.user, function(err, docs) {
         res.json(docs);
     });
 }
@@ -37,7 +37,7 @@ function updateKeywords(req, res) {
 }
 
 function recordView(req, res) {
-    users.recordView(req.cookies.retinaID, req.param('article'), 
+    users.recordView(req.cookies.retinaID, req.param('article'),
         function(err, docs) {
             res.json(docs);
         });

@@ -76,12 +76,12 @@ userSchema.statics.updateKeywords = function(userId, keyword, callback) {
  * @param {callback} callback - the callback to run once the query is completed, 
  * it should take in an error and an object. 
  */
-userSchema.statics.recordView = function(userId, articleId, callback) {
-    var toObjectId = mongoose.Types.ObjectId(articleId);
-    this.findOneAndUpdate(
-        {'_id': userId},
-        {$addToSet:{'articles': toObjectId}},
-        {}, callback);
+userSchema.statics.recordView = function(userId, articleId) {
+    this.findByIdAndUpdate(userId,
+        {$addToSet: {'articles': articleId}},
+        {}, function(err, doc) {
+            console.log(err);
+        });
 };
 
 
