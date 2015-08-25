@@ -1,6 +1,5 @@
 counts = [];
 var intervalSize = 3*3600;
-// $.getJSON("/api/sourceCounts/", function( data ) {
 $(document).ready(function() {
 	topic = 1;
 	location.search.substr(1).split("&").forEach(function (item) {
@@ -35,6 +34,11 @@ function loadGraph(data) {
 	intervalSize = Math.max(3600, Math.floor((maxTime-minTime)/100));
 	sortedWords = getSortedKeys(keywordCount);
 	$('#bigName').html(fLetter(sortedWords[0])+' ~ '+fLetter(sortedWords[1])+' ~ '+fLetter(sortedWords[2]));
+
+	minDate = buildDate(minTime);
+	maxDate = buildDate(maxTime);
+	f = 'dd mmm yyyy hh:MMtt';
+	$('#lowerName').html(minDate.format(f)+' &rarr; '+maxDate.format(f));
 	obj.name = fLetter(sortedWords[0]);
 
 	hourSpan = Math.ceil((maxTime-minTime)/intervalSize);
@@ -44,7 +48,6 @@ function loadGraph(data) {
 
 	for(i in data) {
 		for(h in obj.values) {
-			console.log(obj.values[h]);
 			if(toID(buildDate(data[i]['timestamp'])) === toID(obj.values[h].date)) {
 				obj.values[h].articles ++; break;
 			}
