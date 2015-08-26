@@ -17,7 +17,7 @@ exports.deleteKeyword = deleteKeyword;
 
 
 function getUserInfo(req, res) {
-    users.getUserInfo(req.params.user, function(err, docs) {
+    users.getUserInfo(req.cookies.retinaID, function(err, docs) {
         res.json(docs);
     });
 }
