@@ -3,6 +3,7 @@ var retina = angular.module('retina');
 
 retina.controller('FeedController', FeedController);
 retina.controller('ArticleController', ArticleController);
+retina.controller('ProfileController', ProfileController);
 
 FeedController.inject = ['ArticleService'];
 function FeedController(ArticleService, articles) {
@@ -17,6 +18,11 @@ function FeedController(ArticleService, articles) {
     };
 }
 
+
+function ProfileController(user) {
+    console.log(user);
+    this.user = user;
+}
 
 function ArticleController(article) {
     this.vm = article;

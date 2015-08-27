@@ -48,11 +48,12 @@ app.post('/users/preferences/delete/keyword', user.deleteKeyword);
     Passport initialization for facebook
 */
 app.get('/users/auth/facebook', passport.authenticate('facebook'));
-app.get('/users', 
+app.get('/users',
     passport.authenticate('facebook', {
                                       failureRedirect: '/login' }),
     function(req, res) {
-        res.cookie('retinaID', req.user.id);
+        res.cookie('retinaID', req.user.id,
+            {expires: new Date(Date.now() + 900000)});
         res.redirect('/#/main/feed');
     }
 );
@@ -61,7 +62,7 @@ app.get('/users',
     Passport initialization for google
 /*/
 app.get('/users/auth/google', passport.authenticate('google'));
-app.get('/users/auth/google/callback', 
+app.get('/users/auth/google/callback',
     passport.authenticate('google', { successRedirect: '/feed',
                                       failureRedirect: '/login' }));
 var server = app.listen(5000, function() {

@@ -439,6 +439,8 @@ body {
 	border-color: #87D37C;
 }
 
+.grid-item { width: 200px; }
+
 @media (min-width: 768px) {
 	.brand-name {
 		font-size: 36px;

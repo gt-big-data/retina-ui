@@ -1,5 +1,10 @@
 'use strict';
 var retina = angular.module('retina', ['ui.router']);
+retina.run(function($rootScope, $state) {
+    $rootScope.$on('$stateChangeStart', function(e, to) {
+    console.log(to.url);
+    });
+});
 retina.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('home');
 	$stateProvider
@@ -40,6 +45,20 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         resolve: {
             article: function($stateParams, ArticleService) {
                 return ArticleService.getArticle($stateParams.id).then(
+                    function(response) {
+                        return response.data;
+                    });
+            }
+        }
+    })
+    .state('main.profile', {
+        url: '/profile',
+        templateUrl: '../../views/profile.html',
+        controller: 'ProfileController',
+        controllerAs: 'profile',
+        resolve: {
+            user: function(AuthenticationService) {
+                return AuthenticationService.getCurrentUser().then(
                     function(response) {
                         return response.data;
                     });

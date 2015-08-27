@@ -17,8 +17,12 @@ exports.deleteKeyword = deleteKeyword;
 
 
 function getUserInfo(req, res) {
-    users.getUserInfo(req.cookies.retinaID, function(err, docs) {
-        res.json(docs);
+    users.getUserInfo(req.cookies.retinaID, function(err, doc) {
+        if (doc) {
+            res.json(doc);
+            return;
+        }
+        res.status(403).send('Permission Denied');
     });
 }
 
