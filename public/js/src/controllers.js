@@ -20,7 +20,6 @@ function FeedController(ArticleService, articles) {
 
 
 function ProfileController(user) {
-    console.log(user);
     this.user = user;
 }
 

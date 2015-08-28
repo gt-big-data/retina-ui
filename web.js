@@ -53,7 +53,7 @@ app.get('/users',
                                       failureRedirect: '/login' }),
     function(req, res) {
         res.cookie('retinaID', req.user.id,
-            {expires: new Date(Date.now() + 900000)});
+            {expires: new Date(Date.now() + 9000000)});
         res.redirect('/#/main/feed');
     }
 );

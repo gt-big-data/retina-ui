@@ -1,16 +1,24 @@
 'use strict';
-var retina = angular.module('retina', ['ui.router']);
-retina.run(function($rootScope, $state) {
+var retina = angular.module('retina', ['ui.router', 'ngCookies']);
+retina.run(['$rootScope', '$state', '$cookies',function($rootScope, $state, $cookies) {
     $rootScope.$on('$stateChangeStart', function(e, to) {
-    console.log(to.url);
+        // route is not protected
+        if (to.data && !angular.isFunction(to.data.rule)) {
+            return;
+        }
+        var authenticated = to.data.rule($cookies);
+        if (!authenticated) {
+            e.preventDefault();
+            $state.go('login');
+        }
     });
-});
+}]);
 retina.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('home');
 	$stateProvider
 	.state('home', {
 		url: '/home',
-		templateUrl: '../../views/home.html'
+		templateUrl: '../../views/home.html',
 	})
 	.state('login', {
 		url: '/login',
@@ -29,6 +37,9 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: '../../views/feed.html',
         controller: 'FeedController',
         controllerAs: 'feed',
+        data: {
+            rule: requiresLogin
+        },
         resolve: {
             articles: function(ArticleService) {
                 return ArticleService.latest(1).then(function(response) {
@@ -56,6 +67,9 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: '../../views/profile.html',
         controller: 'ProfileController',
         controllerAs: 'profile',
+        data: {
+            rule: requiresLogin
+        },
         resolve: {
             user: function(AuthenticationService) {
                 return AuthenticationService.getCurrentUser().then(
@@ -66,3 +80,7 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         }
     });
 });
+
+function requiresLogin($cookies) {
+    return $cookies.get('retinaID');
+}
