@@ -1,5 +1,5 @@
 'use strict';
-var app = require('./web.js');
+var app = require('./application.js');
 var server = app.listen(5000, function() {
     var host = server.address().address;
     var port = server.address().port;
