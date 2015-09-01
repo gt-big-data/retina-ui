@@ -6,6 +6,8 @@ retina.run(['$rootScope', '$state', '$cookies',function($rootScope, $state, $coo
         if (to.data && !angular.isFunction(to.data.rule)) {
             return;
         }
+        // Prevents a user from going to the state if it requires authentication
+        // the only state that uses this is profile state.
         var authenticated = to.data.rule($cookies);
         if (!authenticated) {
             e.preventDefault();
@@ -24,10 +26,6 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 		url: '/login',
 		templateUrl: '../../views/login.html'
 	})
-	.state('register', {
-		url: '/register',
-		templateUrl: '../../views/register.html'
-	})
     .state('main', {
         url: '/main',
         templateUrl: '../../views/main.html'
@@ -37,9 +35,6 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: '../../views/feed.html',
         controller: 'FeedController',
         controllerAs: 'feed',
-        data: {
-            rule: requiresLogin
-        },
         resolve: {
             articles: function(ArticleService) {
                 return ArticleService.latest(1).then(function(response) {

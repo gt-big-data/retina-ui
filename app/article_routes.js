@@ -1,135 +1,72 @@
 'use strict';
 var mongoose = require('mongoose');
-var config = require('../config/config');
-var db = mongoose.createConnection(config.db('big_data'));
-var articleSchema = require('./models/articles.js').articleSchema;
-var articles = db.model('cleanarticles', articleSchema);
+
+var articleModel = require('./schemas').articleModel;
+var userModel = require('./schemas').userModel;
+
 var clusterSchema = require('./models/clusters.js').clusterSchema;
-var clusters = db.model('clusters', clusterSchema);
-var userSchema = require('./models/users.js').userSchema;
-var users =  db.model('users', userSchema);
+var clusters = mongoose.model('clusters', clusterSchema);
 
 var topicsSchema = require('./models/topics');
-var topics = db.model('graph_topics', topicsSchema);
+var topics = mongoose.model('graph_topics', topicsSchema);
 
-var qdocSchema = require('./models/qdoc');
-var qdoc = db.model('qdoc', qdocSchema);
-
-
-exports.getLatestArticles = function(req, res) {
+//////////////////////////////
+function getLatestArticleList(req, res) {
     var page = parseInt(req.params.page);
-    articles.latest(page, function(err, docs) {
+    articleModel.latest(page).then(function(docs) {
         res.json(docs);
+    }, function(err) {
+
     });
-};
+}
 
 
-exports.getArticleByCategory = function(req, res) {
-    var category = req.params.category;
-    articles.getByCategory(category, function(err, docs) {
-        res.json(docs);
-    });
-};
-
-
-exports.getArticlesByKeyword = function(req, res) {
-    var keyword = req.params.keyword;
-    articles.getByKeyword(keyword, function(err, docs) {
-        res.json(docs);
-    });
-};
-
-
-exports.getArticlesBySource = function(req, res) {
-    var source = req.params.source;
-    articles.getBySource(source, function(err, docs) {
-        res.json(docs);
-    });
-};
-
-
-exports.getRecentCategories = function(req, res) {
-    articles.getRecentCategories(articles, function(err, docs) {
-        if (err) {
-            res.json({'Error' : err});
-        } else {
-            res.json({'Data' : docs});
-        }
-    });
-};
-
-
-exports.getArticleById = function(req, res) {
-    var id = req.params.id;
-    articles.getById(id, function(err, doc) {
+function getArticleById(req, res) {
+    articleModel.getById(req.params.id).then(function(doc) {
         res.json(doc);
         var userId = req.cookies.retinaID;
         if (userId) {
-            users.recordView(userId, doc._id);
+            userModel.recordView(userId, doc._id);
         }
+    }, function(err) {
+
     });
 };
 
 
-exports.recentCategories = function(req, res) {
-    articles.recentCategories(req.params.page, function(err, docs) {
-        var categories = docs.map(function(d) {
-            return d._id;
-        });
-        res.json(categories);
+function getSourceList(req, res) {
+    articleModel.getSourceList().then(function(doc) {
+        res.json(doc);
     });
 };
 
-
-exports.recentKeywords = function(req, res) {
-    articles.recentKeywords(req.params.page, function(err, docs) {
-        var keywords = docs.map(function(d){
-            return d._id;
-        });
-        res.json(keywords);
-    });
-};
-
-
-exports.getSources = function(req, res) {
-    articles.sources(function(err, docs) {
+function getKeywordCount(req, res){
+    articleModel.keywordCount().then(function(docs) {
         res.json(docs);
+    }, function(err) {
+
     });
-};
+}
 
-
-exports.keywordCount = function(req, res) {
-    articles.keywordCount(function(err, docs) {
-        res.send(docs);
-    });
-};
-
-exports.categoryCount = function(req, res) {
-    articles.categoryCount(function(err, docs) {
-        res.send(docs);
-    });
-};
-
-
-exports.getCluster = function(req, res) {
+function getCluster(req, res) {
     clusters.getCluster(req.params.cluster, function(err, docs) {
         res.json(docs);
     });
 };
 
-exports.getClusterNames = function(req, res) {
+function getClusterNames(req, res) {
     clusters.getClusterNames(function(err, docs) {
         res.json(docs);
     });
 };
 
-exports.getTopics = function(req, res) {
+function getTopics(req, res) {
     topics.getTopics(function(err, docs) {
         res.json(docs);
     });
 };
 
-exports.filterTopics = function(req, res) {
+function filterTopics(req, res) {
     console.log(req.param('day'));
     var day = new Date(req.param('day'));
     topics.getTopicsByDay(day, function(err, docs) {
@@ -137,23 +74,29 @@ exports.filterTopics = function(req, res) {
     });
 };
 
-exports.getSimilar = function(req, res) {
-    articles.getSimilar(req.params.keyword, function(err, docs) {
+function sourceCounts(req, res) {
+    topics.getTopics(function(err, docs) {
         res.json(docs);
     });
-};
+}
 
-exports.sourceCounts = function(req, res) {
-    qdoc.sourceCounts(function(err, data) {
-        res.json(data);
-    });
-};
-
-exports.topicCount = function(req, res) {
+function topicCounts(req, res) {
     var topic = parseInt(req.param('topic'));
-    qdoc.topicCount(topic, function(err, docs) {
+    articleModel.topicCount(topic, function(err, docs) {
         res.json(docs);
     });
+}
+
+module.exports = function(app) {
+    app.get('/articles/latest/:page', getLatestArticleList);
+    app.get('/articles/:id', getArticleById);
+    app.get('/articles/sources', getSourceList);
+    app.get('/keywords/count', getKeywordCount)
+    app.get('/api/topics', getTopics);
+    app.get('/api/topics/filter', filterTopics);
+    app.get('/api/sourceCounts', sourceCounts);
+    app.get('/api/topicCount', topicCounts);
+    app.get('/api/cluster/:cluster', getCluster);
+    app.get('/api/cluster/names', getClusterNames);
 };
 
-return exports;

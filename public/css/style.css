@@ -441,6 +441,10 @@ body {
 
 .grid-item { width: 200px; }
 
+.profile-pic {
+	border-radius: 100%;
+}
+
 @media (min-width: 768px) {
 	.brand-name {
 		font-size: 36px;
