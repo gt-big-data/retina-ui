@@ -266,6 +266,8 @@ body {
 .footer {
 	width: 100%;
 	height: 50px;
+	margin-top: 10px;
+	min-height: 30px;
 	padding: 10px 80px 10px 80px;
 	background-color: #eee;
 	border-top: 1px solid #ccc;
@@ -321,16 +323,6 @@ body {
 
 .media-heading {
 	margin-left: 10px;
-}
-
-.navbar {
-	border-radius: 0px;
-}
-.footer {
-	margin-bottom: 0px;
-	margin-top: 10px;
-	min-height: 30px;
-	border-radius: 0px;
 }
 
 .card {
