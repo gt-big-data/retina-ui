@@ -1,6 +1,31 @@
 <div>
-    <div class="page-header">
-        <h1 class="text-center">Feed</h1>
+    <div class="nav">
+            <div class="nav-section nav-left pull-left">
+                <a ui-sref="home">RETINA</a>
+            </div>
+            <div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
+                <span class="nav-mobile-button-bar"></span>
+                <span class="nav-mobile-button-bar"></span>
+                <span class="nav-mobile-button-bar"></span>
+            </div>
+            <div class="nav-section nav-right pull-right">
+                <a ui-sref="feed">FEED</a>
+            </div>
+        </div>
+    <div class="row">
+        <div class="page-header"></div>
+        <div class="page-header">
+            <h1 class="text-center">Feed</h1>
+        </div>
     </div>
-    <article-grid articles="feed.articles"> </article-grid>
+    <div class="row">
+        <div class="list-group">
+          <a ng-repeat="article in articles"
+             ui-sref="article({id: article._id})"
+             class="list-group-item active">
+             {{article.title}}
+          </a>
+        </div>
+    </div>
+
 </div>

@@ -1,28 +1,31 @@
 'use strict';
+/**
+  Hi and welcome to controller.js. This is where the masterminds behind your
+  views will reside.
+
+  The purpose of a controller is handle all of the logic that holds your view
+  together. It handles data loading and user interactions. If you want to
+  perform a task when a user clicks a button? Then this is where that code
+  should go.
+*/
 var retina = angular.module('retina');
 
+// Register the controllers with our module.
 retina.controller('FeedController', FeedController);
 retina.controller('ArticleController', ArticleController);
-retina.controller('ProfileController', ProfileController);
 
-FeedController.inject = ['ArticleService'];
-function FeedController(ArticleService, articles) {
+function FeedController(articles) {
+    /**
+        The articles parameter is provide by the resolve function that we
+        attach to the state in app.js
+
+        In the lines below we assign the articles to this so that we can
+        reference it in our models.
+     */
     this.page = 1;
     this.articles = articles;
-
-    this.loadMoreArticles = function() {
-        this.page++;
-        ArticleService.latest(this.page).success(function(newArticles) {
-            Array.prototype.push.apply(this.articles, newArticles);
-        }, this);
-    };
-}
-
-
-function ProfileController(user) {
-    this.user = user;
 }
 
 function ArticleController(article) {
-    this.vm = article;
+    this.model = article;
 }
