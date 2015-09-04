@@ -57,6 +57,18 @@ retina.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
+
+		.state('main.keyword', {
+			url: '/keyword/:keyword',
+			templateUrl: '../views/keyword.html',
+			controller: 'KeywordController',
+			controllerAs: 'keyword',
+			resolve: {
+					keyword: function($stateParams) {
+						return $stateParams.keyword;
+					}
+			}
+		})
     .state('main.profile', {
         url: '/profile',
         templateUrl: '../../views/profile.html',
@@ -73,6 +85,7 @@ retina.config(function($stateProvider, $urlRouterProvider) {
                     });
             }
         }
+
     });
 });
 
