@@ -3,6 +3,13 @@
 		<div class="page-header">
 			<h1>{{article.vm.title}}</h1>
 		</div>
+        <div class="row">
+            <div class="card-img" style="background-image: url('{{article.vm.img}}')"></div>
+        </div>
+		<div>
+			<a ui-sref="main.keyword({keyword:keyword})"ng-repeat="keyword in article.vm.keywords"
+				class="label label-default"> {{keyword}} </a>
+		</div>
 		<p class="article-text">{{article.vm.content}}</p>
         <div>
 

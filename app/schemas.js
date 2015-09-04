@@ -18,7 +18,7 @@ articleSchema.statics.latest = function(page) {
     return this.find({})
     .limit(20)
     .skip((page - 1) * 20)
-    .sort('-download_time')
+    .sort('-timestamp')
     // Exclude the actual text of the article, reduces the amount of data thats
     // being sent back to the client.
     .select('-text').exec();
