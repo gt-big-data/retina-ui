@@ -1,5 +1,19 @@
 <div class="container-fluid">
+    <div class="nav">
+            <div class="nav-section nav-left pull-left">
+                <a ui-sref="home">RETINA</a>
+            </div>
+            <div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
+                <span class="nav-mobile-button-bar"></span>
+                <span class="nav-mobile-button-bar"></span>
+                <span class="nav-mobile-button-bar"></span>
+            </div>
+            <div class="nav-section nav-right pull-right">
+                <a ui-sref="feed">FEED</a>
+            </div>
+        </div>
 	<div class="col-md-8 col-md-offset-1">
+    <div class="page-header"></div>
 		<div class="page-header">
 			<h1>{{article.model.title}}</h1>
 		</div>
