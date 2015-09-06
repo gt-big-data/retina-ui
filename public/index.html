@@ -12,29 +12,14 @@
 	</head>
 	<body ng-app="retina">
 		<!-- Fixed navbar -->
-		<div class="nav">
-			<div class="nav-section nav-left pull-left">
-				<a ui-sref="home">RETINA</a>
-			</div>
-			<div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
-				<span class="nav-mobile-button-bar"></span>
-				<span class="nav-mobile-button-bar"></span>
-				<span class="nav-mobile-button-bar"></span>
-			</div>
-			<div class="nav-section nav-right pull-right">
-				<a ui-sref="main.feed">FEED</a>
-				<a ui-sref="main.discover">DISCOVERY</a>
-				<a ui-sref="login">LOG IN</a>
-				<a ui-sref="register">REGISTER</a>
-				<!--<a ui-sref="main.profile">PROFILE</a>-->
-			</div>
-		</div>
-		<div ui-view class="wrapper"></div>
+		<div ui-view class="wrapper" autoscroll="true"></div>
 	</body>
 	<script src="js/lib/jquery-1.11.3.min.js"></script>
-	<script src="js/lib/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-cookies.min.js"></script>
 	<script src="js/lib/angular-ui-router.min.js"></script>
 	<script src="js/lib/ui-bootstrap-0.13.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
 	<script src="js/src/app.js"></script>
 	<script src="js/src/services.js"></script>
 	<script src="js/src/controllers.js"></script>

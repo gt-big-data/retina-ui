@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var articleSchema = require('./articles.js').articleSchema;
+var articleSchema = require('../schemas.js').articleSchema;
 
 var clusterSchema = mongoose.Schema({
     clusterName: String,

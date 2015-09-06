@@ -5,8 +5,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;
 var db = mongoose.createConnection(config.db('big_data'));
-var userSchema = require('../models/users').userSchema;
-var Users = db.model('users', userSchema);
+var Users = require('../schemas').userModel;
 
 passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
@@ -25,9 +24,7 @@ passport.use(new FacebookStrategy({
                         uid: profile.id,
                         name: profile.displayName,
                         picture: profile.photos ? profile.photos[0].value : null,
-                        categories: [],
-                        keywords: [],
-                        articles: [],
+                        views: [],
                     }).save(function(err, newUser) {
                         if (err) {
                             throw err;
@@ -37,20 +34,6 @@ passport.use(new FacebookStrategy({
                 }
             });
         })
-);
-
-passport.use(new GoogleStrategy({
-            returnURL: config.google.callbackURL,
-            realm: config.google.realm,
-        },
-        function(identifier, profile, done) {
-            User.findOrCreate({
-                openId: identifier
-            }, function(err, user) {
-                done(err, user);
-            });
-        }
-    )
 );
 
 passport.serializeUser(function(user, done) {

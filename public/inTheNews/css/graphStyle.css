@@ -11,8 +11,6 @@ body {
 }
 .link {
 	stroke: #d0d0d0;
-	stroke-width: 1px;
-	fill: transparent;
 }
 .keyword {
 	text-anchor: middle;

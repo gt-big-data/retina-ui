@@ -2,35 +2,31 @@
 var retina = angular.module('retina');
 
 retina.factory('ArticleService', ArticleService);
-retina.service('NavigationService', NavigationService);
-
+retina.factory('AuthenticationService', AuthenticationService);
 
 ArticleService.$inject = ['$http'];
 function ArticleService($http) {
     var service = {};
 
     service.latest = function latest(page) {
-        return $http.get('/api/articles/latest/' + page);
-    };
-    
-    service.getByCategory = function(category) {
-        return $http.get('/api/articles/category/' + category);
+        return $http.get('/articles/latest/' + page);
     };
 
     service.getArticle = function(articleId) {
-        return $http.get('/api/articles/' + articleId)
-    }
+        return $http.get('/articles/' + articleId)
+    };
 
     return service;
 }
 
-NavigationService.$inject = ['$state'];
-function NavigationService($state) {
+AuthenticationService.$inject = ['$http'];
+function AuthenticationService($http) {
     var service = {};
 
-    service.toArticle = function(id) {
-        $state.go('main.article', {id: id});
+    service.getCurrentUser = function() {
+        return $http.get('/users/user');
     };
 
     return service;
+
 }

@@ -1,39 +1,41 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic);
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic);
 body {
-  margin: 0px;
-  padding: 0px;
-  font-family: Lato;
+    margin: 0px;
+    padding: 0px;
+    font-family: Lato;
 }
 .node {
-	stroke-width: 1px;
-	stroke: #808080;
-	cursor: pointer;
+    stroke-width: 1px;
+    stroke: rgba(150,150,150,0.8);
+    cursor: pointer;
 }
 .link {
-	stroke: #d0d0d0;
+    stroke: rgba(200,200,200,0.8);
+    stroke-width: 0.7px;
+    fill: transparent;
 }
 .keyword {
-	text-anchor: middle;
-	stroke: black;
-	stroke-width: 0.3px;
-	font-weight: 300;
+    text-anchor: middle;
+    stroke: black;
+    stroke-width: 0.3px;
+    font-weight: 300;
 }
 .artImg {
-	float: left;
-	height: 50px;
-	padding-right: 5px;
-	padding-bottom: 5px;
+    float: left;
+    height: 50px;
+    padding-right: 5px;
+    padding-bottom: 5px;
 }
 .dayText, #line1, #line2 {
-	font-size: 70px;
-	font-weight: 900;
-	stroke: #404040;
-	stroke-width: 0.5px;
-	fill: #cfc6d8;
+    font-size: 70px;
+    font-weight: 900;
+    stroke: #404040;
+    stroke-width: 0.5px;
+    fill: #cfc6d8;
 }
 #line2 {
-	font-size: 50px;
+    font-size: 50px;
 }
 #svg {
-	position: absolute; top: 0px;
+    position: absolute; top: 0px;
 }
