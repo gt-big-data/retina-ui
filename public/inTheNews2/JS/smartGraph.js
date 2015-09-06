@@ -6,9 +6,7 @@ function smartGraph() {
 	bilinks = [], realNodes = [], midsToRemove = [];
 	var noKeywords;
 	var midNodeId = 0;
-	charge = -20;
-	// linkDistance = 20;
-	linkStrength = 5;
+	charge = -20; linkStrength = 5;
 	var smallRad = 3, bigRad = 4;
 	var transX, transY;
 	this.addNode = function (oldNode, isReal) {
