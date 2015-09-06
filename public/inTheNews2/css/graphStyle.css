@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic);
 body {
   margin: 0px;
   padding: 0px;
@@ -11,8 +11,6 @@ body {
 }
 .link {
 	stroke: #d0d0d0;
-	stroke-width: 1px;
-	fill: transparent;
 }
 .keyword {
 	text-anchor: middle;

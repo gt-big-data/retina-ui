@@ -1,43 +1,28 @@
 function smartGraph() {
-	var force = d3.layout.force();
-	// var zoom = d3.behavior.zoom();
-	// vis.call(zoom);
-	var nodes = force.nodes(), links = force.links();
-	bilinks = [], realNodes = [], midsToRemove = [];
-	var noKeywords;
-	var midNodeId = 0;
-	charge = -25;
-	linkDistance = 20;
-	linkStrength = 3;
+	charge = -40; linkD = 50;
 	var smallRad = 3, bigRad = 4;
 	var transX, transY;
-	this.addNode = function (oldNode, isReal) {
+	this.addNode = function (oldNode) {
 		newNode = $.extend(true, {}, oldNode)
 		newNode.tagged = true;
 		nodes.push(newNode);
-		if(isReal) realNodes.push(newNode);
-		return newNode;
 	};
 	this.getTranslation = function() {
 		return {'transX': transX, 'transY': transY};
 	}
 	this.removeNodeObj = function (n) {
 		var i = 0;
-		while (i < bilinks.length) {
-			if((bilinks[i].s == n) || (bilinks[i].t == n)) {
-				this.removeLink(bilinks[i].s.id, bilinks[i].m.id);
-				this.removeLink(bilinks[i].t.id, bilinks[i].m.id);
-				midsToRemove.push(bilinks[i].m.id);
-				bilinks.splice(i, 1);
+		while (i < links.length) {
+			if ((links[i]['source'] == n) || (links[i]['target'] == n)) {
+				links.splice(i, 1);
 			}
 			else i++;
 		}
 		nodes.splice(this.findNodeIndex(n.id), 1);
-		realNodes.splice(this.findRealNodeIndex(n.id), 1);
 	};
-	this.removeLink = function (real, mid) {
+	this.removeLink = function (source, target) {
 		for (var i = 0; i < links.length; i++) {
-			if ((links[i].source.id == real && links[i].target.id == mid) || (links[i].source.id == mid && links[i].target.id == real)) {
+			if (links[i].source.id == source && links[i].target.id == target) {
 				links.splice(i, 1);
 				break;
 			}
@@ -46,16 +31,14 @@ function smartGraph() {
 	this.tagNodes = function() {
 		for(i in nodes) nodes[i].tagged = false;
 	};
+	this.tagLinks = function() {
+		for(i in links) links[i].tagged = false;
+	};
 	this.removeExtraNodes = function() {
+		toRemove = [];
 		for(var i = nodes.length-1; i >= 0; i --) {
 			n = nodes[i];
-			if(!n.isMid && !n.tagged) this.removeNodeObj(n);
-		}
-	};
-	this.removeExtraMids = function() {
-		i = 0; while(i < nodes.length) {
-			if($.inArray(nodes[i].id, midsToRemove)!=-1) nodes.splice(i, 1);
-			else i ++;
+			if(!n.tagged) {this.removeNodeObj(n);}
 		}
 	};
 	this.changeColor = function(newNode, oldNode) {
@@ -64,16 +47,12 @@ function smartGraph() {
 		newN.group = oldN.group;
 	};
 	this.addLink = function (source, target, value) {
-		mid = this.addNode({'id': 'mid'+(midNodeId), 'isMid': true}, false); midNodeId ++;
-		t = this.findNode(target); s = this.findNode(source);
-		links.push({"source": s, "target": mid, "other": t, "value": value, "s": source, "t": target});
-		links.push({"source": mid, "target": t, "other": s, "value": value});
-		bilinks.push({'s': s, 'm': mid, 't': t});
+		links.push({"source": this.findNode(source), "target": this.findNode(target), "value": value});
 	};
 
 	this.findNode = function (id) {
 		for (var i in nodes) {if (nodes[i]["id"] === id) return nodes[i];};
-		return nodes[this.findNodeIndex(id)];
+		return -1;
 	};
 	this.findNodes = function (idList) {
 		returnList = [];
@@ -81,14 +60,12 @@ function smartGraph() {
 		return returnList;
 	};
 	this.findNodeIndex = function (id) {
-		for (var i in nodes) {if (nodes[i]["id"] === id) return i;};
+		for (var i = 0; i < nodes.length; i++) {
+			if (nodes[i].id == id) {return i;}
+		};
 		return -1;
 	};
-	this.findRealNodeIndex = function(id) {
-		for (var i in realNodes) {if (realNodes[i].id === id) return i;};
-		return -1;
-	};
-	this.getMinMax = function() {
+	this.getMinMax = function(co) {
 		minX = 0, minY = 0, maxX = 0, maxY = 0;
 		for (var i = 0; i < nodes.length; i++) {
 			minX = Math.min(nodes[i].x, minX); minY = Math.min(nodes[i].y, minY);
@@ -97,22 +74,32 @@ function smartGraph() {
 		return {'minX': minX, 'maxX': maxX, 'minY': minY, 'maxY': maxY};
 	}
 
+	var force = d3.layout.force();
+	var nodes = force.nodes(), links = force.links();
+	var noKeywords;
+
 	this.update = function (whenEnd) {
+		var link = vis.selectAll("line").data(links, function (d) {return d.source.id + "-" + d.target.id;});
 		var graph = this;
-		var link = vis.selectAll(".link").data(bilinks, function (d) {return d.s.id+'-'+d.t.id;});
-		linkEnter = link.enter().append("path").attr("class", "link");
+		link.enter().append("line").attr("id", function (d) { return d.source.id + "-" + d.target.id;}).attr("stroke-width", function (d) { return 1;}).attr("class", "link");
 		link.exit().remove();
 
-		var node = vis.selectAll("g.node").data(realNodes, function (d) {return d.id;});
+		var node = vis.selectAll("g.node").data(nodes, function (d) {return d.id;});
 
 		var nodeEnter = node.enter().append("g").attr("class", "node").attr("id", function (d) {return 'g-'+d.id;});
 		nodeEnter.append("svg:circle").attr("r", smallRad).attr("id", function (d) {return d.id;}).attr("class", "node").attr("fill", function(d) { return color(d.group); });
 		nodeEnter.on('mouseover', function(d){
-			d3.select(this).select('circle').attr('r', bigRad); openNotif(d);
-		}).on('mouseout', function(d){
+			d3.select(this).select('circle').attr('r', bigRad);
+			openNotif(d);
+		})
+		.on('mouseout', function(d){
 			d3.select(this).select('circle').attr('r', smallRad);
 			deleteNotif();
-		}).on('dblclick', function(d) {window.open(d.url, '_blank').focus();});
+		})
+		.on('dblclick', function(d) {
+			var win = window.open(d.url, '_blank');
+			win.focus();
+		});
 
 		node.exit().remove();
 
@@ -124,28 +111,25 @@ function smartGraph() {
 			if(tickMod%n == n-1) {
 				mm = graph.getMinMax(); transX = Math.max(0,-mm.minX); transY = Math.max(0,-mm.minY)+50;
 				height = Math.max(dH, (mm.maxY+transY+50)); width = Math.max(dW, (mm.maxX+transY));
-				node.attr("transform", function (d) {return "translate(" + (d.x+transX) + "," + (d.y+transY) + ")";});
-				link.attr("d", function(d) {
-					return "M" + (d.s.x+transX) + "," + (d.s.y+transY)+ "S" + (d.m.x+transX) + "," + (d.m.y+transY)+ " " + (d.t.x+transX) + "," + (d.t.y+transY);
-				});
-				vis.attr("width", width).attr("height", height);
+				// node.attr("transform", function (d) {return "translate(" + (d.x+transX) + "," + (d.y+transY) + ")";});
+				// link.attr("x1", function (d) {return d.source.x+transX;}).attr("y1", function (d) {return d.source.y+transY;})
+				// link.attr("x2", function (d) {return d.target.x+transX;}).attr("y2", function (d) {return d.target.y+transY;});
+				// vis.attr("width", width).attr("height", height);
 			}
 			tickMod ++;
 		});
-		force.charge(charge).linkStrength(linkStrength).linkDistance(linkDistance).size([dW, dH]).start();
+		force.charge(charge).linkDistance(linkD).size([dW, dH]).start();
 	};
-
 	this.mergeData = function(graphData, whenEnd) {
 		this.tagNodes();
+		this.tagLinks();
 		newNodes = [];
-		midsToRemove = [];
 		for(nod in graphData.nodes) {
 			myNode = graphData.nodes[nod];
-			if((n = this.findNode(myNode.id))) {n.tagged = true;}
-			else {this.addNode(myNode, true); newNodes.push(myNode.id);}
+			if((n = this.findNode(myNode.id)) != -1) {n.tagged = true;}
+			else {this.addNode(myNode); newNodes.push(myNode.id);}
 		}
 		this.removeExtraNodes();
-		this.removeExtraMids();
 
 		for(i in graphData.edges) {
 			myEdge = graphData.edges[i];
