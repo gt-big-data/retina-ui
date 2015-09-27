@@ -7,8 +7,6 @@ ArticleService.$inject = ['$http'];
 function ArticleService($http) {
     var service = {};
     var base = 'http://api.retinanews.net';
-    base = testBase;
-
     service.latest = function latest(page) {
         return $http.get(base + '/article/recent/' + page, {cache: true});
     };
