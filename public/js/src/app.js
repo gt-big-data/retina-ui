@@ -26,6 +26,11 @@ retina.config(function($stateProvider, $urlRouterProvider) {
                 return ArticleService.latest(20).then(function(response) {
                     return response.data;
                 });
+            },
+            trending: function(ArticleService) {
+                return ArticleService.getTending().then(function(response) {
+                    return response.data.data;
+                });
             }
         }
     })
@@ -49,11 +54,14 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl: '../views/keyword.html',
 			controller: 'KeywordController',
 			controllerAs: 'keyword',
-			resolve: {
-					keyword: function($stateParams) {
-						return $stateParams.keyword;
-					}
-			}
+            resolve: {
+                related: function($stateParams, ArticleService) {
+                    return ArticleService.getByKeyword($stateParams.keyword)
+                        .then(function(response) {
+                            return response.data;
+                        });
+                }
+            }
 		});
 });
 

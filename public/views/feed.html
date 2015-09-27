@@ -1,6 +1,16 @@
-<div>
-    <div class="page-header">
-        <h1 class="text-center">LATEST NEWS</h1>
+<div class="col-md-12">
+    <div class="col-md-3">
+        <h5 class="text-center">Trending</h5>
+            <div ng-repeat="topic in feed.trending">
+                <a ui-sref="main.keyword({keyword: topic.keyword})">{{topic.keyword}}</a>
+                <span class="pull-right">{{topic.total}} articles</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width:{{feed.scale(topic.total)}}%"></div>
+                </div>
+            </div>
     </div>
+    <div class="col-md-9">
+        <h5 class="text-center">LATEST</h5>
     <article-grid articles="feed.articles"> </article-grid>
+</div>
 </div>

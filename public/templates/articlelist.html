@@ -1,10 +1,5 @@
 <div class="list-group">
-    <ul>
-        <div ng-repeat="article in articles" class="">
-             <a ui-sref="main.article({id: article._id})"
-               class="list-group-item active">
-                 {{article.title}}
-            </a>
-        </div>
-    </ul>
+     <a ng-repeat="article in articles" ng-href="{{article.url}}" class="list-group-item">
+         {{article.title}}
+    </a>
 </div>
