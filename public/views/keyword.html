@@ -1,9 +1,9 @@
 <div class="col-md-12">
     <div class="col-md-9">
-        <h1> {{keyword.vm.topic}}</h1>
+        <h1 class="text-primary"> {{keyword.vm.topic}}</h1>
     </div>
     <div class="col-md-3">
-        <h5 class="text-center">Related Articles</h5>
+        <h5 class="text-center">articles about <span class="text-primary">{{keyword.vm.topic}}</span></h5>
     <article-list title="related articles" articles="keyword.vm.related"></article-list>
 </div>
 </div>

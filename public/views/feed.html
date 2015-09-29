@@ -1,16 +1,30 @@
 <div class="col-md-12">
-    <div class="col-md-3">
-        <h5 class="text-center">Trending</h5>
-            <div ng-repeat="topic in feed.trending">
-                <a ui-sref="main.keyword({keyword: topic.keyword})">{{topic.keyword}}</a>
-                <span class="pull-right">{{topic.total}} articles</span>
-                <div class="progress">
-                    <div class="progress-bar" style="width:{{feed.scale(topic.total)}}%"></div>
+    <div class="row top-buffer">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Trending</h3>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="topic in feed.trending">
+                        <a ui-sref="main.keyword({keyword: topic.keyword})">{{topic.keyword}}</a>
+                        <span class="pull-right">{{topic.total}} articles</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:{{feed.scale(topic.total)}}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Latest</h3>
+                </div>
+                <div class="panel-body latest-panel">
+                    <article-grid articles="feed.articles"> </article-grid>
                 </div>
             </div>
     </div>
-    <div class="col-md-9">
-        <h5 class="text-center">LATEST</h5>
-    <article-grid articles="feed.articles"> </article-grid>
 </div>
 </div>

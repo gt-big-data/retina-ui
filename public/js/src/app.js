@@ -23,7 +23,7 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         controllerAs: 'feed',
         resolve: {
             articles: function(ArticleService) {
-                return ArticleService.latest(20).then(function(response) {
+                return ArticleService.latest(1).then(function(response) {
                     return response.data;
                 });
             },
