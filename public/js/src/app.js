@@ -14,7 +14,13 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 	})
     .state('main', {
         url: '/main',
-        templateUrl: '../../views/main.html'
+        templateUrl: '../../views/main.html',
+        controller: function($scope, $stateParams) {
+            $scope.$on('$stateChangeSuccess',
+                function(event, toState, toParams, fromState, fromParams) {
+                    $scope.label = toParams.keyword;
+            });
+        }
     })
     .state('main.feed', {
         url:'/feed',

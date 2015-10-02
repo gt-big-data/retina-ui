@@ -7,6 +7,7 @@ ArticleService.$inject = ['$http'];
 function ArticleService($http) {
     var service = {};
     var base = 'http://api.retinanews.net';
+    base = 'http://localhost:5000';
     service.latest = function latest(page) {
         return $http.get(base + '/article/recent/' + page, {cache: true});
     };
@@ -22,6 +23,13 @@ function ArticleService($http) {
     service.getByKeyword = function(keyword) {
         return $http.get(base + '/article/keywords/' + keyword)
     };
+
+    service.getCoKeywords = function(keyword) {
+        var params = {
+            keyword: keyword
+        };
+        return $http.get(base + '/cokeywords', {params: params});
+    }
 
     return service;
 }
