@@ -14,7 +14,13 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 	})
     .state('main', {
         url: '/main',
-        templateUrl: '../../views/main.html'
+        templateUrl: '../../views/main.html',
+        controller: function($scope, $stateParams) {
+            $scope.$on('$stateChangeSuccess',
+                function(event, toState, toParams, fromState, fromParams) {
+                    $scope.label = toParams.keyword;
+            });
+        }
     })
     .state('main.feed', {
         url:'/feed',
@@ -23,13 +29,13 @@ retina.config(function($stateProvider, $urlRouterProvider) {
         controllerAs: 'feed',
         resolve: {
             articles: function(ArticleService) {
-                return ArticleService.latest(20).then(function(response) {
+                return ArticleService.latest(1).then(function(response) {
                     return response.data;
                 });
             },
             trending: function(ArticleService) {
-                return ArticleService.getTending().then(function(response) {
-                    return response.data.data;
+                return ArticleService.getTrending().then(function(response) {
+                    return response.data;
                 });
             }
         }

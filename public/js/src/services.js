@@ -15,12 +15,16 @@ function ArticleService($http) {
         return $http.get(base + '/article/id/'+ articleId);
     };
 
-    service.getTending = function() {
+    service.getTrending = function() {
         return $http.get(base + '/trending', {cache: true});
     };
 
     service.getByKeyword = function(keyword) {
         return $http.get(base + '/article/keywords/' + keyword)
+    };
+
+    service.getCoKeywords = function(keyword) {
+        return $http.get(base + '/cokeywords/' + keyword);
     };
 
     return service;

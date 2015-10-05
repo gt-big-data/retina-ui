@@ -2,6 +2,9 @@
             <div class="nav-section nav-left pull-left">
                 <a ui-sref="home">RETINA</a>
             </div>
+            <div ng-if="label" class="nav-section nav-right pull-left">
+                <a><span class="text-primary">{{label}}</span></a>
+            </div>
             <div onclick="$('.nav-right').slideToggle('slow','swing')" class="nav-section nav-mobile-button pull-right">
                 <span class="nav-mobile-button-bar"></span>
                 <span class="nav-mobile-button-bar"></span>
