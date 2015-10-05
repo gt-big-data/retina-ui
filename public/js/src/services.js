@@ -15,7 +15,7 @@ function ArticleService($http) {
         return $http.get(base + '/article/id/'+ articleId);
     };
 
-    service.getTending = function() {
+    service.getTrending = function() {
         return $http.get(base + '/trending', {cache: true});
     };
 
@@ -24,11 +24,8 @@ function ArticleService($http) {
     };
 
     service.getCoKeywords = function(keyword) {
-        var params = {
-            keyword: keyword
-        };
-        return $http.get(base + '/cokeywords', {params: params});
-    }
+        return $http.get(base + '/cokeywords/' + keyword);
+    };
 
     return service;
 }

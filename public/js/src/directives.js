@@ -74,7 +74,9 @@ function TreeDiagram() {
   directive.link = function($scope, $element, $attrs) {
     $scope.ArticleService.getCoKeywords($scope.keyword)
     .then(function(response) {
-        var root = response.data.data;
+        var root = {keyword: $scope.keyword,
+                    children: response.data,
+                    total: response.data.length};
         var width = $element.width();
         var height = 400;
 
@@ -90,6 +92,7 @@ function TreeDiagram() {
         var totals = root.children.map(function(d) {
           return d.total;
         });
+        totals.push(root.total);
 
         var xScale = d3.scale.linear()
                         .domain([0, d3.max(totals)])
@@ -111,7 +114,7 @@ function TreeDiagram() {
             .attr('class', 'link')
             .attr('d', diagonal)
             .attr('stroke-width', function(d) {
-              return xScale(d.target.total) * 10 + 'px';
+              return xScale(d.target.total) * 20 + 'px';
             });
 
         var node = svg.selectAll('.node')
@@ -121,10 +124,12 @@ function TreeDiagram() {
             .attr('transform', function(d) { return 'translate(' + d.y + ',' + d.x + ')'; })
 
         node.append('circle')
-            .attr('r', 4.5);
+            .attr('r', function(d) {
+              return xScale(d.total) * 9 + 'px';
+            });
 
         node.append('text')
-            .attr('dx', function(d) { return d.children ? -8 : 8; })
+            .attr('dx', function(d) { return d.children ? -12 : 12; })
             .attr('dy', 3)
             .style('text-anchor', function(d) { return d.children ? 'end' : 'start'; })
             .text(function(d) { return d.keyword; });

@@ -34,8 +34,8 @@ retina.config(function($stateProvider, $urlRouterProvider) {
                 });
             },
             trending: function(ArticleService) {
-                return ArticleService.getTending().then(function(response) {
-                    return response.data.data;
+                return ArticleService.getTrending().then(function(response) {
+                    return response.data;
                 });
             }
         }
