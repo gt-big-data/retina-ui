@@ -37,8 +37,7 @@ function ArticleController(article) {
     this.vm = article;
 }
 
-function KeywordController($stateParams, related) {
+function KeywordController($stateParams) {
     this.vm = {}
     this.vm.topic = $stateParams.keyword;
-    this.vm.related = related;
 }

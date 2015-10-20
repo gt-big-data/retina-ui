@@ -62,10 +62,7 @@ retina.config(function($stateProvider, $urlRouterProvider) {
 			controllerAs: 'keyword',
             resolve: {
                 related: function($stateParams, ArticleService) {
-                    return ArticleService.getByKeyword($stateParams.keyword)
-                        .then(function(response) {
-                            return response.data;
-                        });
+                   return;
                 }
             }
 		});

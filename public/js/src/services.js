@@ -27,5 +27,9 @@ function ArticleService($http) {
         return $http.get(base + '/cokeywords/' + keyword);
     };
 
+    service.getKeywordActivityGraph = function(keyword, daysAgo) {
+        return $http.get(base + '/article/timeline/' + keyword +'/days/' + daysAgo);
+    };
+
     return service;
 }

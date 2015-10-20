@@ -1,12 +1,9 @@
 <div class="col-md-12">
-    <div class="col-md-9">
-        <div class="col-md-5 top-buffer">
-            <tree-diagram keyword="keyword.vm.topic"></tree-diagram>
-        </div>
-        <div class="col-md-4"></div>
+
+    <div class="col-md-4 top-buffer">
+        <tree-diagram keyword="keyword.vm.topic"></tree-diagram>
     </div>
-    <div class="col-md-3">
-        <h5 class="text-center">articles about <span class="text-primary">{{keyword.vm.topic}}</span></h5>
-    <article-list title="related articles" articles="keyword.vm.related"></article-list>
-</div>
+    <div class="col-md-8">
+        <keyword-activity-graph keyword="keyword.vm.topic"></keyword-activity-graph>
+    </div>
 </div>
