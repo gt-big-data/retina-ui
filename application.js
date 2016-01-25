@@ -14,7 +14,11 @@ var app = express();
 app.use(logfmt.requestLogger());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({secret: 'super secret'}));
+app.use(session({
+  secret: 'super secret',
+  saveUninitialized: false,
+  resave: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req, res, next) {
