@@ -3,31 +3,31 @@ module.exports = config();
 function config() {
 
     var version = "0.0.7";
-    
+
     var dev = {};
     dev.version = version;
     dev.db = function(name) {
-        return 'mongodb://146.148.59.202:27017/' + name;
+        return 'mongodb://143.215.138.132:27017/' + name;
     };
 
     dev.facebook = {
         clientID: 566737753454309,
         clientSecret: "eba56ecd3a902b791cb8ba258f72a501",
-        callbackURL: "http://localhost:5000/users"
+        callbackURL: "http://localhost:3000/users"
     };
 
     dev.google = {
         clientID: null,
         clientSecret: null,
-        realm: "http://localhost:5000/",
-        callbackURL: "http://localhost:5000/users/auth/google/callback"
+        realm: "http://localhost:3000/",
+        callbackURL: "http://localhost:3000/users/auth/google/callback"
     };
 
-    
+
     var prod = {};
     prod.version = version;
     prod.db = function(name) {
-        return 'mongodb://146.148.59.202:27017/' + name;
+        return 'mongodb://143.215.138.132:27017/' + name;
     };
     prod.facebook = {
         clientID: 545078782286873,
